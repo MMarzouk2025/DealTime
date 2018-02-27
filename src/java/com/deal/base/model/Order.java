@@ -1,6 +1,8 @@
 package com.deal.base.model;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
 
     private long orderId;
     private Product orderProduct;
@@ -24,4 +26,9 @@ public class Order {
         this.orderProduct = orderProduct;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" + "orderId=" + orderId + ", orderProduct=" + orderProduct + '}';
+    }
+    
 }

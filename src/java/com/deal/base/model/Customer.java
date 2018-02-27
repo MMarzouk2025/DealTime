@@ -1,8 +1,9 @@
 package com.deal.base.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Customer {
+public class Customer implements Serializable {
 
     private long custId;
     private String custEmail;
@@ -113,4 +114,9 @@ public class Customer {
         this.custCart = custCart;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" + "custId=" + custId + ", custEmail=" + custEmail + ", custPassword=" + custPassword + ", custFirstName=" + custFirstName + ", custLastName=" + custLastName + ", custAddress=" + custAddress + ", custJob=" + custJob + ", custDateOfBirth=" + custDateOfBirth + ", custCreditLimit=" + custCreditLimit + ", custInterests=" + custInterests + ", custCart=" + custCart + '}';
+    }
+    
 }

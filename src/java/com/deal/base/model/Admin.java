@@ -1,8 +1,9 @@
 package com.deal.base.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Admin {
+public class Admin implements Serializable {
 
     private long adminId;
     private String adminEmail;
@@ -81,6 +82,11 @@ public class Admin {
 
     public void setAdminDateOfBirth(LocalDate adminDateOfBirth) {
         this.adminDateOfBirth = adminDateOfBirth;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" + "adminId=" + adminId + ", adminEmail=" + adminEmail + ", adminPassword=" + adminPassword + ", adminFirstName=" + adminFirstName + ", adminLastName=" + adminLastName + ", adminAddress=" + adminAddress + ", adminJob=" + adminJob + ", adminDateOfBirth=" + adminDateOfBirth + '}';
     }
 
 }

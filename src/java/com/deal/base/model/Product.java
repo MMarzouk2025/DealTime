@@ -1,6 +1,8 @@
 package com.deal.base.model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
 
     private long productId;
     private String productName;
@@ -62,4 +64,9 @@ public class Product {
         this.productCategory = productCategory;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productDesc=" + productDesc + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity + ", productCategory=" + productCategory + '}';
+    }
+    
 }

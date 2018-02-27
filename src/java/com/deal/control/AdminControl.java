@@ -22,7 +22,7 @@ public class AdminControl extends HttpServlet {
         customers.add(new Customer("Marzouk4@gmail.com", "123456", "Mahmoud4", "Marzouk4", 120));
         customers.add(new Customer("Marzouk5@gmail.com", "123456", "Mahmoud5", "Marzouk5", 120));
         request.setAttribute("customers", customers);
-        request.getRequestDispatcher("view/adminControlPanel.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/view/adminControlPanel.jsp").forward(request, response);
     }
 
     @Override
