@@ -53,6 +53,14 @@ public class UserProfileControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String firstNmae = request.getParameter("firstname");
+        String lastName = request.getParameter("lastname");
+        String job = request.getParameter("job");
+        String address = request.getParameter("address");
+        String credit = request.getParameter("credit");
+        String mobileNumber = request.getParameter("mobileNumber");
+        String email = request.getParameter("email");
+        String interests = request.getParameter("interests");
         //Updating database with new values here.
         
         //just for testing
