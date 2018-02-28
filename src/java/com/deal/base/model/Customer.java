@@ -12,6 +12,7 @@ public class Customer implements Serializable {
     private String custLastName;
     private String custAddress;
     private String custJob;
+    private String custMobileNumber;
     private LocalDate custDateOfBirth;
     private double custCreditLimit;
     private String custInterests;
@@ -21,13 +22,14 @@ public class Customer implements Serializable {
         custCart = new Cart();
     }
 
-    public Customer(String custEmail, String custPassword, String custFirstName, String custLastName, double custCreditLimit) {
+    public Customer(String custEmail, String custPassword, String custFirstName, String custLastName, double custCreditLimit, String custMobileNumber) {
         this();
         this.custEmail = custEmail;
         this.custPassword = custPassword;
         this.custFirstName = custFirstName;
         this.custLastName = custLastName;
         this.custCreditLimit = custCreditLimit;
+        this.custMobileNumber = custMobileNumber;
     }
 
     public long getCustId() {
@@ -114,9 +116,17 @@ public class Customer implements Serializable {
         this.custCart = custCart;
     }
 
+    public String getCustMobileNumber() {
+        return custMobileNumber;
+    }
+
+    public void setCustMobileNumber(String custMobileNumber) {
+        this.custMobileNumber = custMobileNumber;
+    }
+
     @Override
     public String toString() {
         return "Customer{" + "custId=" + custId + ", custEmail=" + custEmail + ", custPassword=" + custPassword + ", custFirstName=" + custFirstName + ", custLastName=" + custLastName + ", custAddress=" + custAddress + ", custJob=" + custJob + ", custDateOfBirth=" + custDateOfBirth + ", custCreditLimit=" + custCreditLimit + ", custInterests=" + custInterests + ", custCart=" + custCart + '}';
     }
-    
+
 }
