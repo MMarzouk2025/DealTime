@@ -16,11 +16,11 @@ public class AdminControl extends HttpServlet {
             throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");
         List<Customer> customers = new ArrayList<>();
-        customers.add(new Customer("Marzouk1@gmail.com", "123456", "Mahmoud1", "Marzouk1", 120));
-        customers.add(new Customer("Marzouk2@gmail.com", "123456", "Mahmoud2", "Marzouk2", 120));
-        customers.add(new Customer("Marzouk3@gmail.com", "123456", "Mahmoud3", "Marzouk3", 120));
-        customers.add(new Customer("Marzouk4@gmail.com", "123456", "Mahmoud4", "Marzouk4", 120));
-        customers.add(new Customer("Marzouk5@gmail.com", "123456", "Mahmoud5", "Marzouk5", 120));
+        customers.add(new Customer("Marzouk1@gmail.com", "123456", "Mahmoud1", "Marzouk1", 120, "0105566447"));
+        customers.add(new Customer("Marzouk2@gmail.com", "123456", "Mahmoud2", "Marzouk2", 120, "0105566447"));
+        customers.add(new Customer("Marzouk3@gmail.com", "123456", "Mahmoud3", "Marzouk3", 120, "0105566447"));
+        customers.add(new Customer("Marzouk4@gmail.com", "123456", "Mahmoud4", "Marzouk4", 120, "0105566447"));
+        customers.add(new Customer("Marzouk5@gmail.com", "123456", "Mahmoud5", "Marzouk5", 120, "0105566447"));
         request.setAttribute("customers", customers);
         request.getRequestDispatcher("WEB-INF/view/adminControlPanel.jsp").forward(request, response);
     }

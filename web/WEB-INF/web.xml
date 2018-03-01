@@ -4,9 +4,22 @@
         <servlet-name>AdminControl</servlet-name>
         <servlet-class>com.deal.control.AdminControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogInServlet</servlet-name>
+        <servlet-class>com.deal.control.LogInServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.deal.control.RegisterServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
