@@ -4,22 +4,25 @@
         <servlet-name>AdminControl</servlet-name>
         <servlet-class>com.deal.control.AdminControl</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>LogInServlet</servlet-name>
-        <servlet-class>com.deal.control.LogInServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>com.deal.control.RegisterServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
     </servlet-mapping>
-    
+    <servlet>
+        <servlet-name>LogInControl</servlet-name>
+        <servlet-class>com.deal.control.LogInControl</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/RegisterServlet</url-pattern>
+        <servlet-name>LogInControl</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RegisterControl</servlet-name>
+        <servlet-class>com.deal.control.RegisterControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterControl</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
