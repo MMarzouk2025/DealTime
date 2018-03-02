@@ -8,6 +8,7 @@
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>LogInControl</servlet-name>
         <servlet-class>com.deal.control.LogInControl</servlet-class>
@@ -29,6 +30,8 @@
             30
         </session-timeout>
     </session-config>
+=======
+>>>>>>> 7867a1d886f97ad96ca7df2454dbe77aa0b5e270
     <!--Nagib-->
     <servlet>
         <servlet-name>userCartControler</servlet-name>
