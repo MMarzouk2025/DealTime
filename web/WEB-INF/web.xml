@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <!--Nagib-->
+    <servlet>
+        <servlet-name>userCartControler</servlet-name>
+        <servlet-class>com.deal.control.userCartControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userCartControler</servlet-name>
+        <url-pattern>/userCartControler</url-pattern>
+    </servlet-mapping> 
+    <!---->
+    
+    <!--Marzouk-->
     <servlet>
         <servlet-name>AdminControl</servlet-name>
         <servlet-class>com.deal.servlet.AdminControl</servlet-class>
@@ -8,17 +21,44 @@
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>UserProfileControl</servlet-name>
-        <servlet-class>com.deal.servlet.UserProfileControl</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserProfileControl</servlet-name>
-        <url-pattern>/userProfileControl</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <!---->
+    
+    <!--Mokhtar-->
+    <servlet>
+        <servlet-name>UserProfile</servlet-name>
+        <servlet-class>com.deal.control.UserProfileControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfile</servlet-name>
+        <url-pattern>/userProfile</url-pattern>
+    </servlet-mapping>
+    <!---->
+    
+    <!--Yomna-->
+    <servlet>
+        <servlet-name>LogInControl</servlet-name>
+        <servlet-class>com.deal.control.LogInControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogInControl</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RegisterControl</servlet-name>
+        <servlet-class>com.deal.control.RegisterControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterControl</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <!---->
+    
+    <!--Sobky-->
+    <!---->
+    
 </web-app>

@@ -17,6 +17,18 @@ public class Customer implements Serializable {
     private double custCreditLimit;
     private String custWishList;
 
+//    nagib
+//
+//   
+//    marzok
+//
+//   
+//    mokhtar
+//
+//   
+//    yomna
+//
+//
     public Customer() {
     }
 

@@ -11,6 +11,18 @@ public class Order implements Serializable {
     private char status; // 'c' --> in cart .. 'd' --> done 
                             // if customer cancelled order it will be deleted for now as we don't save history uptill now
 
+//    nagib
+//
+//   
+//    marzok
+//
+//   
+//    mokhtar
+//
+//   
+//    yomna
+//
+//
     public Order() {
     }
     

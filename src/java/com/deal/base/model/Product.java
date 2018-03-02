@@ -10,7 +10,19 @@ public class Product implements Serializable {
     private double productPrice;
     private int availableQuantity;
     private Category productCategory;
-
+    
+//    nagib
+//
+//   
+//    marzok
+//
+//   
+//    mokhtar
+//
+//   
+//    yomna
+//
+//  
     public Product() {
     }
 

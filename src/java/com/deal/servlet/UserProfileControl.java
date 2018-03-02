@@ -7,7 +7,6 @@ package com.deal.servlet;
 
 import com.deal.base.model.Customer;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +23,7 @@ public class UserProfileControl extends HttpServlet {
             throws ServletException, IOException {
 //        response.setContentType("text/html;charset=UTF-8");
         Customer customer = new Customer();
-        
+
         customer.setCustEmail("Ahmed@gmail.com");
         customer.setCustPassword("1a2b3c");
         customer.setCustFirstName("Ahmed");
@@ -50,7 +49,7 @@ public class UserProfileControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String firstNmae = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
         String job = request.getParameter("job");
@@ -60,7 +59,7 @@ public class UserProfileControl extends HttpServlet {
         String email = request.getParameter("email");
         String interests = request.getParameter("interests");
         //Updating database with new values here.
-        
+
         //just for testing
         response.sendRedirect("index.html");
 
