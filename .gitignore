@@ -26,5 +26,12 @@ hs_err_pid*
 
 #excluded
 !/web/WEB-INF/util/
+
+#others
 /dist/
-*.class
+/dist/
+*.war
+/build/web/
+/build/web/WEB-INF/classes/
+/build/web/WEB-INF/lib/
+
