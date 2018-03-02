@@ -34,4 +34,5 @@ hs_err_pid*
 /build/web/
 /build/web/WEB-INF/classes/
 /build/web/WEB-INF/lib/
+/nbproject/private/
 
