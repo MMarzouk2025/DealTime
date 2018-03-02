@@ -9,29 +9,44 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-/***********/
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * ********
+ */
 /* Nagib */
-
-/***********/
+/**
+ * ********
+ */
 /* Mokhtar */
-
-/***********/
+/**
+ * ********
+ */
 /* Ibrahim */
-
-/***********/
+/**
+ * ********
+ */
 /* Yomna */
-
-/***********/
-
+/**
+ * ********
+ */
 public class CustomerDAO {
+
     /* Marzouk */
     Connection mConn;
+    public static final String SUCCESSFUL_INSERT = "registeration has been done successfully";
+    public static final String SUCCESSFUL_UPDATE = "user info has been updated successfully";
+    public static final String SUCCESSFUL_DELETE = "user has been deleted successfully";
+    public static final String EXISTING_EMAIL = "This email already exists";
+    public static final String DELETING_CUSTOMER_ERROR = "error while deleting customer";
+    public static final String EXCEPTION = "exception happened";
 
     public CustomerDAO(Connection mConn) {
         this.mConn = mConn;
     }
-
-    public Customer retrieveCustomer(String email, String password) { // one case to handle
+    
+    public Customer retrieveCustomer(String email, String password) {
         Customer customer = null;
 
         try {
@@ -50,7 +65,11 @@ public class CustomerDAO {
                 customer.setCustAddress(results.getString("ADDRESS"));
                 customer.setCustJob(results.getString("JOB"));
                 customer.setCustMobileNumber(results.getString("PHONE_NUMBER"));
-                customer.setCustDateOfBirth(results.getDate("DATE_OF_BIRTH").toLocalDate());
+                if (results.getDate("DATE_OF_BIRTH") == null) {
+                    customer.setCustDateOfBirth(null);
+                } else {
+                    customer.setCustDateOfBirth(results.getDate("DATE_OF_BIRTH").toLocalDate());
+                }
                 customer.setCustCreditLimit(results.getDouble("CREDIT_LIMIT"));
                 customer.setCustWishList(results.getString("WISHLIST"));
             }
@@ -86,7 +105,11 @@ public class CustomerDAO {
                 customer.setCustAddress(results.getString("ADDRESS"));
                 customer.setCustJob(results.getString("JOB"));
                 customer.setCustMobileNumber(results.getString("PHONE_NUMBER"));
-                customer.setCustDateOfBirth(results.getDate("DATE_OF_BIRTH").toLocalDate());
+                if (results.getDate("DATE_OF_BIRTH") == null) {
+                    customer.setCustDateOfBirth(null);
+                } else {
+                    customer.setCustDateOfBirth(results.getDate("DATE_OF_BIRTH").toLocalDate());
+                }
                 customer.setCustCreditLimit(results.getDouble("CREDIT_LIMIT"));
                 customer.setCustWishList(results.getString("WISHLIST"));
 
@@ -105,34 +128,38 @@ public class CustomerDAO {
         return customers;
     }
 
-    public boolean insertCustomer(Customer cust) { // 3 cases to handle
-        boolean result = false;
-        System.out.println("asdasdasa asdasda");
+    public String insertCustomer(Customer cust) {
+        String result;
+        boolean isCustomerExisting = checkEmailExistance(cust.getCustEmail());
 
         try {
-            PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.CUSTOMERS (CUSTOMER_ID, EMAIL, PASSWORD,\n"
-                    + "FIRST_NAME, LAST_NAME, ADDRESS, JOB, PHONE_NUMBER, DATE_OF_BIRTH, CREDIT_LIMIT, WISHLIST)\n"
-                    + "VALUES ( CUSTOMERS_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setString(1, cust.getCustEmail());
-            stmt.setString(2, cust.getCustPassword());
-            stmt.setString(3, cust.getCustFirstName());
-            stmt.setString(4, cust.getCustLastName());
-            stmt.setString(5, cust.getCustAddress());
-            stmt.setString(6, cust.getCustJob());
-            stmt.setString(7, cust.getCustMobileNumber());
-            if (cust.getCustDateOfBirth() != null) {
-                stmt.setDate(8, Date.valueOf(cust.getCustDateOfBirth()));
+            if (isCustomerExisting) {
+                result = EXISTING_EMAIL;
             } else {
-                stmt.setNull(8, java.sql.Types.DATE);
-            }
-            stmt.setDouble(9, cust.getCustCreditLimit());
-            stmt.setString(10, cust.getCustWishList());
-            stmt.execute();
+                PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.CUSTOMERS (CUSTOMER_ID, EMAIL, PASSWORD,\n"
+                        + "FIRST_NAME, LAST_NAME, ADDRESS, JOB, PHONE_NUMBER, DATE_OF_BIRTH, CREDIT_LIMIT, WISHLIST)\n"
+                        + "VALUES ( CUSTOMERS_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                stmt.setString(1, cust.getCustEmail());
+                stmt.setString(2, cust.getCustPassword());
+                stmt.setString(3, cust.getCustFirstName());
+                stmt.setString(4, cust.getCustLastName());
+                stmt.setString(5, cust.getCustAddress());
+                stmt.setString(6, cust.getCustJob());
+                stmt.setString(7, cust.getCustMobileNumber());
+                if (cust.getCustDateOfBirth() != null) {
+                    stmt.setDate(8, Date.valueOf(cust.getCustDateOfBirth()));
+                } else {
+                    stmt.setNull(8, java.sql.Types.DATE);
+                }
+                stmt.setDouble(9, cust.getCustCreditLimit());
+                stmt.setString(10, cust.getCustWishList());
+                stmt.execute();
 
-            result = true;
+                result = SUCCESSFUL_INSERT;
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            result = false;
+            result = EXCEPTION;
         } finally {
             try {
                 mConn.close();
@@ -143,18 +170,114 @@ public class CustomerDAO {
 
         return result;
     }
-    /***********/
+
+    private boolean checkEmailExistance(String email) {
+        boolean result = false;
+        try {
+            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.CUSTOMERS\n"
+                    + "WHERE UPPER(EMAIL) = UPPER('" + email + "')");
+            if (rSet.next()) {
+                if (rSet.getInt(1) > 0) {
+                    result = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+        return result;
+    }
+
+    public String updateCustomer(Customer cust) {
+        String result;
+        boolean isCustomerExisting = checkEmailExistance(cust.getCustEmail());
+
+        try {
+            if (isCustomerExisting) {
+                result = EXISTING_EMAIL;
+            } else {
+                PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.CUSTOMERS\n"
+                        + "SET EMAIL = ?, PASSWORD = ?, FIRST_NAME = ?,  LAST_NAME = ?, ADDRESS = ?,  JOB = ?,\n"
+                        + "PHONE_NUMBER = ?, DATE_OF_BIRTH = ?, CREDIT_LIMIT = ?, WISHLIST = ?\n"
+                        + "WHERE CUSTOMER_ID = " + cust.getCustId());
+                stmt.setString(1, cust.getCustEmail());
+                stmt.setString(2, cust.getCustPassword());
+                stmt.setString(3, cust.getCustFirstName());
+                stmt.setString(4, cust.getCustLastName());
+                stmt.setString(5, cust.getCustAddress());
+                stmt.setString(6, cust.getCustJob());
+                stmt.setString(7, cust.getCustMobileNumber());
+                if (cust.getCustDateOfBirth() != null) {
+                    stmt.setDate(8, Date.valueOf(cust.getCustDateOfBirth()));
+                } else {
+                    stmt.setNull(8, java.sql.Types.DATE);
+                }
+                stmt.setDouble(9, cust.getCustCreditLimit());
+                stmt.setString(10, cust.getCustWishList());
+                stmt.execute();
+
+                result = SUCCESSFUL_UPDATE;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return result;
+    }
+
+    public String deleteCustomer(Customer customer) {
+        String result;
+        boolean isCustomerOrdersDeleted = deleteCustomerOrders(customer);
+        if (isCustomerOrdersDeleted) {
+            try {
+                PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.CUSTOMERS WHERE CUSTOMER_ID = " + customer.getCustId());
+                result = SUCCESSFUL_DELETE;
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                result = EXCEPTION;
+            }
+        } else {
+            result = DELETING_CUSTOMER_ERROR;
+        }
+        return result;
+    }
+
+    private boolean deleteCustomerOrders(Customer customer) {
+        boolean result = false;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.ORDERS WHERE CUSTOMER_ID = " + customer.getCustId());
+            stmt.execute();
+            result = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * ********
+     */
     /* Nagib */
-
-    /***********/
+    /**
+     * ********
+     */
     /* Mokhtar */
-
-    /***********/
+    /**
+     * ********
+     */
     /* Ibrahim */
-
-    /***********/
+    /**
+     * ********
+     */
     /* Yomna */
-
-    /***********/
-
+    /**
+     * ********
+     */
 }
