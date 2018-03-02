@@ -40,7 +40,7 @@
         <!-- your stylesheet with modifications -->
         <link href="res/css/custom.css" rel="stylesheet">
 
-        <script src="js/respond.min.js"></script>
+        <script src="res/js/respond.min.js"></script>
 
         <link rel="shortcut icon" href="favicon.png">
 
@@ -706,14 +706,14 @@
 
         <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
-        <script src="js/jquery-1.11.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/waypoints.min.js"></script>
-        <script src="js/modernizr.js"></script>
-        <script src="js/bootstrap-hover-dropdown.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/front.js"></script>
+        <script src="res/js/jquery-1.11.0.min.js"></script>
+        <script src="res/js/bootstrap.min.js"></script>
+        <script src="res/js/jquery.cookie.js"></script>
+        <script src="res/js/waypoints.min.js"></script>
+        <script src="res/js/modernizr.js"></script>
+        <script src="res/js/bootstrap-hover-dropdown.js"></script>
+        <script src="res/js/owl.carousel.min.js"></script>
+        <script src="res/js/front.js"></script>
 
 
 
