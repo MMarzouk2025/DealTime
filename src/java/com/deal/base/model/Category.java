@@ -7,18 +7,6 @@ public class Category implements Serializable {
     private long categoryId;
     private String categoryName;
 
-//    nagib
-//
-//   
-//    marzok
-//
-//   
-//    mokhtar
-//
-//   
-//    yomna
-//
-//
     public Category() {
     }
 

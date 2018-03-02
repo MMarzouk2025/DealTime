@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    
     <!--Nagib-->
     <servlet>
         <servlet-name>userCartControler</servlet-name>
@@ -9,9 +8,8 @@
     <servlet-mapping>
         <servlet-name>userCartControler</servlet-name>
         <url-pattern>/userCartControler</url-pattern>
-    </servlet-mapping> 
+    </servlet-mapping>
     <!---->
-    
     <!--Marzouk-->
     <servlet>
         <servlet-name>AdminControl</servlet-name>
@@ -27,7 +25,6 @@
         </session-timeout>
     </session-config>
     <!---->
-    
     <!--Mokhtar-->
     <servlet>
         <servlet-name>UserProfile</servlet-name>
@@ -38,11 +35,10 @@
         <url-pattern>/userProfile</url-pattern>
     </servlet-mapping>
     <!---->
-    
     <!--Yomna-->
     <servlet>
         <servlet-name>LogInControl</servlet-name>
-        <servlet-class>com.deal.control.LogInControl</servlet-class>
+        <servlet-class>com.deal.servlet.LogInControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LogInControl</servlet-name>
@@ -50,15 +46,13 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>RegisterControl</servlet-name>
-        <servlet-class>com.deal.control.RegisterControl</servlet-class>
+        <servlet-class>com.deal.servlet.RegisterControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterControl</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <!---->
-    
     <!--Sobky-->
     <!---->
-    
 </web-app>

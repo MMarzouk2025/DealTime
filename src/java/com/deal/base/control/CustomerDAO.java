@@ -1,5 +1,6 @@
 package com.deal.base.control;
 
+/* Marzouk */
 import com.deal.base.model.Customer;
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,9 +9,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+/***********/
+/* Nagib */
+
+/***********/
+/* Mokhtar */
+
+/***********/
+/* Ibrahim */
+
+/***********/
+/* Yomna */
+
+/***********/
 
 public class CustomerDAO {
-
+    /* Marzouk */
     Connection mConn;
 
     public CustomerDAO(Connection mConn) {
@@ -129,5 +143,18 @@ public class CustomerDAO {
 
         return result;
     }
+    /***********/
+    /* Nagib */
+
+    /***********/
+    /* Mokhtar */
+
+    /***********/
+    /* Ibrahim */
+
+    /***********/
+    /* Yomna */
+
+    /***********/
 
 }

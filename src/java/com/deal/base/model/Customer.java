@@ -17,18 +17,6 @@ public class Customer implements Serializable {
     private double custCreditLimit;
     private String custWishList;
 
-//    nagib
-//
-//   
-//    marzok
-//
-//   
-//    mokhtar
-//
-//   
-//    yomna
-//
-//
     public Customer() {
     }
 
@@ -41,7 +29,7 @@ public class Customer implements Serializable {
         this.custMobileNumber = custMobileNumber;
         this.custCreditLimit = custCreditLimit;
     }
-
+    
     public Customer(String custEmail, String custPassword, String custFirstName, String custLastName, String custAddress, 
             String custJob, String custMobileNumber, LocalDate custDateOfBirth, double custCreditLimit, String custWishList) {
         this.custEmail = custEmail;
