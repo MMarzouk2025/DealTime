@@ -13,6 +13,18 @@ public class Admin implements Serializable {
     private String adminAddress;
     private String adminJob;
     private LocalDate adminDateOfBirth;
+//    nagib
+//
+//   
+//    marzok
+//
+//   
+//    mokhtar
+//
+//   
+//    yomna
+//
+//
 
     public Admin() {
     }

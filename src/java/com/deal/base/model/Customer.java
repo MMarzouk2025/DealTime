@@ -18,6 +18,18 @@ public class Customer implements Serializable {
     private String custInterests;
     private Cart custCart;
 
+//    nagib
+//
+//   
+//    marzok
+//
+//   
+//    mokhtar
+//
+//   
+//    yomna
+//
+//
     public Customer() {
         custCart = new Cart();
     }

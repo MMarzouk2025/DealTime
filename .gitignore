@@ -23,8 +23,23 @@ hs_err_pid*
 
 #project properties
 /nbproject/
+build/
+nbbuild/
+dist/
+nbproject/private/
+nbproject/*
 
 #excluded
 !/web/WEB-INF/util/
 /dist/
 *.class
+
+#general swap/backup files
+*.so
+*.log
+*.out
+*~
+*.swp
+*.DS_Store
+*.lock
+build.xml
