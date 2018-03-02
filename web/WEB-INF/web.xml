@@ -29,4 +29,28 @@
             30
         </session-timeout>
     </session-config>
+    <!--Nagib-->
+    <servlet>
+        <servlet-name>userCartControler</servlet-name>
+        <servlet-class>com.deal.control.userCartControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userCartControler</servlet-name>
+        <url-pattern>/userCartControler</url-pattern>
+    </servlet-mapping> 
+    <!---->
+    
+    <!--Marzok-->
+    <!---->
+    <!---->
+    <!--Mokhtar-->
+    <!---->
+    <!---->
+    <!--Yomna-->
+    <!---->
+    <!---->
+    <!--Sobky-->
+    <!---->
+    <!---->
+    
 </web-app>

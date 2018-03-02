@@ -7,6 +7,18 @@ public class Cart implements Serializable {
 
     private long cartId;
     private List<Order> orders;
+//    nagib
+//
+//   
+//    marzok
+//
+//   
+//    mokhtar
+//
+//   
+//    yomna
+//
+//
 
     public Cart() {
     }
