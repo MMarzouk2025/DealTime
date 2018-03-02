@@ -273,12 +273,12 @@
                                             <div class="col-sm-3">
                                                 <div class="banner">
                                                     <a href="#">
-                                                        <img src="img/banner.jpg" class="img img-responsive" alt="">
+                                                        <img src="res/img/banner.jpg" class="img img-responsive" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="banner">
                                                     <a href="#">
-                                                        <img src="img/banner2.jpg" class="img img-responsive" alt="">
+                                                        <img src="res/img/banner2.jpg" class="img img-responsive" alt="">
                                                     </a>
                                                 </div>
                                             </div>

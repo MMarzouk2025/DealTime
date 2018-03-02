@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/ITI%20materials/Servlet%20and%20JSP%20Project/DealTime/src/java/com/deal/control/RegisterControl.java</file>
-            <file>file:/F:/ITI%20materials/Servlet%20and%20JSP%20Project/DealTime/web/logintry.jsp</file>
-            <file>file:/F:/ITI%20materials/Servlet%20and%20JSP%20Project/DealTime/web/WEB-INF/web.xml</file>
-            <file>file:/F:/ITI%20materials/Servlet%20and%20JSP%20Project/DealTime/web/index.html</file>
-            <file>file:/F:/ITI%20materials/Servlet%20and%20JSP%20Project/DealTime/src/java/com/deal/control/LogInControl.java</file>
-            <file>file:/F:/ITI%20materials/Servlet%20and%20JSP%20Project/DealTime/nbproject/ant-deploy.xml</file>
+            <file>file:/D:/iTi/Servlets_JSP/Servlet_Project/DealTime/web/WEB-INF/view/userProfileControlPanel.jsp</file>
+            <file>file:/D:/iTi/Servlets_JSP/Servlet_Project/DealTime/web/WEB-INF/view/logintry.jsp</file>
+            <file>file:/D:/iTi/Servlets_JSP/Servlet_Project/DealTime/web/WEB-INF/web.xml</file>
+            <file>file:/D:/iTi/Servlets_JSP/Servlet_Project/DealTime/web/WEB-INF/view/adminControlPanel.jsp</file>
+            <file>file:/D:/iTi/Servlets_JSP/Servlet_Project/DealTime/web/index.html</file>
         </group>
     </open-files>
 </project-private>

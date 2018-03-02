@@ -20,19 +20,19 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
 
     <!-- styles -->
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/owl.carousel.css" rel="stylesheet">
-    <link href="css/owl.theme.css" rel="stylesheet">
+    <link href="res/css/font-awesome.css" rel="stylesheet">
+    <link href="res/css/bootstrap.min.css" rel="stylesheet">
+    <link href="res/css/animate.min.css" rel="stylesheet">
+    <link href="res/css/owl.carousel.css" rel="stylesheet">
+    <link href="res/css/owl.theme.css" rel="stylesheet">
 
     <!-- theme stylesheet -->
-    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="res/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
     <!-- your stylesheet with modifications -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="res/css/custom.css" rel="stylesheet">
 
-    <script src="js/respond.min.js"></script>
+    <script src="res/js/respond.min.js"></script>
 
     <link rel="shortcut icon" href="favicon.png">
 
@@ -98,8 +98,8 @@
             <div class="navbar-header">
 
                 <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                    <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-                    <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                    <img src="res/img/logo.png" alt="Obaju logo" class="hidden-xs">
+                    <img src="res/img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -257,12 +257,12 @@
                                         <div class="col-sm-3">
                                             <div class="banner">
                                                 <a href="#">
-                                                    <img src="img/banner.jpg" class="img img-responsive" alt="">
+                                                    <img src="res/img/banner.jpg" class="img img-responsive" alt="">
                                                 </a>
                                             </div>
                                             <div class="banner">
                                                 <a href="#">
-                                                    <img src="img/banner2.jpg" class="img img-responsive" alt="">
+                                                    <img src="res/img/banner2.jpg" class="img img-responsive" alt="">
                                                 </a>
                                             </div>
                                         </div>
@@ -609,14 +609,14 @@
     <!-- /#all -->
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/bootstrap-hover-dropdown.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/front.js"></script>
+    <script src="res/js/jquery-1.11.0.min.js"></script>
+    <script src="res/js/bootstrap.min.js"></script>
+    <script src="res/js/jquery.cookie.js"></script>
+    <script src="res/js/waypoints.min.js"></script>
+    <script src="res/js/modernizr.js"></script>
+    <script src="res/js/bootstrap-hover-dropdown.js"></script>
+    <script src="res/js/owl.carousel.min.js"></script>
+    <script src="res/js/front.js"></script>
 
 
 
