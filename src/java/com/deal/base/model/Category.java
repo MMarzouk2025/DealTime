@@ -17,7 +17,11 @@ public class Category implements Serializable {
     public long getCategoryId() {
         return categoryId;
     }
-    
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public String getCategoryName() {
         return categoryName;
     }
@@ -30,5 +34,5 @@ public class Category implements Serializable {
     public String toString() {
         return "Category{" + "categoryId=" + categoryId + ", categoryName=" + categoryName + '}';
     }
-    
+
 }

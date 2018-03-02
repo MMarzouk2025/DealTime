@@ -2,27 +2,28 @@ package com.deal.base.model;
 
 import java.io.Serializable;
 
-public class Product implements Serializable{
+public class Product implements Serializable {
 
     private long productId;
     private String productName;
     private String productDesc;
     private double productPrice;
-    private int productQuantity;
+    private int availableQuantity;
     private Category productCategory;
 
     public Product() {
     }
 
-    public Product(String productName, double productPrice, int productQuantity) {
+    public Product(String productName) {
         this.productName = productName;
-        this.productPrice = productPrice;
-        this.productQuantity = productQuantity;
     }
-    
 
     public long getProductId() {
         return productId;
+    }
+
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
@@ -49,12 +50,12 @@ public class Product implements Serializable{
         this.productPrice = productPrice;
     }
 
-    public int getProductQuantity() {
-        return productQuantity;
+    public int getAvailableQuantity() {
+        return availableQuantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
+    public void setAvailableQuantity(int availableQuantity) {
+        this.availableQuantity = availableQuantity;
     }
 
     public Category getProductCategory() {
@@ -67,7 +68,7 @@ public class Product implements Serializable{
 
     @Override
     public String toString() {
-        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productDesc=" + productDesc + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity + ", productCategory=" + productCategory + '}';
+        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productDesc=" + productDesc + ", productPrice=" + productPrice + ", availableQuantity=" + availableQuantity + ", productCategory=" + productCategory + '}';
     }
-    
+
 }

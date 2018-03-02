@@ -2,11 +2,19 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>AdminControl</servlet-name>
-        <servlet-class>com.deal.control.AdminControl</servlet-class>
+        <servlet-class>com.deal.servlet.AdminControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserProfileControl</servlet-name>
+        <servlet-class>com.deal.servlet.UserProfileControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfileControl</servlet-name>
+        <url-pattern>/userProfileControl</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

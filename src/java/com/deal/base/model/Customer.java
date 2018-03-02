@@ -15,25 +15,41 @@ public class Customer implements Serializable {
     private String custMobileNumber;
     private LocalDate custDateOfBirth;
     private double custCreditLimit;
-    private String custInterests;
-    private Cart custCart;
+    private String custWishList;
 
     public Customer() {
-        custCart = new Cart();
     }
 
-    public Customer(String custEmail, String custPassword, String custFirstName, String custLastName, double custCreditLimit, String custMobileNumber) {
-        this();
+    public Customer(String custEmail, String custPassword, String custFirstName, String custLastName,
+            String custMobileNumber, double custCreditLimit) {
         this.custEmail = custEmail;
         this.custPassword = custPassword;
         this.custFirstName = custFirstName;
         this.custLastName = custLastName;
-        this.custCreditLimit = custCreditLimit;
         this.custMobileNumber = custMobileNumber;
+        this.custCreditLimit = custCreditLimit;
+    }
+
+    public Customer(String custEmail, String custPassword, String custFirstName, String custLastName, String custAddress, 
+            String custJob, String custMobileNumber, LocalDate custDateOfBirth, double custCreditLimit, String custWishList) {
+        this.custEmail = custEmail;
+        this.custPassword = custPassword;
+        this.custFirstName = custFirstName;
+        this.custLastName = custLastName;
+        this.custAddress = custAddress;
+        this.custJob = custJob;
+        this.custMobileNumber = custMobileNumber;
+        this.custDateOfBirth = custDateOfBirth;
+        this.custCreditLimit = custCreditLimit;
+        this.custWishList = custWishList;
     }
 
     public long getCustId() {
         return custId;
+    }
+
+    public void setCustId(long custId) {
+        this.custId = custId;
     }
 
     public String getCustEmail() {
@@ -100,20 +116,12 @@ public class Customer implements Serializable {
         this.custCreditLimit = custCreditLimit;
     }
 
-    public String getCustInterests() {
-        return custInterests;
+    public String getCustWishList() {
+        return custWishList;
     }
 
-    public void setCustInterests(String custInterests) {
-        this.custInterests = custInterests;
-    }
-
-    public Cart getCustCart() {
-        return custCart;
-    }
-
-    public void setCustCart(Cart custCart) {
-        this.custCart = custCart;
+    public void setCustWishList(String custWishList) {
+        this.custWishList = custWishList;
     }
 
     public String getCustMobileNumber() {
@@ -126,7 +134,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "Customer{" + "custId=" + custId + ", custEmail=" + custEmail + ", custPassword=" + custPassword + ", custFirstName=" + custFirstName + ", custLastName=" + custLastName + ", custAddress=" + custAddress + ", custJob=" + custJob + ", custDateOfBirth=" + custDateOfBirth + ", custCreditLimit=" + custCreditLimit + ", custInterests=" + custInterests + ", custCart=" + custCart + '}';
+        return "Customer{" + "custId=" + custId + ", custEmail=" + custEmail + ", custPassword=" + custPassword + ", custFirstName=" + custFirstName + ", custLastName=" + custLastName + ", custAddress=" + custAddress + ", custJob=" + custJob + ", custMobileNumber=" + custMobileNumber + ", custDateOfBirth=" + custDateOfBirth + ", custCreditLimit=" + custCreditLimit + ", custWishList=" + custWishList + '}';
     }
 
 }

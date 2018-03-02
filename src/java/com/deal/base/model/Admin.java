@@ -12,20 +12,39 @@ public class Admin implements Serializable {
     private String adminLastName;
     private String adminAddress;
     private String adminJob;
+    private String adminPhoneNo;
     private LocalDate adminDateOfBirth;
 
     public Admin() {
     }
 
-    public Admin(String adminEmail, String adminPassword, String adminFirstName, String adminLastName) {
+    public Admin(String adminEmail, String adminPassword, String adminPhoneNo,
+            String adminFirstName, String adminLastName) {
         this.adminEmail = adminEmail;
         this.adminPassword = adminPassword;
+        this.adminPhoneNo = adminPhoneNo;
         this.adminFirstName = adminFirstName;
         this.adminLastName = adminLastName;
     }
 
+    public Admin(String adminEmail, String adminPassword, String adminFirstName, String adminLastName, 
+            String adminAddress, String adminJob, String adminPhoneNo, LocalDate adminDateOfBirth) {
+        this.adminEmail = adminEmail;
+        this.adminPassword = adminPassword;
+        this.adminFirstName = adminFirstName;
+        this.adminLastName = adminLastName;
+        this.adminAddress = adminAddress;
+        this.adminJob = adminJob;
+        this.adminPhoneNo = adminPhoneNo;
+        this.adminDateOfBirth = adminDateOfBirth;
+    }
+    
     public long getAdminId() {
         return adminId;
+    }
+
+    public void setAdminId(long adminId) {
+        this.adminId = adminId;
     }
 
     public String getAdminEmail() {
@@ -76,6 +95,14 @@ public class Admin implements Serializable {
         this.adminJob = adminJob;
     }
 
+    public String getAdminPhoneNo() {
+        return adminPhoneNo;
+    }
+
+    public void setAdminPhoneNo(String adminPhoneNo) {
+        this.adminPhoneNo = adminPhoneNo;
+    }
+
     public LocalDate getAdminDateOfBirth() {
         return adminDateOfBirth;
     }
@@ -86,7 +113,7 @@ public class Admin implements Serializable {
 
     @Override
     public String toString() {
-        return "Admin{" + "adminId=" + adminId + ", adminEmail=" + adminEmail + ", adminPassword=" + adminPassword + ", adminFirstName=" + adminFirstName + ", adminLastName=" + adminLastName + ", adminAddress=" + adminAddress + ", adminJob=" + adminJob + ", adminDateOfBirth=" + adminDateOfBirth + '}';
+        return "Admin{" + "adminId=" + adminId + ", adminEmail=" + adminEmail + ", adminPassword=" + adminPassword + ", adminFirstName=" + adminFirstName + ", adminLastName=" + adminLastName + ", adminAddress=" + adminAddress + ", adminJob=" + adminJob + ", adminPhoneNo=" + adminPhoneNo + ", adminDateOfBirth=" + adminDateOfBirth + '}';
     }
 
 }
