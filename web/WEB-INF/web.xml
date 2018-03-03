@@ -28,7 +28,7 @@
     <!--Mokhtar-->
     <servlet>
         <servlet-name>UserProfile</servlet-name>
-        <servlet-class>com.deal.control.UserProfileControl</servlet-class>
+        <servlet-class>com.deal.servlet.UserProfileControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserProfile</servlet-name>

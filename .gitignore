@@ -36,3 +36,4 @@ hs_err_pid*
 /build/web/WEB-INF/classes/
 /build/web/WEB-INF/lib/
 /nbproject/private/
+nbproject/private/private.properties
