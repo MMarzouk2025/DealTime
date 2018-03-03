@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 public class CustomerDAO {
 
     /* Marzouk */
-    Connection mConn;
+    private Connection mConn;
     public static final String SUCCESSFUL_INSERT = "registeration has been done successfully";
     public static final String SUCCESSFUL_UPDATE = "user info has been updated successfully";
     public static final String SUCCESSFUL_DELETE = "user has been deleted successfully";
@@ -45,10 +45,9 @@ public class CustomerDAO {
     public CustomerDAO(Connection mConn) {
         this.mConn = mConn;
     }
-    
+
     public Customer retrieveCustomer(String email, String password) {
         Customer customer = null;
-
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, ADDRESS, JOB,\n"
                     + "PHONE_NUMBER, DATE_OF_BIRTH, CREDIT_LIMIT, WISHLIST\n"
@@ -73,7 +72,6 @@ public class CustomerDAO {
                 customer.setCustCreditLimit(results.getDouble("CREDIT_LIMIT"));
                 customer.setCustWishList(results.getString("WISHLIST"));
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -83,20 +81,17 @@ public class CustomerDAO {
                 ex.printStackTrace();
             }
         }
-
         return customer;
     }
 
     public List<Customer> retrieveAllCustomers() {
         ArrayList<Customer> customers = new ArrayList();
-
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT CUSTOMER_ID, EMAIL, PASSWORD, FIRST_NAME, LAST_NAME,\n"
                     + "ADDRESS, JOB, PHONE_NUMBER, DATE_OF_BIRTH, CREDIT_LIMIT, WISHLIST\n"
                     + "FROM DEALTIME.CUSTOMERS");
             while (results.next()) {
                 Customer customer = new Customer();
-
                 customer.setCustId(results.getLong("CUSTOMER_ID"));
                 customer.setCustEmail(results.getString("EMAIL"));
                 customer.setCustPassword(results.getString("PASSWORD"));
@@ -112,7 +107,6 @@ public class CustomerDAO {
                 }
                 customer.setCustCreditLimit(results.getDouble("CREDIT_LIMIT"));
                 customer.setCustWishList(results.getString("WISHLIST"));
-
                 customers.add(customer);
             }
         } catch (SQLException ex) {
@@ -124,14 +118,12 @@ public class CustomerDAO {
                 ex.printStackTrace();
             }
         }
-
         return customers;
     }
 
     public String insertCustomer(Customer cust) {
         String result;
         boolean isCustomerExisting = checkEmailExistance(cust.getCustEmail());
-
         try {
             if (isCustomerExisting) {
                 result = EXISTING_EMAIL;
@@ -154,7 +146,6 @@ public class CustomerDAO {
                 stmt.setDouble(9, cust.getCustCreditLimit());
                 stmt.setString(10, cust.getCustWishList());
                 stmt.execute();
-
                 result = SUCCESSFUL_INSERT;
             }
         } catch (SQLException ex) {
@@ -167,7 +158,6 @@ public class CustomerDAO {
                 ex.printStackTrace();
             }
         }
-
         return result;
     }
 
@@ -191,7 +181,6 @@ public class CustomerDAO {
     public String updateCustomer(Customer cust) {
         String result;
         boolean isCustomerExisting = checkEmailExistance(cust.getCustEmail());
-
         try {
             if (isCustomerExisting) {
                 result = EXISTING_EMAIL;
@@ -215,7 +204,6 @@ public class CustomerDAO {
                 stmt.setDouble(9, cust.getCustCreditLimit());
                 stmt.setString(10, cust.getCustWishList());
                 stmt.execute();
-
                 result = SUCCESSFUL_UPDATE;
             }
         } catch (SQLException ex) {
@@ -228,23 +216,29 @@ public class CustomerDAO {
                 ex.printStackTrace();
             }
         }
-
         return result;
     }
 
     public String deleteCustomer(Customer customer) {
         String result;
         boolean isCustomerOrdersDeleted = deleteCustomerOrders(customer);
-        if (isCustomerOrdersDeleted) {
-            try {
+        try {
+            if (isCustomerOrdersDeleted) {
                 PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.CUSTOMERS WHERE CUSTOMER_ID = " + customer.getCustId());
+                stmt.execute();
                 result = SUCCESSFUL_DELETE;
+            } else {
+                result = DELETING_CUSTOMER_ERROR;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                result = EXCEPTION;
             }
-        } else {
-            result = DELETING_CUSTOMER_ERROR;
         }
         return result;
     }

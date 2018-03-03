@@ -18,7 +18,7 @@ import java.sql.Connection;
 
 public class ProductDAO {
     /* Marzouk */
-    Connection mConn;
+    private Connection mConn;
 
     public ProductDAO(Connection mConn) {
         this.mConn = mConn;

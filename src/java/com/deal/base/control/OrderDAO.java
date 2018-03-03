@@ -18,7 +18,7 @@ import java.sql.Connection;
 
 public class OrderDAO {
     /* Marzouk */
-    Connection mConn;
+    private Connection mConn;
 
     public OrderDAO(Connection mConn) {
         this.mConn = mConn;

@@ -11,12 +11,12 @@ import org.apache.commons.pool.impl.GenericObjectPool;
 
 public class DbConn {
     // JDBC Driver Name & Database URL
-    static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";  
-    static final String JDBC_DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";  
+    private final String JDBC_DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     
     // JDBC Database Credentials
-    static final String JDBC_USER = "dealtime";
-    static final String JDBC_PASS = "dealtime";
+    private final String JDBC_USER = "dealtime";
+    private final String JDBC_PASS = "dealtime";
     
     private GenericObjectPool pool;
     private DataSource dataSource;
