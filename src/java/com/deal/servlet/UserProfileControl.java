@@ -35,7 +35,7 @@ public class UserProfileControl extends HttpServlet {
         customer.setCustCreditLimit(1000.25);
         customer.setCustWishList("Soccer, Basketball, Swimming");
         
-//        request.setAttribute("currentCustomer", customer);
+        request.setAttribute("currentCustomer", customer);
         request.getRequestDispatcher("WEB-INF/view/userProfileControlPanel.jsp").forward(request, response);
 
     }

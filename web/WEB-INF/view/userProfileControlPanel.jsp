@@ -522,7 +522,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Interests</label>
-                                            <input type="text" class="form-control" name="interests" value="${requestScope.currentCustomer.custInterests}" required="true" pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')" disabled="true">
+                                            <input type="text" class="form-control" name="interests" value="${requestScope.currentCustomer.custWishList}" required="true" pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-center">
