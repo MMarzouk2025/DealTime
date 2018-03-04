@@ -32,7 +32,7 @@ import java.util.logging.Logger;
  * ********
  */
 public class CustomerDAO {
-
+    
     /* Marzouk */
     private Connection mConn;
     public static final String SUCCESSFUL_INSERT = "registeration has been done successfully";
