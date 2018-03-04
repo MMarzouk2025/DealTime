@@ -5,8 +5,11 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.control.CustomerDAO;
+import com.deal.base.control.DbConn;
 import com.deal.base.model.Customer;
 import java.io.IOException;
+import java.sql.Connection;
 import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +53,8 @@ public class UserProfileControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        boolean isValid = false;
+        
         String firstNmae = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
         String job = request.getParameter("job");
@@ -60,6 +65,20 @@ public class UserProfileControl extends HttpServlet {
         String interests = request.getParameter("interests");
         //Updating database with new values here.
 
+        if (isValid) {
+            //update customer info
+            
+            Customer updatedCustomer 
+                    = new Customer(email, lastName, firstNmae, lastName, address, job, mobileNumber, LocalDate.MIN, 0, credit);
+            
+            CustomerDAO customer = new CustomerDAO((Connection) DbConn.getDbConn());
+            customer.updateCustomer(updatedCustomer);
+            
+        } else {
+            // do something else
+            
+        }
+        
         //just for testing
         response.sendRedirect("index.html");
 
