@@ -5,6 +5,7 @@
         <servlet-name>userCartControler</servlet-name>
         <servlet-class>com.deal.control.userCartControler</servlet-class>
     </servlet>
+   
     <servlet-mapping>
         <servlet-name>userCartControler</servlet-name>
         <url-pattern>/userCartControler</url-pattern>
@@ -19,6 +20,7 @@
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
@@ -54,5 +56,14 @@
     </servlet-mapping>
     <!---->
     <!--Sobky-->
+     <servlet>
+        <servlet-name>ProductControl</servlet-name>
+        <servlet-class>com.deal.servlet.ProductControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductControl</servlet-name>
+        <url-pattern>/ProductControl</url-pattern>
+    </servlet-mapping>
+    
     <!---->
 </web-app>

@@ -76,6 +76,23 @@ public class AdminDAO {
         }
         return admin;
     }
+    
+    private boolean checkEmailExistance(String email) {
+        boolean result = false;
+        try {
+            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.ADMINS\n"
+                    + "WHERE UPPER(EMAIL) = UPPER('" + email + "')");
+            if (rSet.next()) {
+                if (rSet.getInt(1) > 0) {
+                    result = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+        return result;
+    }
 
     public String insertAdmin(Admin admin) {
         String result;
@@ -111,23 +128,6 @@ public class AdminDAO {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }
-        return result;
-    }
-
-    private boolean checkEmailExistance(String email) {
-        boolean result = false;
-        try {
-            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.ADMINS\n"
-                    + "WHERE UPPER(EMAIL) = UPPER('" + email + "')");
-            if (rSet.next()) {
-                if (rSet.getInt(1) > 0) {
-                    result = true;
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            result = false;
         }
         return result;
     }

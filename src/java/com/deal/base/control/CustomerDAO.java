@@ -32,7 +32,7 @@ import java.util.logging.Logger;
  * ********
  */
 public class CustomerDAO {
-
+    
     /* Marzouk */
     private Connection mConn;
     public static final String SUCCESSFUL_INSERT = "registeration has been done successfully";
@@ -44,6 +44,43 @@ public class CustomerDAO {
 
     public CustomerDAO(Connection mConn) {
         this.mConn = mConn;
+    }
+    
+    public Customer retrieveCustomer(long custId) {
+        Customer customer = null;
+        try {
+            ResultSet results = mConn.createStatement().executeQuery("SELECT EMAIL, PASSWORD, FIRST_NAME, LAST_NAME,\n"
+                    + "ADDRESS, JOB, PHONE_NUMBER, DATE_OF_BIRTH, CREDIT_LIMIT, WISHLIST\n"
+                    + "FROM DEALTIME.CUSTOMERS\n"
+                    + "WHERE CUSTOMER_ID = " + custId );
+            if (results.next()) {
+                customer = new Customer();
+                customer.setCustId(custId);
+                customer.setCustEmail(results.getString("EMAIL"));
+                customer.setCustPassword(results.getString("PASSWORD"));
+                customer.setCustFirstName(results.getString("FIRST_NAME"));
+                customer.setCustLastName(results.getString("LAST_NAME"));
+                customer.setCustAddress(results.getString("ADDRESS"));
+                customer.setCustJob(results.getString("JOB"));
+                customer.setCustMobileNumber(results.getString("PHONE_NUMBER"));
+                if (results.getDate("DATE_OF_BIRTH") == null) {
+                    customer.setCustDateOfBirth(null);
+                } else {
+                    customer.setCustDateOfBirth(results.getDate("DATE_OF_BIRTH").toLocalDate());
+                }
+                customer.setCustCreditLimit(results.getDouble("CREDIT_LIMIT"));
+                customer.setCustWishList(results.getString("WISHLIST"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return customer;
     }
 
     public Customer retrieveCustomer(String email, String password) {
@@ -120,7 +157,24 @@ public class CustomerDAO {
         }
         return customers;
     }
-
+    
+    private boolean checkEmailExistance(String email) {
+        boolean result = false;
+        try {
+            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.CUSTOMERS\n"
+                    + "WHERE UPPER(EMAIL) = UPPER('" + email + "')");
+            if (rSet.next()) {
+                if (rSet.getInt(1) > 0) {
+                    result = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+        return result;
+    }
+    
     public String insertCustomer(Customer cust) {
         String result;
         boolean isCustomerExisting = checkEmailExistance(cust.getCustEmail());
@@ -157,23 +211,6 @@ public class CustomerDAO {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }
-        return result;
-    }
-
-    private boolean checkEmailExistance(String email) {
-        boolean result = false;
-        try {
-            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.CUSTOMERS\n"
-                    + "WHERE UPPER(EMAIL) = UPPER('" + email + "')");
-            if (rSet.next()) {
-                if (rSet.getInt(1) > 0) {
-                    result = true;
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            result = false;
         }
         return result;
     }
@@ -218,7 +255,19 @@ public class CustomerDAO {
         }
         return result;
     }
-
+    
+    private boolean deleteCustomerOrders(Customer customer) {
+        boolean result = false;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.ORDERS WHERE CUSTOMER_ID = " + customer.getCustId());
+            stmt.execute();
+            result = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+    
     public String deleteCustomer(Customer customer) {
         String result;
         boolean isCustomerOrdersDeleted = deleteCustomerOrders(customer);
@@ -242,19 +291,7 @@ public class CustomerDAO {
         }
         return result;
     }
-
-    private boolean deleteCustomerOrders(Customer customer) {
-        boolean result = false;
-        try {
-            PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.ORDERS WHERE CUSTOMER_ID = " + customer.getCustId());
-            stmt.execute();
-            result = true;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return result;
-    }
-
+    
     /**
      * ********
      */
