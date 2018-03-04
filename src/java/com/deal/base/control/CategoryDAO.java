@@ -45,6 +45,29 @@ public class CategoryDAO {
         this.mConn = mConn;
     }
 
+    public Category retrieveCategory(long categoryId) {
+        Category category = null;
+        try {
+            ResultSet results = mConn.createStatement().executeQuery("SELECT CATEGORY_ID, CATEGORY_NAME\n"
+                    + "FROM DEALTIME.CATEGORIES\n"
+                    + "WHERE CATEGORY_ID = " + categoryId);
+            if (results.next()) {
+                category = new Category();
+                category.setCategoryId(results.getLong("CATEGORY_ID"));
+                category.setCategoryName(results.getString("CATEGORY_NAME"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return category;
+    }
+
     public List<Category> retrieveAllCategories() {
         ArrayList<Category> categories = new ArrayList();
         try {
@@ -66,6 +89,23 @@ public class CategoryDAO {
             }
         }
         return categories;
+    }
+
+    private boolean checkCategoryExistance(String categoryName) {
+        boolean result = false;
+        try {
+            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.CATEGORIES\n"
+                    + "WHERE UPPER(CATEGORY_NAME) = UPPER('" + categoryName + "')");
+            if (rSet.next()) {
+                if (rSet.getInt(1) > 0) {
+                    result = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+        return result;
     }
 
     public String insertCategory(Category category) {
@@ -95,23 +135,70 @@ public class CategoryDAO {
         return result;
     }
 
-    private boolean checkCategoryExistance(String categoryName) {
-        boolean result = false;
+    public String updateCategory(Category category) {
+        String result;
+        boolean isCategoryExisting = checkCategoryExistance(category.getCategoryName());
         try {
-            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.CATEGORIES\n"
-                    + "WHERE UPPER(CATEGORY_NAME) = UPPER('" + categoryName + "')");
-            if (rSet.next()) {
-                if (rSet.getInt(1) > 0) {
-                    result = true;
-                }
+            if (isCategoryExisting) {
+                result = EXISTING_CATEGORY;
+            } else {
+                PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.CATEGORIES\n"
+                        + "SET CATEGORY_NAME = ?\n"
+                        + "WHERE CATEGORY_ID = " + category.getCategoryId());
+                stmt.setString(1, category.getCategoryName());
+                stmt.execute();
+                result = SUCCESSFUL_UPDATE;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            result = false;
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         return result;
     }
 
+    private boolean deleteCategoryProducts(Category category) {
+        boolean result = false;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.PRODUCTS WHERE CATEGORY_ID = "
+                    + category.getCategoryId());
+            stmt.execute();
+            result = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    public String deleteCategory(Category category) {
+        String result;
+        boolean isCategoryProductsDeleted = deleteCategoryProducts(category);
+        try {
+            if (isCategoryProductsDeleted) {
+                PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.CATEGORIES WHERE CATEGORY_ID = "
+                        + category.getCategoryId());
+                stmt.execute();
+                result = SUCCESSFUL_DELETE;
+            } else {
+                result = DELETING_CATEGORY_ERROR;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
     /**
      * ********
      */
