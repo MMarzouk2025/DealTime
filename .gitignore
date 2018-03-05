@@ -23,7 +23,7 @@
 hs_err_pid*
 
 #project properties
-/nbproject/
+/nbproject
 
 #excluded
 !/web/WEB-INF/util/
