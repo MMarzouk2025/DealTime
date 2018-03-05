@@ -472,13 +472,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="firstname">First name</label>
-                                            <input type="text" class="form-control" name="firstname" value="${requestScope.currentCustomer.custFirstName}" required="true"  pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')" disabled="true">
+                                            <input type="text" class="form-control" name="firstname" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.custFirstName}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="lastname">Last name</label>
-                                            <input type="text" class="form-control" name="lastname" value="${requestScope.currentCustomer.custLastName}" required="true"  pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')" disabled="true">
+                                            <input type="text" class="form-control" name="lastname" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.custLastName}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
                                         </div>
                                     </div>
                                 </div>
@@ -487,8 +487,38 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="${requestScope.currentCustomer.custEmail}" required="true" oninvalid="setCustomValidity('Enter a valid email!')" disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Date of birth</label>
+                                            <input type="date" class="form-control" name="dateOfBirth" value="${requestScope.currentCustomer.custDateOfBirth}" required="true" disabled="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Password</label>
+                                            <input type="password" class="form-control" name="password" pattern="?=.{8,}" value="${requestScope.currentCustomer.custPassword}" required="true"  oninvalid="setCustomValidity('Must be at least 8 characters!')" disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Confirm password</label>
+                                            <input type="password" class="form-control" name="confirmPassword" pattern="?=.{8,}" value="${requestScope.currentCustomer.custPassword}" required="true" oninvalid="setCustomValidity('Must be at least 8 characters!')" disabled="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
                                             <label for="company">Job</label>
-                                            <input type="text" class="form-control" name="job" value="${requestScope.currentCustomer.custJob}" required="true" pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')" disabled="true">
+                                            <input type="text" class="form-control" name="job" pattern="^[A-Za-z]+$" value="${requestScope.currentCustomer.custJob}" required="true" oninvalid="setCustomValidity('Characters only!')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -504,27 +534,16 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="zip">Credit</label>
-                                            <input type="text" class="form-control" name="credit" value="${requestScope.currentCustomer.custCreditLimit}" required="true" pattern="" oninvalid="setCustomValidity('numbers only!')" disabled="true">
+                                            <input type="text" class="form-control" name="credit" pattern="[+]?([0-9]*\.[0-9]+|[0-9]+)" value="${requestScope.currentCustomer.custCreditLimit}" required="true" oninvalid="setCustomValidity('numbers only!')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="phone">Mobile number</label>
-                                            <input type="text" class="form-control" name="mobileNumber" value="${requestScope.currentCustomer.custMobileNumber}" required="true" pattern="" oninvalid="setCustomValidity('please match 01xx-xxxx-xxx')" disabled="true">
+                                            <label for="phone">Phone number</label>
+                                            <input type="text" class="form-control" name="mobileNumber" value="${requestScope.currentCustomer.custMobileNumber}" required="true" oninvalid="setCustomValidity('Phone number must match 01xxxxxxxxx')" disabled="true">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="text" class="form-control" name="email" value="${requestScope.currentCustomer.custEmail}" required="true" pattern="" oninvalid="setCustomValidity('Enter a valid email!')" disabled="true">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Interests</label>
-                                            <input type="text" class="form-control" name="interests" value="${requestScope.currentCustomer.custWishList}" required="true" pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')" disabled="true">
-                                        </div>
-                                    </div>
+
                                     <div class="col-sm-12 text-center">
                                         <button type="button" class="btn btn-primary" id="edit_profile_btn"><i class="fa fa-user"></i> Edit profile</button>
                                         <button type="submit" class="btn btn-primary" id="save_changes_btn" disabled="true"><i class="fa fa-save"></i> Save changes</button>
@@ -533,12 +552,10 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container -->
             </div>
             <!-- /#content -->
-
 
             <!-- *** FOOTER ***
      _________________________________________________________ -->
@@ -676,9 +693,6 @@
 
             <!-- *** FOOTER END *** -->
 
-
-
-
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
             <div id="copyright">
@@ -695,14 +709,8 @@
                 </div>
             </div>
             <!-- *** COPYRIGHT END *** -->
-
-
-
         </div>
         <!-- /#all -->
-
-
-
 
         <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
@@ -717,7 +725,6 @@
 
         <!-- project script -->
         <script src="res/js/customer.profile.js"></script>
-
 
     </body>
 

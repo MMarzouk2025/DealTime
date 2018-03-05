@@ -8,6 +8,8 @@ package com.deal.servlet;
 import com.deal.base.control.CustomerDAO;
 import com.deal.base.control.DbConn;
 import com.deal.base.model.Customer;
+import com.deal.control.DbHandler;
+import com.deal.utility.Validations;
 import java.io.IOException;
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -22,25 +24,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserProfileControl extends HttpServlet {
 
+    private String customerID = "3";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-        Customer customer = new Customer();
 
-        customer.setCustEmail("Ahmed@gmail.com");
-        customer.setCustPassword("1a2b3c");
-        customer.setCustFirstName("Ahmed");
-        customer.setCustLastName("Mokhtar");
-        customer.setCustAddress("Cairo");
-        customer.setCustJob("Engineer");
-        customer.setCustMobileNumber("0106633669");
-        customer.setCustDateOfBirth(LocalDate.now());
-        customer.setCustCreditLimit(1000.25);
-        customer.setCustWishList("Soccer, Basketball, Swimming");
-        
+//        customerID = (String) request.getSession().getAttribute("");
+        Customer customer = DbHandler.getCustomerDAO().retrieveCustomer(Integer.parseInt(customerID));
+
         request.setAttribute("currentCustomer", customer);
         request.getRequestDispatcher("WEB-INF/view/userProfileControlPanel.jsp").forward(request, response);
-
     }
 
     @Override
@@ -53,35 +46,26 @@ public class UserProfileControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean isValid = false;
-        
         String firstNmae = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
+        String email = request.getParameter("email");
+        LocalDate dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"));
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
         String job = request.getParameter("job");
         String address = request.getParameter("address");
-        String credit = request.getParameter("credit");
+        double credit = Double.parseDouble(request.getParameter("credit"));
         String mobileNumber = request.getParameter("mobileNumber");
-        String email = request.getParameter("email");
-        String interests = request.getParameter("interests");
-        //Updating database with new values here.
+
+        boolean isValid = isAllDataValid(email, password, confirmPassword, firstNmae, lastName, job, mobileNumber, credit);
 
         if (isValid) {
-            //update customer info
-            
-            Customer updatedCustomer 
-                    = new Customer(email, lastName, firstNmae, lastName, address, job, mobileNumber, LocalDate.MIN, 0, credit);
-            
-            CustomerDAO customer = new CustomerDAO((Connection) DbConn.getDbConn());
-            customer.updateCustomer(updatedCustomer);
-            
-        } else {
-            // do something else
-            
+            Customer newCustomer = new Customer(email, password, firstNmae, lastName, address, job, mobileNumber, dateOfBirth, credit, "");
+            CustomerDAO updatedCustomer = DbHandler.getCustomerDAO();
+            updatedCustomer.updateCustomer(newCustomer);
         }
-        
-        //just for testing
-        response.sendRedirect("index.html");
 
+        doGet(request, response);
     }
 
     @Override
@@ -89,4 +73,33 @@ public class UserProfileControl extends HttpServlet {
         return "User Profile";
     }
 
+    private boolean isAllDataValid(String email, String password, String confirmPassword, String firstName, String lastName,
+            String job, String mobileNumber, double creditLimit) {
+
+        boolean isValid = true;
+
+        if (!(Validations.emailIsValid(email))) {
+            isValid = false;
+
+        } else if (!(password.matches(confirmPassword)) || !(Validations.passIsValid(password))) {
+            isValid = false;
+
+        } else if (!(Validations.nameIsValid(firstName))) {
+            isValid = false;
+
+        } else if (!(Validations.nameIsValid(lastName))) {
+            isValid = false;
+
+        } else if (!(Validations.nameIsValid(job))) {
+            isValid = false;
+
+        } else if (!(Validations.phoneIsValid(mobileNumber))) {
+            isValid = false;
+
+        } else if (!(String.valueOf(creditLimit)).matches("[+]?([0-9]*\\.[0-9]+|[0-9]+)")) {
+            isValid = false;
+        }
+
+        return isValid;
+    }
 }
