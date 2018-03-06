@@ -29,7 +29,7 @@
         <link href="res/css/animate.min.css" rel="stylesheet">
         <link href="res/css/owl.carousel.css" rel="stylesheet">
         <link href="res/css/owl.theme.css" rel="stylesheet">
-
+        
         <!-- theme stylesheet -->
         <link href="res/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
@@ -116,8 +116,8 @@
                 <div class="navbar-header">
 
                     <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="hidden-xs" style="width: 12em; height: 2.8em; margin-top: 0.1em;">
-                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="visible-xs" style="width: 12em; height: 2.8em; margin-top: 0.1em;"><span class="sr-only">DealTime - go to homepage</span>
+                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="hidden-xs">
+                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="visible-xs"><span class="sr-only">DealTime - go to homepage</span>
                     </a>
                     <div class="navbar-buttons">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
