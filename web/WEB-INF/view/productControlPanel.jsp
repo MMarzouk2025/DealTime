@@ -422,7 +422,7 @@
                             </li>
                             <li><a href="#">Tops</a>
                             </li>
-                            <li>White Blouse Armani</li>
+                            <li>${requestScope.product.productName}</li>
                         </ul>
 
                     </div>
@@ -598,10 +598,10 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="box">
-                                    <h1 class="text-center">White Blouse Armani</h1>
-                                    <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
+                                    <h1 class="text-center">${requestScope.product.productName}</h1>
+                                    <p class="goToDescription"><a href="#details" class="scroll-to"><b>Scroll to product details</b></a>
                                     </p>
-                                    <p class="price">$124.00</p>
+                                    <p class="price">$ ${requestScope.product.productPrice}</p>
 
                                     <p class="text-center buttons">
                                         <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a> 
@@ -613,18 +613,18 @@
 
                                 <div class="row" id="thumbs">
                                     <div class="col-xs-4">
-                                        <a href="img/detailbig1.jpg" class="thumb">
-                                            <img src="img/detailsquare.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/detailbig1.jpg" class="thumb">
+                                            <img src="res/products_images/detailsquare.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="img/detailbig2.jpg" class="thumb">
-                                            <img src="img/detailsquare2.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_imagesdetailbig2.jpg" class="thumb">
+                                            <img src="res/products_imagesdetailsquare2.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="img/detailbig3.jpg" class="thumb">
-                                            <img src="img/detailsquare3.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/detailbig3.jpg" class="thumb">
+                                            <img src="res/products_images/detailsquare3.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                 </div>
@@ -636,7 +636,7 @@
                         <div class="box" id="details">
                             <p>
                             <h4>Product details</h4>
-                            <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
+                            <p>${requestScope.product.productDesc}</p>
                             <h4>Material & care</h4>
                             <ul>
                                 <li>Polyester</li>
