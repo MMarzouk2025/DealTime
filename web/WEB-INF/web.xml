@@ -2,13 +2,13 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <!--Nagib-->
     <servlet>
-        <servlet-name>userCartControler</servlet-name>
-        <servlet-class>com.deal.control.userCartControler</servlet-class>
+        <servlet-name>UserCartControl</servlet-name>
+        <servlet-class>com.deal.servlet.UserCartControl</servlet-class>
     </servlet>
-   
+    
     <servlet-mapping>
-        <servlet-name>userCartControler</servlet-name>
-        <url-pattern>/userCartControler</url-pattern>
+        <servlet-name>UserCartControl</servlet-name>
+        <url-pattern>/userCartControl</url-pattern>
     </servlet-mapping>
     <!---->
     <!--Marzouk-->
@@ -20,7 +20,6 @@
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
     </servlet-mapping>
-    
     <session-config>
         <session-timeout>
             30
@@ -56,7 +55,7 @@
     </servlet-mapping>
     <!---->
     <!--Sobky-->
-     <servlet>
+    <servlet>
         <servlet-name>ProductControl</servlet-name>
         <servlet-class>com.deal.servlet.ProductControl</servlet-class>
     </servlet>
@@ -64,6 +63,5 @@
         <servlet-name>ProductControl</servlet-name>
         <url-pattern>/ProductControl</url-pattern>
     </servlet-mapping>
-    
     <!---->
 </web-app>
