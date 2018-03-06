@@ -5,6 +5,7 @@
         <servlet-name>UserCartControl</servlet-name>
         <servlet-class>com.deal.servlet.UserCartControl</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>UserCartControl</servlet-name>
         <url-pattern>/userCartControl</url-pattern>
