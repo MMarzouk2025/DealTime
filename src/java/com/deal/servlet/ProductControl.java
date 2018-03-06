@@ -5,6 +5,8 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.model.Product;
+import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,9 +31,11 @@ public class ProductControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //  response.setContentType("text/html;charset=UTF-8");
-         request.getRequestDispatcher("WEB-INF/view/productControlPanel.jsp").forward(request, response);
-        
+        //  response.setContentType("text/html;charset=UTF-8");
+        Product product = DbHandler.getProductDAO().retrieveProduct(1);
+        request.setAttribute("product", product);
+        request.getRequestDispatcher("WEB-INF/view/productControlPanel.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -78,7 +78,8 @@ public class OrderDAO {
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT ORDER_ID, PRODUCT_ID, QUANTITY, STATUS\n"
                     + "FROM DEALTIME.ORDERS\n"
-                    + "WHERE CUSTOMER_ID = " + customer.getCustId());
+                    + "WHERE CUSTOMER_ID = " + customer.getCustId()
+                    + "AND QUANTITY > 0");
             while (results.next()) {
                 Order order = new Order();
                 order.setOrderId(results.getLong("ORDER_ID"));
