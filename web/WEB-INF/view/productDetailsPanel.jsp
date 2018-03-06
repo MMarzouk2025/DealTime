@@ -125,7 +125,7 @@
                             <i class="fa fa-search"></i>
                         </button>
                         <a class="btn btn-default navbar-toggle" href="basket.html">
-                            <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
+                            <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">${requestScope.orders.size()} items in the Cart</span>
                         </a>
                     </div>
                 </div>
@@ -373,7 +373,7 @@
                 <div class="navbar-buttons">
 
                     <div class="navbar-collapse collapse right" id="basket-overview">
-                        <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
+                        <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">${requestScope.orders.size()} items in the Cart</span></a>
                     </div>
                     <!--/.nav-collapse -->
 
@@ -580,7 +580,7 @@
                         <div class="row" id="productMain">
                             <div class="col-sm-6">
                                 <div id="mainImage">
-                                    <img src="res/img/detailbig1.jpg" alt="" class="img-responsive">
+                                    <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                 </div>
 
                                 <div class="ribbon sale">
@@ -613,18 +613,18 @@
 
                                 <div class="row" id="thumbs">
                                     <div class="col-xs-4">
-                                        <a href="res/products_images/detailbig1.jpg" class="thumb">
-                                            <img src="res/products_images/detailsquare.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.productId}.jpg"class="thumb">
+                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="res/products_imagesdetailbig2.jpg" class="thumb">
-                                            <img src="res/products_imagesdetailsquare2.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.productId}.jpg" class="thumb">
+                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="res/products_images/detailbig3.jpg" class="thumb">
-                                            <img src="res/products_images/detailsquare3.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.productId}.jpg" class="thumb">
+                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                 </div>
