@@ -29,14 +29,12 @@
         <link href="res/css/animate.min.css" rel="stylesheet">
         <link href="res/css/owl.carousel.css" rel="stylesheet">
         <link href="res/css/owl.theme.css" rel="stylesheet">
-        
         <!-- theme stylesheet -->
         <link href="res/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
         <!-- your stylesheet with modifications -->
         <link href="res/css/custom.css" rel="stylesheet">
-
-        <script src="js/respond.min.js"></script>
+        <script src="res/js/respond.min.js"></script>
 
         <link rel="shortcut icon" href="favicon.png">
     </head>
@@ -52,6 +50,14 @@
         <script src="js/bootstrap-hover-dropdown.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
+        <script src="res/js/jquery-1.11.0.min.js"></script>
+        <script src="res/js/bootstrap.min.js"></script>
+        <script src="res/js/jquery.cookie.js"></script>
+        <script src="res/js/waypoints.min.js"></script>
+        <script src="res/js/modernizr.js"></script>
+        <script src="res/js/bootstrap-hover-dropdown.js"></script>
+        <script src="res/js/owl.carousel.min.js"></script>
+        <script src="res/js/front.js"></script>
         
         <!-- *** TOPBAR ***
      _________________________________________________________ -->
@@ -277,12 +283,12 @@
                                             <div class="col-sm-3">
                                                 <div class="banner">
                                                     <a href="#">
-                                                        <img src="img/banner.jpg" class="img img-responsive" alt="">
+                                                        <img src="res/img/banner.jpg" class="img img-responsive" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="banner">
                                                     <a href="#">
-                                                        <img src="img/banner2.jpg" class="img img-responsive" alt="">
+                                                        <img src="res/img/banner2.jpg" class="img img-responsive" alt="">
                                                     </a>
                                                 </div>
                                             </div>
