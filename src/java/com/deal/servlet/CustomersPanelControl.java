@@ -11,18 +11,19 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mahmoud.Marzouk
  */
-public class ProductsPanelControl extends HttpServlet {
+public class CustomersPanelControl extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/view/products.jsp").forward(request, response);
+        System.out.println("hello");
+        request.getRequestDispatcher("/WEB-INF/view/customers.jsp").forward(request, response);
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
-
+    
 }

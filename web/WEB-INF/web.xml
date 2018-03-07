@@ -19,16 +19,24 @@
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
     </servlet-mapping>
+    <!--*************************** sub-servlets ***************************-->
     <servlet>
         <servlet-name>ProductsPanelControl</servlet-name>
         <servlet-class>com.deal.servlet.ProductsPanelControl</servlet-class>
     </servlet>
-    <!--
     <servlet-mapping>
         <servlet-name>ProductsPanelControl</servlet-name>
         <url-pattern>/administration/products</url-pattern>
     </servlet-mapping>
-    -->
+    <servlet>
+        <servlet-name>CustomersPanelControl</servlet-name>
+        <servlet-class>com.deal.servlet.CustomersPanelControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomersPanelControl</servlet-name>
+        <url-pattern>/administration/customers</url-pattern>
+    </servlet-mapping>
+    <!--********************************************************************-->
     <session-config>
         <session-timeout>
             30
