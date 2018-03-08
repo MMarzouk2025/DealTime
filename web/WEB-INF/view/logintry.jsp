@@ -98,8 +98,8 @@
             <div class="navbar-header">
 
                 <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                    <img src="res/img/logo.png" alt="Obaju logo" class="hidden-xs">
-                    <img src="res/img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                    <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="hidden-xs" style="width: 12em; height: 2.8em; margin-top: 0.1em;">
+                    <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="visible-xs" style="width: 12em; height: 2.8em; margin-top: 0.1em;"><span class="sr-only">DealTime - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -412,8 +412,20 @@
 
                         <form action="register" method="post">
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input name="usernameregister" type="text" class="form-control" id="name" required="true" maxlength="40">
+                                <label for="name">First Name</label>
+                                <input name="userfirstnameregister" type="text" class="form-control" id="name" required="true" maxlength="40">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Last Name</label>
+                                <input name="userlastnameregister" type="text" class="form-control" id="name" required="true" maxlength="40">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Phone Number</label>
+                                <input name="phonenumregister" type="text" class="form-control" id="name" required="true" maxlength="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Credit Limit</label>
+                                <input name="usercreditlimitregister" type="text" class="form-control" id="name" required="true" maxlength="40">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -423,13 +435,10 @@
                                 <label for="password">Password</label>
                                 <input name="passwordregister" type="password" class="form-control" id="password" required="true" maxlength="40">
                             </div>
+                            
                             <div class="form-group">
                                 <label for="name">Address</label>
                                 <input name="addressregister" type="text" class="form-control" id="name" required="true" maxlength="60">
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Wish List</label>
-                                <input name="interestregister" type="text" class="form-control" id="name" required="true" maxlength="100">
                             </div>
                             <div class="form-group">
                                 <label for="name">Job</label>
@@ -479,7 +488,7 @@
                         <ul>
                             <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                             </li>
-                            <li><a href="register.html">Regiter</a>
+                            <li><a href="register">Register</a>
                             </li>
                         </ul>
 
@@ -539,71 +548,13 @@
 
                     </div>
                     <!-- /.col-md-3 -->
-
-
-
-                    <div class="col-md-3 col-sm-6">
-
-                        <h4>Get the news</h4>
-
-                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-
-                        <form>
-                            <div class="input-group">
-
-                                <input type="text" class="form-control">
-
-                                <span class="input-group-btn">
-
-			    <button class="btn btn-default" type="button">Subscribe!</button>
-
-			</span>
-
-                            </div>
-                            <!-- /input-group -->
-                        </form>
-
-                        <hr>
-
-                        <h4>Stay in touch</h4>
-
-                        <p class="social">
-                            <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
-                            <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
-                        </p>
-
-
-                    </div>
-                    <!-- /.col-md-3 -->
-
-                </div>
+    </div>
                 <!-- /.row -->
 
             </div>
             <!-- /.container -->
         </div>
         <!-- /#footer -->
-
-        <!-- *** FOOTER END *** -->
-        <div id="copyright">
-            <div class="container">
-                <div class="col-md-6">
-                    <p class="pull-left">© 2015 Your name goes here.</p>
-
-                </div>
-                <div class="col-md-6">
-                    <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious</a> & <a href="https://fity.cz">Fity</a>
-                         <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- *** COPYRIGHT END *** -->
-
-
 
     </div>
     <!-- /#all -->
