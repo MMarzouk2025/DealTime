@@ -73,7 +73,7 @@ public class OrderDAO {
         return order;
     }
 
-    public List<Order> retrieveCustomerOrders(Customer customer) {
+    public ArrayList<Order> retrieveCustomerOrders(Customer customer) {
         ArrayList<Order> customerOrders = new ArrayList();
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT ORDER_ID, PRODUCT_ID, QUANTITY, STATUS\n"
@@ -211,9 +211,30 @@ public class OrderDAO {
      * ********
      */
     /* Nagib */
-    /**
-     * ********
-     */
+//    
+     public String updateOrder(int orderID ,int qnt) {
+        String result;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.ORDERS\n"
+                    + "SET  QUANTITY = "+qnt+" WHERE  ORDER_ID = "+orderID);
+         
+            stmt.execute();
+            result = SUCCESSFUL_UPDATE;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+//     
     /* Mokhtar */
     /**
      * ********

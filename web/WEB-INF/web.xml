@@ -5,10 +5,17 @@
         <servlet-name>UserCartControl</servlet-name>
         <servlet-class>com.deal.servlet.UserCartControl</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>UpdateCart</servlet-name>
+        <servlet-class>com.deal.servlet.UpdateCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserCartControl</servlet-name>
         <url-pattern>/userCartControl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCart</servlet-name>
+        <url-pattern>/UpdateCart</url-pattern>
     </servlet-mapping>
     <!---->
     <!--Marzouk-->
