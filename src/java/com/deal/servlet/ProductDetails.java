@@ -5,8 +5,13 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.model.Customer;
+import com.deal.base.model.Order;
+import com.deal.base.model.Product;
+import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ElsOoObkey
  */
-public class ProductControl extends HttpServlet {
+public class ProductDetails extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,9 +34,15 @@ public class ProductControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //  response.setContentType("text/html;charset=UTF-8");
-         request.getRequestDispatcher("WEB-INF/view/productControlPanel.jsp").forward(request, response);
+        //  response.setContentType("text/html;charset=UTF-8");
+        Product product = DbHandler.getProductDAO().retrieveProduct(1);
+        request.setAttribute("product", product);
+        Customer cutomer=DbHandler.getCustomerDAO().retrieveCustomer(1);
+        List<Order> orders=DbHandler.getOrderDAO().retrieveCustomerOrders(cutomer);
+        request.setAttribute("orders", orders);
         
+        request.getRequestDispatcher("WEB-INF/view/productDetailsPanel.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
