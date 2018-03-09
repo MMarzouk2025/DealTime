@@ -29,30 +29,28 @@
         <link href="res/css/animate.min.css" rel="stylesheet">
         <link href="res/css/owl.carousel.css" rel="stylesheet">
         <link href="res/css/owl.theme.css" rel="stylesheet">
-
         <!-- theme stylesheet -->
         <link href="res/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
         <!-- your stylesheet with modifications -->
         <link href="res/css/custom.css" rel="stylesheet">
-
-        <script src="js/respond.min.js"></script>
+        <script src="res/js/respond.min.js"></script>
 
         <link rel="shortcut icon" href="favicon.png">
     </head>
 
     <body>
-                <!-- *** SCRIPTS TO INCLUDE ***
-     _________________________________________________________ -->
-        <script src="js/jquery-1.11.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/waypoints.min.js"></script>
-        <script src="js/modernizr.js"></script>
-        <script src="js/bootstrap-hover-dropdown.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/front.js"></script>
-        
+        <!-- *** SCRIPTS TO INCLUDE ***
+_________________________________________________________ -->
+        <script src="res/js/jquery-1.11.0.min.js"></script>
+        <script src="res/js/bootstrap.min.js"></script>
+        <script src="res/js/jquery.cookie.js"></script>
+        <script src="res/js/waypoints.min.js"></script>
+        <script src="res/js/modernizr.js"></script>
+        <script src="res/js/bootstrap-hover-dropdown.js"></script>
+        <script src="res/js/owl.carousel.min.js"></script>
+        <script src="res/js/front.js"></script>
+
         <!-- *** TOPBAR ***
      _________________________________________________________ -->
         <div id="top">
@@ -116,8 +114,8 @@
                 <div class="navbar-header">
 
                     <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="hidden-xs" style="width: 12em; height: 2.8em; margin-top: 0.1em;">
-                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="visible-xs" style="width: 12em; height: 2.8em; margin-top: 0.1em;"><span class="sr-only">DealTime - go to homepage</span>
+                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="hidden-xs">
+                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="visible-xs"><span class="sr-only">DealTime - go to homepage</span>
                     </a>
                     <div class="navbar-buttons">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -277,12 +275,12 @@
                                             <div class="col-sm-3">
                                                 <div class="banner">
                                                     <a href="#">
-                                                        <img src="img/banner.jpg" class="img img-responsive" alt="">
+                                                        <img src="res/img/banner.jpg" class="img img-responsive" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="banner">
                                                     <a href="#">
-                                                        <img src="img/banner2.jpg" class="img img-responsive" alt="">
+                                                        <img src="res/img/banner2.jpg" class="img img-responsive" alt="">
                                                     </a>
                                                 </div>
                                             </div>
@@ -434,16 +432,16 @@
 
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li class="active">
+                                    <li name="option" id="profile_option" class="active">
                                         <a href="customer-orders.html"><i class="fa fa-user"></i> My profile</a>
                                     </li>
-                                    <li>
-                                        <a href="customer-wishlist.html"><i class="fa fa-list"></i> Products</a>
+                                    <li name="option" id="products_option">
+                                        <a href="#" onclick="getAllProducts()"><i class="fa fa-list"></i> Products</a>
                                     </li>
-                                    <li>
-                                        <a href="customer-account.html"><i class="fa fa-list"></i> Customers</a>
+                                    <li name="option" id="customers_option">
+                                        <a href="#" onclick="getAllCustomers()"><i class="fa fa-list"></i> Customers</a>
                                     </li>
-                                    <li>
+                                    <li name="option" id="logout_option">
                                         <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
                                     </li>
                                 </ul>
@@ -456,7 +454,7 @@
                     </div>
 
                     <div class="col-md-9">
-                        <div class="box">
+                        <div id="panel_content" class="box">
                             <h1>My account</h1>
                             <p class="lead">Change your personal details here.</p>
 
@@ -694,11 +692,37 @@
             </div>
             <!-- *** COPYRIGHT END *** -->
 
-
-
         </div>
         <!-- /#all -->
-    </body>
+        
+        <script src="res/script/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+            function setOptionActive(optionId){
+                var options = document.getElementsByName("option");
+                for (var i = 0; i < options.length; ++i) {
+                    options[i].className = "";
+                }
+                document.getElementById(optionId).className = "active";
+            }
+            
+            function ajaxCustomersCallBack(responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success") {
+                    $("#panel_content").html(responseTxt);
+                }
+            }
 
+            function getAllProducts() {
+                $.get("administration/products", ajaxCustomersCallBack);
+                setOptionActive('products_option');
+            }
+            
+            function getAllCustomers() {
+                $.get("administration/customers", ajaxCustomersCallBack);
+                setOptionActive('customers_option');
+            }
+        </script>
+        
+    </body>
+    
 </html>
 

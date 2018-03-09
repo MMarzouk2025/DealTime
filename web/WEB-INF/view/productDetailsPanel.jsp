@@ -112,8 +112,8 @@
                 <div class="navbar-header">
 
                     <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                        <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-                        <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                        <img src="res/img/logo.png" alt="Obaju logo" class="hidden-xs">
+                        <img src="res/img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
                     </a>
                     <div class="navbar-buttons">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -125,7 +125,7 @@
                             <i class="fa fa-search"></i>
                         </button>
                         <a class="btn btn-default navbar-toggle" href="basket.html">
-                            <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
+                            <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">${requestScope.orders.size()} items in the Cart</span>
                         </a>
                     </div>
                 </div>
@@ -373,7 +373,7 @@
                 <div class="navbar-buttons">
 
                     <div class="navbar-collapse collapse right" id="basket-overview">
-                        <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
+                        <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">${requestScope.orders.size()} items in the Cart</span></a>
                     </div>
                     <!--/.nav-collapse -->
 
@@ -422,7 +422,7 @@
                             </li>
                             <li><a href="#">Tops</a>
                             </li>
-                            <li>White Blouse Armani</li>
+                            <li>${requestScope.product.productName}</li>
                         </ul>
 
                     </div>
@@ -580,7 +580,7 @@
                         <div class="row" id="productMain">
                             <div class="col-sm-6">
                                 <div id="mainImage">
-                                    <img src="img/detailbig1.jpg" alt="" class="img-responsive">
+                                    <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                 </div>
 
                                 <div class="ribbon sale">
@@ -598,10 +598,10 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="box">
-                                    <h1 class="text-center">White Blouse Armani</h1>
-                                    <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
+                                    <h1 class="text-center">${requestScope.product.productName}</h1>
+                                    <p class="goToDescription"><a href="#details" class="scroll-to"><b>Scroll to product details</b></a>
                                     </p>
-                                    <p class="price">$124.00</p>
+                                    <p class="price">$ ${requestScope.product.productPrice}</p>
 
                                     <p class="text-center buttons">
                                         <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a> 
@@ -613,18 +613,18 @@
 
                                 <div class="row" id="thumbs">
                                     <div class="col-xs-4">
-                                        <a href="img/detailbig1.jpg" class="thumb">
-                                            <img src="img/detailsquare.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.productId}.jpg"class="thumb">
+                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="img/detailbig2.jpg" class="thumb">
-                                            <img src="img/detailsquare2.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.productId}.jpg" class="thumb">
+                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="img/detailbig3.jpg" class="thumb">
-                                            <img src="img/detailsquare3.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.productId}.jpg" class="thumb">
+                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                 </div>
@@ -636,7 +636,7 @@
                         <div class="box" id="details">
                             <p>
                             <h4>Product details</h4>
-                            <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
+                            <p>${requestScope.product.productDesc}</p>
                             <h4>Material & care</h4>
                             <ul>
                                 <li>Polyester</li>
@@ -1024,14 +1024,14 @@
 
         <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
-        <script src="js/jquery-1.11.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/waypoints.min.js"></script>
-        <script src="js/modernizr.js"></script>
-        <script src="js/bootstrap-hover-dropdown.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/front.js"></script>
+        <script src="res/js/jquery-1.11.0.min.js"></script>
+        <script src="res/js/bootstrap.min.js"></script>
+        <script src="res/js/jquery.cookie.js"></script>
+        <script src="res/js/waypoints.min.js"></script>
+        <script src="res/js/modernizr.js"></script>
+        <script src="res/js/bootstrap-hover-dropdown.js"></script>
+        <script src="res/js/owl.carousel.min.js"></script>
+        <script src="res/js/front.js"></script>
 
 
 

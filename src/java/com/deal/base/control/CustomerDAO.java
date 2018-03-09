@@ -32,7 +32,7 @@ import java.util.logging.Logger;
  * ********
  */
 public class CustomerDAO {
-    
+
     /* Marzouk */
     private Connection mConn;
     public static final String SUCCESSFUL_INSERT = "registeration has been done successfully";
@@ -45,7 +45,7 @@ public class CustomerDAO {
     public CustomerDAO(Connection mConn) {
         this.mConn = mConn;
     }
-    
+
     public Customer retrieveCustomer(long custId) {
         Customer customer = null;
         try {
@@ -157,7 +157,7 @@ public class CustomerDAO {
         }
         return customers;
     }
-    
+
     private boolean checkEmailExistance(String email) {
         boolean result = false;
         try {
@@ -174,7 +174,7 @@ public class CustomerDAO {
         }
         return result;
     }
-    
+
     public String insertCustomer(Customer cust) {
         String result;
         boolean isCustomerExisting = checkEmailExistance(cust.getCustEmail());
@@ -215,9 +215,27 @@ public class CustomerDAO {
         return result;
     }
 
+    private boolean checkEmailRepetition(Customer customer) {
+        boolean result = false;
+        try {
+            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.CUSTOMERS\n"
+                    + "WHERE UPPER(EMAIL) = UPPER('" + customer.getCustEmail() + "')\n"
+                    + "AND CUSTOMER_ID != " + customer.getCustId());
+            if (rSet.next()) {
+                if (rSet.getInt(1) > 0) {
+                    result = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+        return result;
+    }
+
     public String updateCustomer(Customer cust) {
         String result;
-        boolean isCustomerExisting = checkEmailExistance(cust.getCustEmail());
+        boolean isCustomerExisting = checkEmailRepetition(cust);
         try {
             if (isCustomerExisting) {
                 result = EXISTING_EMAIL;
@@ -255,7 +273,7 @@ public class CustomerDAO {
         }
         return result;
     }
-    
+
     private boolean deleteCustomerOrders(Customer customer) {
         boolean result = false;
         try {
@@ -267,7 +285,7 @@ public class CustomerDAO {
         }
         return result;
     }
-    
+
     public String deleteCustomer(Customer customer) {
         String result;
         boolean isCustomerOrdersDeleted = deleteCustomerOrders(customer);
@@ -291,7 +309,7 @@ public class CustomerDAO {
         }
         return result;
     }
-    
+
     /**
      * ********
      */

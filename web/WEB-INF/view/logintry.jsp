@@ -426,6 +426,7 @@
                             <div class="form-group">
                                 <label for="name">Credit Limit</label>
                                 <input name="usercreditlimitregister" type="text" class="form-control" id="name" required="true" maxlength="40">
+
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -435,10 +436,15 @@
                                 <label for="password">Password</label>
                                 <input name="passwordregister" type="password" class="form-control" id="password" required="true" maxlength="40">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="name">Address</label>
                                 <input name="addressregister" type="text" class="form-control" id="name" required="true" maxlength="60">
+                            </div>
+                            <div class="form-group">
+
+                                <label for="name">Wish List</label>
+                                <input name="interestregister" type="text" class="form-control" id="name" required="true" maxlength="100">
                             </div>
                             <div class="form-group">
                                 <label for="name">Job</label>
@@ -489,6 +495,7 @@
                             <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                             </li>
                             <li><a href="register">Register</a>
+
                             </li>
                         </ul>
 
