@@ -77,26 +77,42 @@ public class UserProfileControl extends HttpServlet {
             String job, String mobileNumber, double creditLimit) {
 
         boolean isValid = true;
+        //testing
+        boolean a1 = Validations.emailIsValid(email);
+        
+        boolean a2 = password.matches(confirmPassword);
+        
+        boolean a3 = Validations.passIsValid(password);
+        
+        boolean a4 = Validations.nameIsValid(firstName);
+        
+        boolean a5 = Validations.nameIsValid(lastName);
+        
+        boolean a6 = Validations.nameIsValid(job);
+        
+        boolean a7 = Validations.phoneIsValid(mobileNumber);
+        
+        boolean a8 = !(String.valueOf(creditLimit)).matches("[+]?([0-9]*\\.[0-9]+|[0-9]+)");
 
-        if (!(Validations.emailIsValid(email))) {
+        if ((Validations.emailIsValid(email)) != true) {
             isValid = false;
 
-        } else if (!(password.matches(confirmPassword)) || !(Validations.passIsValid(password))) {
+        } else if ((password.matches(confirmPassword)) != true || (Validations.passIsValid(password)) != true) {
             isValid = false;
 
-        } else if (!(Validations.nameIsValid(firstName))) {
+        } else if ((Validations.nameIsValid(firstName)) != true) {
             isValid = false;
 
-        } else if (!(Validations.nameIsValid(lastName))) {
+        } else if ((Validations.nameIsValid(lastName)) != true) {
             isValid = false;
 
-        } else if (!(Validations.nameIsValid(job))) {
+        } else if ((Validations.nameIsValid(job)) != true) {
             isValid = false;
 
-        } else if (!(Validations.phoneIsValid(mobileNumber))) {
+        } else if ((Validations.phoneIsValid(mobileNumber)) != true) {
             isValid = false;
 
-        } else if (!(String.valueOf(creditLimit)).matches("[+]?([0-9]*\\.[0-9]+|[0-9]+)")) {
+        } else if (((String.valueOf(creditLimit)).matches("[+]?([0-9]*\\.[0-9]+|[0-9]+)")) != true) {
             isValid = false;
         }
 

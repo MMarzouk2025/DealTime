@@ -5,9 +5,17 @@
         <servlet-name>UserCartControl</servlet-name>
         <servlet-class>com.deal.servlet.UserCartControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateCart</servlet-name>
+        <servlet-class>com.deal.servlet.UpdateCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserCartControl</servlet-name>
         <url-pattern>/userCartControl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCart</servlet-name>
+        <url-pattern>/UpdateCart</url-pattern>
     </servlet-mapping>
     <!---->
     <!--Marzouk-->
@@ -19,7 +27,6 @@
         <servlet-name>AdminControl</servlet-name>
         <url-pattern>/administration</url-pattern>
     </servlet-mapping>
-
     <!--*************************** sub-servlets ***************************-->
     <servlet>
         <servlet-name>ProductsPanelControl</servlet-name>
@@ -53,9 +60,17 @@
         <servlet-name>UserProfile</servlet-name>
         <url-pattern>/userProfile</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>HeaderFooterServlet</servlet-name>
+        <servlet-class>com.deal.servlet.HeaderFooterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HeaderFooterServlet</servlet-name>
+        <url-pattern>/headerFooterServlet</url-pattern>
+    </servlet-mapping>
     <!---->
     <!--Yomna-->
-    <servlet>
+  <servlet>
         <servlet-name>UserOrdersControl</servlet-name>
         <servlet-class>com.deal.servlet.UserOrdersControl</servlet-class>
     </servlet>
@@ -96,8 +111,7 @@
         <url-pattern>/logOut</url-pattern>
     </servlet-mapping>
     
-    
-    <!---->
+       <!---->
     <!--Sobky-->
     <servlet>
         <servlet-name>ProductControl</servlet-name>

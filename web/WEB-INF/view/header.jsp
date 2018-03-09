@@ -1,12 +1,16 @@
+<%-- 
+    Document   : userProfileControlPanel
+    Created on : Feb 27, 2018, 6:13:03 PM
+    Author     : Ahmed_Mokhtar
+--%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@page contentType="text/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
+
         <meta charset="utf-8">
         <meta name="robots" content="all,follow">
         <meta name="googlebot" content="index,follow,snippet,archive">
@@ -16,7 +20,7 @@
         <meta name="keywords" content="">
 
         <title>
-            DealTime Admin
+            User Profile Control
         </title>
 
         <meta name="keywords" content="">
@@ -29,28 +33,20 @@
         <link href="res/css/animate.min.css" rel="stylesheet">
         <link href="res/css/owl.carousel.css" rel="stylesheet">
         <link href="res/css/owl.theme.css" rel="stylesheet">
+
         <!-- theme stylesheet -->
         <link href="res/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
         <!-- your stylesheet with modifications -->
         <link href="res/css/custom.css" rel="stylesheet">
+
         <script src="res/js/respond.min.js"></script>
 
         <link rel="shortcut icon" href="favicon.png">
+
     </head>
 
     <body>
-        <!-- *** SCRIPTS TO INCLUDE ***
-_________________________________________________________ -->
-        <script src="res/js/jquery-1.11.0.min.js"></script>
-        <script src="res/js/bootstrap.min.js"></script>
-        <script src="res/js/jquery.cookie.js"></script>
-        <script src="res/js/waypoints.min.js"></script>
-        <script src="res/js/modernizr.js"></script>
-        <script src="res/js/bootstrap-hover-dropdown.js"></script>
-        <script src="res/js/owl.carousel.min.js"></script>
-        <script src="res/js/front.js"></script>
-
         <!-- *** TOPBAR ***
      _________________________________________________________ -->
         <div id="top">
@@ -114,8 +110,8 @@ _________________________________________________________ -->
                 <div class="navbar-header">
 
                     <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="hidden-xs">
-                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="visible-xs"><span class="sr-only">DealTime - go to homepage</span>
+                        <img src="res/img/dealtime_logo.png" alt="Obaju logo" class="hidden-xs">
+                        <img src="res/img/dealtime_logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
                     </a>
                     <div class="navbar-buttons">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -411,318 +407,21 @@ _________________________________________________________ -->
 
         <!-- *** NAVBAR END *** -->
 
-        <div id="all">
-
-            <div id="content">
-                <div class="container">
-                    <div class="col-md-12">
-                        <ul class="breadcrumb">
-                            <li><a href="#">Home</a>
-                            </li>
-                            <li>Admin control panel</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- *** ADMIN MENU *** -->
-                        <div class="panel panel-default sidebar-menu">
-
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Admin section</h3>
-                            </div>
-
-                            <div class="panel-body">
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li name="option" id="profile_option" class="active">
-                                        <a href="customer-orders.html"><i class="fa fa-user"></i> My profile</a>
-                                    </li>
-                                    <li name="option" id="products_option">
-                                        <a href="#" onclick="getAllProducts()"><i class="fa fa-list"></i> Products</a>
-                                    </li>
-                                    <li name="option" id="customers_option">
-                                        <a href="#" onclick="getAllCustomers()"><i class="fa fa-list"></i> Customers</a>
-                                    </li>
-                                    <li name="option" id="logout_option">
-                                        <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-                        <!-- *** CUSTOMER MENU END *** -->
-                    </div>
-
-                    <div class="col-md-9">
-                        <div id="panel_content" class="box">
-                            <h1>My account</h1>
-                            <p class="lead">Change your personal details here.</p>
-
-                            <hr>
-
-                            <h3>Personal details</h3>
-
-                            <form method="POST" action="userProfileControl">
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="firstname">First name</label>
-                                            <input type="text" class="form-control" name="firstname" value="${requestScope.currentCustomer.custFirstName}" required="true"  pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="lastname">Last name</label>
-                                            <input type="text" class="form-control" name="lastname" value="${requestScope.currentCustomer.custLastName}" required="true"  pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="company">Job</label>
-                                            <input type="text" class="form-control" name="job" value="${requestScope.currentCustomer.custJob}" required="true" pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="street">Address</label>
-                                            <input type="text" class="form-control" name="address" value="${requestScope.currentCustomer.custAddress}" required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="zip">Credit</label>
-                                            <input type="text" class="form-control" name="credit" value="${requestScope.currentCustomer.custCreditLimit}" required="true" pattern="" oninvalid="setCustomValidity('numbers only!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="phone">Mobile number</label>
-                                            <input type="text" class="form-control" name="mobileNumber" value="${requestScope.currentCustomer.custMobileNumber}" required="true" pattern="" oninvalid="setCustomValidity('please match 01xx-xxxx-xxx')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="text" class="form-control" name="email" value="${requestScope.currentCustomer.custEmail}" required="true" pattern="" oninvalid="setCustomValidity('Enter a valid email!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Interests</label>
-                                            <input type="text" class="form-control" name="interests" value="${requestScope.currentCustomer.custInterests}" required="true" pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-center">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button>
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container -->
-            </div>
-            <!-- /#content -->
-
-
-            <!-- *** FOOTER ***
+        <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
-            <div id="footer" data-animate="fadeInUp">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <h4>Pages</h4>
+        <script src="res/js/jquery-1.11.0.min.js"></script>
+        <script src="res/js/bootstrap.min.js"></script>
+        <script src="res/js/jquery.cookie.js"></script>
+        <script src="res/js/waypoints.min.js"></script>
+        <script src="res/js/modernizr.js"></script>
+        <script src="res/js/bootstrap-hover-dropdown.js"></script>
+        <script src="res/js/owl.carousel.min.js"></script>
+        <script src="res/js/front.js"></script>
 
-                            <ul>
-                                <li><a href="text.html">About us</a>
-                                </li>
-                                <li><a href="text.html">Terms and conditions</a>
-                                </li>
-                                <li><a href="faq.html">FAQ</a>
-                                </li>
-                                <li><a href="contact.html">Contact us</a>
-                                </li>
-                            </ul>
+        <!-- project script -->
+        <script src="res/js/customer.profile.js"></script>
 
-                            <hr>
-
-                            <h4>User section</h4>
-
-                            <ul>
-                                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                                </li>
-                                <li><a href="register.html">Regiter</a>
-                                </li>
-                            </ul>
-
-                            <hr class="hidden-md hidden-lg hidden-sm">
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-                        <div class="col-md-3 col-sm-6">
-
-                            <h4>Top categories</h4>
-
-                            <h5>Men</h5>
-
-                            <ul>
-                                <li><a href="category.html">T-shirts</a>
-                                </li>
-                                <li><a href="category.html">Shirts</a>
-                                </li>
-                                <li><a href="category.html">Accessories</a>
-                                </li>
-                            </ul>
-
-                            <h5>Ladies</h5>
-                            <ul>
-                                <li><a href="category.html">T-shirts</a>
-                                </li>
-                                <li><a href="category.html">Skirts</a>
-                                </li>
-                                <li><a href="category.html">Pants</a>
-                                </li>
-                                <li><a href="category.html">Accessories</a>
-                                </li>
-                            </ul>
-
-                            <hr class="hidden-md hidden-lg">
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-                        <div class="col-md-3 col-sm-6">
-
-                            <h4>Where to find us</h4>
-
-                            <p><strong>Obaju Ltd.</strong>
-                                <br>13/25 New Avenue
-                                <br>New Heaven
-                                <br>45Y 73J
-                                <br>England
-                                <br>
-                                <strong>Great Britain</strong>
-                            </p>
-
-                            <a href="contact.html">Go to contact page</a>
-
-                            <hr class="hidden-md hidden-lg">
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-
-
-                        <div class="col-md-3 col-sm-6">
-
-                            <h4>Get the news</h4>
-
-                            <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-
-                            <form>
-                                <div class="input-group">
-
-                                    <input type="text" class="form-control">
-
-                                    <span class="input-group-btn">
-
-                                        <button class="btn btn-default" type="button">Subscribe!</button>
-
-                                    </span>
-
-                                </div>
-                                <!-- /input-group -->
-                            </form>
-
-                            <hr>
-
-                            <h4>Stay in touch</h4>
-
-                            <p class="social">
-                                <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
-                                <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
-                                <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
-                            </p>
-
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-                    </div>
-                    <!-- /.row -->
-
-                </div>
-                <!-- /.container -->
-            </div>
-            <!-- /#footer -->
-
-            <!-- *** FOOTER END *** -->
-
-
-
-
-            <!-- *** COPYRIGHT ***
-     _________________________________________________________ -->
-            <div id="copyright">
-                <div class="container">
-                    <div class="col-md-6">
-                        <p class="pull-left">© 2015 Your name goes here.</p>
-
-                    </div>
-                    <div class="col-md-6">
-                        <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious</a> & <a href="https://fity.cz">Fity</a>
-                            <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- *** COPYRIGHT END *** -->
-
-        </div>
-        <!-- /#all -->
-        
-        <script src="res/script/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript">
-            function setOptionActive(optionId){
-                var options = document.getElementsByName("option");
-                for (var i = 0; i < options.length; ++i) {
-                    options[i].className = "";
-                }
-                document.getElementById(optionId).className = "active";
-            }
-            
-            function ajaxCustomersCallBack(responseTxt, statusTxt, xhr) {
-                if (statusTxt == "success") {
-                    $("#panel_content").html(responseTxt);
-                }
-            }
-
-            function getAllProducts() {
-                $.get("administration/products", ajaxCustomersCallBack);
-                setOptionActive('products_option');
-            }
-            
-            function getAllCustomers() {
-                $.get("administration/customers", ajaxCustomersCallBack);
-                setOptionActive('customers_option');
-            }
-        </script>
-        
     </body>
-    
+
 </html>
 

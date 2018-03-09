@@ -3,11 +3,16 @@
 <form method="GET" action="userProfile">
     <input type="submit" value="Go to user profile"/>
 </form>
-
+<form method="GET" action="headerFooterServlet">
+    <input type="submit" value="Go to header"/>
+</form>
+<form method="POST" action="headerFooterServlet">
+    <input type="submit" value="Go to footer"/>
+</form>
 <form method="GET" action="userCartControl">
     <input type="submit" value="Go to user Cart"/>
 </form>
-</body>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,8 +51,6 @@
 
         <link rel="shortcut icon" href="favicon.png">
 
-
-
     </head>
 
     <body>
@@ -62,11 +65,6 @@
         <script src="res/js/bootstrap-hover-dropdown.js"></script>
         <script src="res/js/owl.carousel.min.js"></script>
         <script src="res/js/front.js"></script>
-
-        <!-- just for testing -->
-        <form method="GET" action="userProfileControl">
-            <input type="submit" value="Go to user profile"/>
-        </form>
 
         <!-- *** TOPBAR ***
      _________________________________________________________ -->
@@ -100,12 +98,9 @@
                             <form action="login" method="post">
                                 <div class="form-group">
                                     <input name="email" type="text" class="form-control" id="email-modal" placeholder="email">
-                                    <p id="invalidmail">Invalid mail</p>
                                 </div>
                                 <div class="form-group">
                                     <input name="password" type="password" class="form-control" id="password-modal" placeholder="password">
-                                     <p id="invalidpassword">Invalid password</p>
-                                
                                 </div>
 
                                 <p class="text-center">
@@ -134,9 +129,9 @@
                 <div class="navbar-header">
 
                     <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="hidden-xs" style="width: 12em; height: 2.8em; margin-top: 0.1em;">
-                        <img src="res/img/dealtime_logo.png" alt="DealTime logo" class="visible-xs" style="width: 12em; height: 2.8em; margin-top: 0.1em;"><span class="sr-only">DealTime - go to homepage</span>
-                     </a>
+                        <img src="res/img/logo.png" alt="Obaju logo" class="hidden-xs">
+                        <img src="res/img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                    </a>
                     <div class="navbar-buttons">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
                             <span class="sr-only">Toggle navigation</span>
@@ -310,7 +305,83 @@
                                 </li>
                             </ul>
                         </li>
-   
+
+                        <li class="dropdown yamm-fw">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <h5>Shop</h5>
+                                                <ul>
+                                                    <li><a href="index.html">Homepage</a>
+                                                    </li>
+                                                    <li><a href="category.html">Category - sidebar left</a>
+                                                    </li>
+                                                    <li><a href="category-right.html">Category - sidebar right</a>
+                                                    </li>
+                                                    <li><a href="category-full.html">Category - full width</a>
+                                                    </li>
+                                                    <li><a href="detail.html">Product detail</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h5>User</h5>
+                                                <ul>
+                                                    <li><a href="register">Register / login</a>
+                                                    </li>
+                                                    <li><a href="">Orders history</a>
+                                                    </li>
+                                                    <li><a href="customer-order.html">Order history detail</a>
+                                                    </li>
+                                                    <li><a href="customer-wishlist.html">Wishlist</a>
+                                                    </li>
+                                                    <li><a href="customer-account.html">Customer account / change password</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h5>Order process</h5>
+                                                <ul>
+                                                    <li><a href="basket.html">Shopping cart</a>
+                                                    </li>
+                                                    <li><a href="checkout1.html">Checkout - step 1</a>
+                                                    </li>
+                                                    <li><a href="checkout2.html">Checkout - step 2</a>
+                                                    </li>
+                                                    <li><a href="checkout3.html">Checkout - step 3</a>
+                                                    </li>
+                                                    <li><a href="checkout4.html">Checkout - step 4</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h5>Pages and blog</h5>
+                                                <ul>
+                                                    <li><a href="blog.html">Blog listing</a>
+                                                    </li>
+                                                    <li><a href="post.html">Blog Post</a>
+                                                    </li>
+                                                    <li><a href="faq.html">FAQ</a>
+                                                    </li>
+                                                    <li><a href="text.html">Text page</a>
+                                                    </li>
+                                                    <li><a href="text-right.html">Text page - right sidebar</a>
+                                                    </li>
+                                                    <li><a href="404.html">404 page</a>
+                                                    </li>
+                                                    <li><a href="contact.html">Contact</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.yamm-content -->
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
 
                 </div>
@@ -901,6 +972,41 @@
 
 
 
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Get the news</h4>
+
+                            <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                            <form>
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control">
+
+                                    <span class="input-group-btn">
+
+                                        <button class="btn btn-default" type="button">Subscribe!</button>
+
+                                    </span>
+
+                                </div>
+                                <!-- /input-group -->
+                            </form>
+
+                            <hr>
+
+                            <h4>Stay in touch</h4>
+
+                            <p class="social">
+                                <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                                <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                                <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                            </p>
+
+
+                        </div>
                         <!-- /.col-md-3 -->
 
                     </div>
@@ -918,7 +1024,19 @@
 
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
-            
+            <div id="copyright">
+                <div class="container">
+                    <div class="col-md-6">
+                        <p class="pull-left">© 2015 Your name goes here.</p>
+
+                    </div>
+                    <div class="col-md-6">
+                        <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious</a> & <a href="https://fity.cz">Fity</a>
+                            <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
+                        </p>
+                    </div>
+                </div>
+            </div>
             <!-- *** COPYRIGHT END *** -->
 
 

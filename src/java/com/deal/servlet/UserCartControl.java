@@ -5,9 +5,11 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.control.OrderDAO;
 import com.deal.base.model.Customer;
 import com.deal.base.model.Order;
 import com.deal.base.model.Product;
+import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -37,11 +39,16 @@ public class UserCartControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         session = request.getSession(true);
-        ArrayList<Order> data = new ArrayList<>();
-        data.add(new Order(new Customer(), new Product("product 1", 10, 10), 1, 'c'));
-        data.add(new Order(new Customer(), new Product("product 2", 20, 20), 2, 'c'));
-        data.add(new Order(new Customer(), new Product("product 3", 30, 30), 3, 'c'));
-        session.setAttribute("Items", data);
+        OrderDAO OrderDAOObject = DbHandler.getOrderDAO();
+        ArrayList<Order> chartLines = OrderDAOObject.retrieveCustomerOrders(new Customer(1));
+        for (Order chartLine : chartLines) {
+            System.out.println(chartLine.getOrderProduct().getProductName() + "  :  " + chartLine.getQuantity());
+
+        }
+        session.setAttribute("Items", chartLines);
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+        response.setDateHeader("Expires", 0);
         request.getRequestDispatcher("WEB-INF/view/userCart.jsp").forward(request, response);
 
     }
