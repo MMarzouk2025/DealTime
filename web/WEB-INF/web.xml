@@ -68,6 +68,14 @@
         <servlet-name>HeaderFooterServlet</servlet-name>
         <url-pattern>/headerFooterServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>paginationServlet</servlet-name>
+        <servlet-class>com.deal.servlet.paginationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>paginationServlet</servlet-name>
+        <url-pattern>/paginationServlet</url-pattern>
+    </servlet-mapping>
     <!---->
     <!--Yomna-->
     <servlet>
