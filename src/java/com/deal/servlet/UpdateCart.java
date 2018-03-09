@@ -9,7 +9,6 @@ import com.deal.base.control.OrderDAO;
 import com.deal.base.model.Customer;
 import com.deal.base.model.Order;
 import com.deal.control.DbHandler;
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

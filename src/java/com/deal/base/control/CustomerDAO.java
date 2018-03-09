@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * ********
@@ -50,7 +52,7 @@ public class CustomerDAO {
             ResultSet results = mConn.createStatement().executeQuery("SELECT EMAIL, PASSWORD, FIRST_NAME, LAST_NAME,\n"
                     + "ADDRESS, JOB, PHONE_NUMBER, DATE_OF_BIRTH, CREDIT_LIMIT, WISHLIST\n"
                     + "FROM DEALTIME.CUSTOMERS\n"
-                    + "WHERE CUSTOMER_ID = " + custId);
+                    + "WHERE CUSTOMER_ID = " + custId );
             if (results.next()) {
                 customer = new Customer();
                 customer.setCustId(custId);
