@@ -1,3 +1,22 @@
+<!-- just for testing -->
+<form method="GET" action="userProfile">
+    <input type="submit" value="Go to user profile"/>
+</form>
+<form method="GET" action="headerFooterServlet">
+    <input type="submit" value="Go to header"/>
+</form>
+<form method="POST" action="headerFooterServlet">
+    <input type="submit" value="Go to footer"/>
+</form>
+<form method="GET" action="userCartControl">
+    <input type="submit" value="Go to user Cart"/>
+</form>
+<form method="GET" action="paginationServlet">
+    <input type="submit" value="Go to pagination"/>
+</form>
+<form method="GET" action="productDetails">
+    <input type="submit" value="Go to product details"/>
+</form>
 
 <%@page contentType="text/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

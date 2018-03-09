@@ -76,6 +76,14 @@
         <servlet-name>paginationServlet</servlet-name>
         <url-pattern>/paginationServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ProductDetails</servlet-name>
+        <servlet-class>com.deal.servlet.ProductDetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductDetails</servlet-name>
+        <url-pattern>/productDetails</url-pattern>
+    </servlet-mapping>
     <!---->
     <!--Yomna-->
   <servlet>
@@ -123,7 +131,7 @@
     <!--Sobky-->
     <servlet>
         <servlet-name>ProductControl</servlet-name>
-        <servlet-class>com.deal.servlet.ProductControl</servlet-class>
+        <servlet-class>com.deal.servlet.ProductsPanelControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductControl</servlet-name>
