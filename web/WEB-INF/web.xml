@@ -52,6 +52,14 @@
         <servlet-name>UserProfile</servlet-name>
         <url-pattern>/userProfile</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>HeaderFooterServlet</servlet-name>
+        <servlet-class>com.deal.servlet.HeaderFooterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HeaderFooterServlet</servlet-name>
+        <url-pattern>/headerFooterServlet</url-pattern>
+    </servlet-mapping>
     <!---->
     <!--Yomna-->
     <servlet>
