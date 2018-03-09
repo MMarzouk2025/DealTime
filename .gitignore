@@ -1,4 +1,3 @@
-
 # Compiled class file
 *.class
 
@@ -22,20 +21,44 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-#project properties
-/nbproject
-/nbproject/
-/nbproject/*
 
-#excluded
-!/web/WEB-INF/lib/
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
 
-#others
-/dist/
-/dist/
-*.war
-/build/web/
-/build/web/WEB-INF/classes/
-/build/web/WEB-INF/lib/
-/nbproject/private/
-nbproject/private/private.properties
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+/Server/nbproject/private/
+/Server/build/
+/Server/dist/
+
+
+### Web ###
+*.asp
+*.cer
+*.csr
+*.css
+*.htm
+*.html
+*.js
+*.jsp
+*.php
+*.rss
+*.xhtml
+
+build.xml
+
+nbproject/private/
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+nbactions.xml
