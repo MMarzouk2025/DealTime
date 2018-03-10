@@ -45,7 +45,7 @@ public class LogInControl extends HttpServlet {
            }
            else{
                 System.out.println("user doesn't exist");
-                request.getRequestDispatcher("index.html").forward(request, response);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
     
            }
            
