@@ -121,6 +121,14 @@
         <servlet-name>ProductDetails</servlet-name>
         <url-pattern>/productDetails</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>com.deal.servlet.AddToCart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
     <!---->
     <!--Yomna-->
     <servlet>
