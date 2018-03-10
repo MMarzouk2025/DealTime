@@ -14,7 +14,7 @@
         <meta name="description" content="Obaju e-commerce template">
         <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
         <meta name="keywords" content="">
-
+        
         <title>DealTime Admin</title>
 
         <meta name="keywords" content="">
@@ -598,7 +598,7 @@ _________________________________________________________ -->
             <!-- /#footer -->
 
             <!-- *** FOOTER END *** -->
-
+            
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
             <div id="copyright">
@@ -678,6 +678,5 @@ _________________________________________________________ -->
         </script>
 
     </body>
-
 </html>
 

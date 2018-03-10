@@ -5,6 +5,9 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.control.CustomerDAO;
+import com.deal.base.model.Customer;
+import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,10 +27,28 @@ public class LogInControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+           // get input from user
            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            out.println("Welcome :"+ email + "" + "Password: " + password);
+           String password = request.getParameter("password");
+           // insert in database
+           Customer customer = new Customer();
+           CustomerDAO customerDao = DbHandler.getCustomerDAO();
+           customer = customerDao.retrieveCustomer(email, password);
+           //check if customer exist
+           
+           if(customer != null){
+                HttpSession session = request.getSession(true);
+                session.setAttribute("loggedInCustomer", customer);
+                //redirect to users page
+                request.getRequestDispatcher("WEB-INF/view/userOrdersControlPanel.jsp").forward(request, response);
+    
+           }
+           else{
+                System.out.println("user doesn't exist");
+                request.getRequestDispatcher("index.html").forward(request, response);
+    
+           }
+           
         }
     }
 

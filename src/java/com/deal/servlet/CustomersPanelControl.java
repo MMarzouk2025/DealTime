@@ -1,5 +1,6 @@
 package com.deal.servlet;
 
+
 import com.deal.base.model.Customer;
 import com.deal.control.DbHandler;
 import java.io.IOException;

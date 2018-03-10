@@ -73,13 +73,12 @@ public class OrderDAO {
         return order;
     }
 
-    public List<Order> retrieveCustomerOrders(Customer customer) {
+    public ArrayList<Order> retrieveCustomerOrders(Customer customer) {
         ArrayList<Order> customerOrders = new ArrayList();
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT ORDER_ID, PRODUCT_ID, QUANTITY, STATUS\n"
                     + "FROM DEALTIME.ORDERS\n"
-                    + "WHERE CUSTOMER_ID = " + customer.getCustId()
-                    + "AND QUANTITY > 0");
+                    + "WHERE CUSTOMER_ID = " + customer.getCustId()+"and QUANTITY > 0");
             while (results.next()) {
                 Order order = new Order();
                 order.setOrderId(results.getLong("ORDER_ID"));
@@ -229,9 +228,30 @@ public class OrderDAO {
      * ********
      */
     /* Nagib */
-    /**
-     * ********
-     */
+//    
+     public String updateOrder(int orderID ,int qnt) {
+        String result;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.ORDERS\n"
+                    + "SET  QUANTITY = "+qnt+" WHERE  ORDER_ID = "+orderID);
+         
+            stmt.execute();
+            result = SUCCESSFUL_UPDATE;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+//     
     /* Mokhtar */
     /**
      * ********

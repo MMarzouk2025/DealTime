@@ -44,6 +44,12 @@ public class Customer implements Serializable {
         this.custWishList = custWishList;
     }
 
+    public Customer(long custId) {
+        this.custId = custId;
+    }
+    
+    
+
     public long getCustId() {
         return custId;
     }
