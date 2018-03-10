@@ -31,7 +31,7 @@ public class UserProfileControl extends HttpServlet {
 
 //        customerID = (String) request.getSession().getAttribute("");
         Customer customer = DbHandler.getCustomerDAO().retrieveCustomer(Integer.parseInt(customerID));
-
+        
         request.setAttribute("currentCustomer", customer);
         request.getRequestDispatcher("WEB-INF/view/userProfileControlPanel.jsp").forward(request, response);
     }

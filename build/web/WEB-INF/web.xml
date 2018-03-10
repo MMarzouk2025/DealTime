@@ -21,6 +21,14 @@
     </servlet-mapping>
     <!--*************************** sub-servlets ***************************-->
     <servlet>
+        <servlet-name>AdminProfile</servlet-name>
+        <servlet-class>com.deal.servlet.AdminProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminProfile</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ProductsPanelControl</servlet-name>
         <servlet-class>com.deal.servlet.ProductsPanelControl</servlet-class>
     </servlet>

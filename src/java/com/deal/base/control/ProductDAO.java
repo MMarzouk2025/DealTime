@@ -165,6 +165,26 @@ public class ProductDAO {
     }
 
     // find solution for deleting products have orders before deleting them //
+    public String deleteProduct(long productId) {
+        DbHandler.getOrderDAO().invalidateProductOrders(productId);
+        String result;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.PRODUCTS WHERE PRODUCT_ID = " + productId);
+            stmt.execute();
+            result = SUCCESSFUL_DELETE;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
     /**
      * ********
      */
