@@ -13,6 +13,22 @@
         <servlet-name>HomeControl</servlet-name>
         <servlet-class>com.deal.servlet.HomeControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductSearch</servlet-name>
+        <servlet-class>com.deal.servlet.ProductSearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductSearch</servlet-name>
+        <url-pattern>/productSearch</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProductByCategory</servlet-name>
+        <servlet-class>com.deal.servlet.ProductByCategory</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductByCategory</servlet-name>
+        <url-pattern>/category</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserCartControl</servlet-name>
         <url-pattern>/userCartControl</url-pattern>

@@ -148,7 +148,7 @@
             <div class="navbar-collapse collapse" id="navigation">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="index.jsp">Home</a>
+                    <li class="active"><a href="dealTime?page=1">Home</a>
                     </li>
                     <li class="dropdown yamm-fw">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Men <b class="caret"></b></a>
@@ -402,13 +402,11 @@
 
             <div class="collapse clearfix" id="search">
 
-                <form class="navbar-form" role="search">
+                <form class="navbar-form" role="search" action="productSearch" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input id="searchInput" name="searchInput" type="text" class="form-control" placeholder="Search">
                         <span class="input-group-btn">
-
                             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-
                         </span>
                     </div>
                 </form>
@@ -442,23 +440,23 @@
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked category-menu">
                                     <li>
-                                        <a href="category.html">Men <span class="badge pull-right">42</span></a>
+                                        <a href="#">Men</a>
                                         <ul>
-                                            <li><a href="category.html">T-shirts</a>
+                                            <li><a href="category?cat=category1">Category 1</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="active">
-                                        <a href="category.html">Ladies  <span class="badge pull-right">123</span></a>
+                                        <a href="#">Ladies</a>
                                         <ul>
-                                            <li><a href="category.html">T-shirts</a>
+                                            <li><a href="category?cat=category2">Category 2</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="category.html">Kids  <span class="badge pull-right">11</span></a>
+                                        <a href="#">Kids</a>
                                         <ul>
-                                            <li><a href="category.html">T-shirts</a>
+                                            <li><a href="category?cat=category3">Category 3</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -495,37 +493,37 @@
 
                         <div class="row products">
 
-<!--                            <div class="col-md-4 col-sm-6">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="productDetails?productId=${product.productId}">
-                                                    <img src="res/img/product1.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="res/img/product1_2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="detail.html" class="invisible">
-                                        <img src="res/img/product1.jpg" alt="" class="img-responsive">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
-                                        <p class="price">$143.00</p>
-                                        <p class="buttons">
-                                            <a href="detail.html" class="btn btn-default">View detail</a>
-                                            <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </p>
-                                    </div>
-                                     /.text 
-                                </div>
-                                 /.product 
-                            </div>-->
+                            <!--                            <div class="col-md-4 col-sm-6">
+                                                            <div class="product">
+                                                                <div class="flip-container">
+                                                                    <div class="flipper">
+                                                                        <div class="front">
+                                                                            <a href="productDetails?productId=${product.productId}">
+                                                                                <img src="res/img/product1.jpg" alt="" class="img-responsive">
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="back">
+                                                                            <a href="detail.html">
+                                                                                <img src="res/img/product1_2.jpg" alt="" class="img-responsive">
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="detail.html" class="invisible">
+                                                                    <img src="res/img/product1.jpg" alt="" class="img-responsive">
+                                                                </a>
+                                                                <div class="text">
+                                                                    <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
+                                                                    <p class="price">$143.00</p>
+                                                                    <p class="buttons">
+                                                                        <a href="detail.html" class="btn btn-default">View detail</a>
+                                                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                                    </p>
+                                                                </div>
+                                                                 /.text 
+                                                            </div>
+                                                             /.product 
+                                                        </div>-->
                             <c:forEach items="${sessionScope.productsList}" var="product">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="product">
@@ -563,7 +561,7 @@
 
                             </c:forEach>
 
-                           
+
                             <!-- /.col-md-4 -->
                         </div>
                         <!-- /.products -->

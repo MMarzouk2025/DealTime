@@ -7,7 +7,6 @@ package com.deal.servlet;
 
 import com.deal.base.control.ProductDAO;
 import com.deal.base.model.Product;
-import com.deal.base.model.Order;
 import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,40 +22,29 @@ import javax.servlet.http.HttpSession;
  *
  * @author nagib
  */
-public class HomeControl extends HttpServlet {
+public class ProductSearch extends HttpServlet {
 
     HttpSession session;
-    ArrayList<Product> products = null;
+    ArrayList<Product> productsList = null;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         session = request.getSession(true);
+        String searchInput = request.getParameter("searchInput");
         ProductDAO productDAoObject = DbHandler.getProductDAO();
-        if (products == null) {
+        if (productsList == null) {
 
-            products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
+            productsList = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
         }
-        List<Product> subProductsList = null;
-        String pageNamber = request.getParameter("page");
-        if (pageNamber != null) {
-            int pageNamberIntger = 0;
-            try {
-                pageNamberIntger = Integer.parseInt(pageNamber);
-                if (pageNamberIntger == (products.size() / 5) + 1) {
-                    subProductsList = products.subList((pageNamberIntger - 1) * 5, products.size());
-                } else {
-                    subProductsList = products.subList((pageNamberIntger - 1) * 5, (pageNamberIntger - 1) * 5 + 5);
-                }
-            } catch (Exception e) {
-                subProductsList = products.subList(0, 5);
-            }
+        ArrayList<Product> subProductsList = new ArrayList<>();
+        productsList.stream().filter(p -> p.getProductName().contains(searchInput))
+                .forEach((t) -> {
+                    subProductsList.add(t);
+                });// filtering by name  
 
-        } else {
-            subProductsList = products.subList(0, 5);
-        }
         session.setAttribute("productsList", subProductsList);
-        session.setAttribute("AllproductsNumber", products.size());
+        session.setAttribute("AllproductsNumber", productsList.size());
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0);
@@ -65,15 +53,9 @@ public class HomeControl extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
     }
 
     @Override
