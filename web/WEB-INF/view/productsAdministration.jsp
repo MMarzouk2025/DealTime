@@ -152,16 +152,24 @@
                                <input type="file" name="pic" accept="image/*" onchange="readURL(this);">
                             </div>
                             <div class="form-group">
-                                <input name="productName" type="text" class="form-control" id="email-modal" placeholder="Name" maxlength="40" required="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                <input name="productName" type="text" class="form-control" id="naame-modal" placeholder="Name" maxlength="40" required="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                             </div>
                             <div class="form-group">
-                                <input name="productDescription" type="text" class="form-control" id="password-modal" placeholder="Description" maxlength="30" required="true">
+                                <input name="productDescription" type="text" class="form-control" id="desc-modal" placeholder="Description" maxlength="30" required="true">
                             </div>
                             <div class="form-group">
-                                <input name="productPrice" type="text" class="form-control" id="password-modal" placeholder="Price" maxlength="30" required="true">
+                                <input name="productPrice" type="text" class="form-control" id="price-modal" placeholder="Price" maxlength="30" required="true">
                             </div>
                             <div class="form-group">
-                                <input name="productQuantity" type="text" class="form-control" id="password-modal" placeholder="Quantity" maxlength="30" required="true">
+                                <input name="productQuantity" type="text" class="form-control" id="quantiy-modal" placeholder="Quantity" maxlength="30" required="true">
+                            </div>
+                            <div class="form-group" style="display: inline-block; width: 100%">
+                                <select id="categoriesList" class="form-control" style="margin-bottom: 1.5em; margin-top: 0.25em; float: top; text-align: center;">
+                                <option selected="selected" disabled>Select Category ...</option>
+                                <c:forEach items="${requestScope.categories}" var="category">
+                                    <option value="${category.getCategoryId()}">${category.getCategoryName()}</option>
+                                </c:forEach>
+                                </select>
                             </div>
                             <p class="text-center">
                                 <button  class="btn btn-primary"><i class="fa fa-sign-in"></i> Add Product</button>
