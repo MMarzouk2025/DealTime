@@ -168,7 +168,26 @@ public class OrderDAO {
         }
         return result;
     }
-
+    
+    /*
+    public void invalidateProductOrders(long productId) {
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.ORDERS\n"
+                    + "SET PRODUCT_ID = NULL\n"
+                    + "WHERE  PRODUCT_ID = " + productId);
+            stmt.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    */
+    
     public String deleteOrder(Order order) {
         String result;
         try {

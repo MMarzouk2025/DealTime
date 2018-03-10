@@ -32,7 +32,7 @@ public class HomeControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         session = request.getSession(true);
         ProductDAO productDAoObject = DbHandler.getProductDAO();
-        ArrayList<Product> products = (ArrayList<Product>) productDAoObject.retrieveAllProduct();
+        ArrayList<Product> products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
         List<Product> subProductsList=products.subList(0, 5);
         session.setAttribute("productsList", subProductsList);
         session.setAttribute("AllproductsNumber", products.size());

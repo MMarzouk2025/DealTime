@@ -489,7 +489,7 @@
                                         <div class="form-group">
                                             <label for="email">Email</label>
 
-                                            <input type="text" class="form-control" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="${requestScope.currentCustomer.custEmail}" required="true" oninvalid="setCustomValidity('Enter a valid email!')" oninput="setCustomValidity('')" disabled="true">
+                                            <input type="email" class="form-control" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="${requestScope.currentCustomer.custEmail}" required="true" oninvalid="setCustomValidity('Enter a valid email!')" oninput="setCustomValidity('')" disabled="true">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">

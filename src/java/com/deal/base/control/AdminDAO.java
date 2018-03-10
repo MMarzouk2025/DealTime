@@ -2,6 +2,7 @@ package com.deal.base.control;
 
 /* Marzouk */
 import com.deal.base.model.Admin;
+import com.deal.base.model.Customer;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -76,7 +77,7 @@ public class AdminDAO {
         }
         return admin;
     }
-    
+
     private boolean checkEmailExistance(String email) {
         boolean result = false;
         try {
@@ -132,9 +133,27 @@ public class AdminDAO {
         return result;
     }
 
+    private boolean checkEmailRepetition(Admin admin) {
+        boolean result = false;
+        try {
+            ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.ADMINS\n"
+                    + "WHERE UPPER(EMAIL) = UPPER('" + admin.getAdminEmail()+ "')\n"
+                    + "AND ADMIN_ID != " + admin.getAdminId());
+            if (rSet.next()) {
+                if (rSet.getInt(1) > 0) {
+                    result = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = false;
+        }
+        return result;
+    }
+
     public String updateAdmin(Admin admin) {
         String result;
-        boolean isAdminExisting = checkEmailExistance(admin.getAdminEmail());
+        boolean isAdminExisting = checkEmailRepetition(admin);
         try {
             if (isAdminExisting) {
                 result = EXISTING_EMAIL;
