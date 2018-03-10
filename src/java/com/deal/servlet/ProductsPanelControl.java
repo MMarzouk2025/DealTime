@@ -1,5 +1,6 @@
 package com.deal.servlet;
 
+import com.deal.base.model.Category;
 import com.deal.base.model.Product;
 import com.deal.control.DbHandler;
 import java.io.IOException;
@@ -19,8 +20,10 @@ public class ProductsPanelControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Product> allProducts = (ArrayList<Product>) DbHandler.getProductDAO().retrieveAllProduct();
+        ArrayList<Product> allProducts = (ArrayList<Product>) DbHandler.getProductDAO().retrieveAllProducts();
         request.setAttribute("products", allProducts);
+        ArrayList<Category> allCategories = (ArrayList<Category>) DbHandler.getCategoryDAO().retrieveAllCategories();
+        request.setAttribute("categories", allCategories);
         request.getRequestDispatcher("/WEB-INF/view/productsAdministration.jsp").forward(request, response);
     }
 

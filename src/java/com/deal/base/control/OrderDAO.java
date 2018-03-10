@@ -168,7 +168,8 @@ public class OrderDAO {
         }
         return result;
     }
-
+    
+    /*
     public void invalidateProductOrders(long productId) {
         try {
             PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.ORDERS\n"
@@ -185,7 +186,8 @@ public class OrderDAO {
             }
         }
     }
-
+    */
+    
     public String deleteOrder(Order order) {
         String result;
         try {

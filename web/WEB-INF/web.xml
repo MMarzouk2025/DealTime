@@ -94,7 +94,7 @@
     </servlet-mapping>
     <!---->
     <!--Yomna-->
-  <servlet>
+    <servlet>
         <servlet-name>UserOrdersControl</servlet-name>
         <servlet-class>com.deal.servlet.UserOrdersControl</servlet-class>
     </servlet>
@@ -135,7 +135,7 @@
         <url-pattern>/logOut</url-pattern>
     </servlet-mapping>
     
-       <!---->
+    <!---->
     <!--Sobky-->
     <servlet>
         <servlet-name>ProductControl</servlet-name>

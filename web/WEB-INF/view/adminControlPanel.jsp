@@ -40,6 +40,10 @@
     </head>
 
     <body>
+        <style type="text/css">
+            
+        </style>
+
         <!-- *** SCRIPTS TO INCLUDE ***
 _________________________________________________________ -->
         <script src="res/js/jquery-1.11.0.min.js"></script>
@@ -600,7 +604,7 @@ _________________________________________________________ -->
             <!-- /#footer -->
 
             <!-- *** FOOTER END *** -->
-            
+
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
             <div id="copyright">
@@ -623,61 +627,61 @@ _________________________________________________________ -->
 
         <script src="res/script/jquery-3.3.1.min.js"></script>
         <script type="text/javascript">
-            getAdminProfile();
-            
-            function setOptionActive(optionId) {
+                                            getAdminProfile();
 
-                var options = document.getElementsByName("option");
-                for (var i = 0; i < options.length; ++i) {
-                    options[i].className = "";
-                }
-                document.getElementById(optionId).className = "active";
-            }
-            
-            $.ajaxSetup({
-                type: 'POST',
-                headers: {"cache-control": "no-cache"}
-             });
+                                            function setOptionActive(optionId) {
 
-            function ajaxCallBack(responseTxt, statusTxt, xhr) {
-                if (statusTxt == "success") {
-                    $("#panel_content_container").html('<div id="panel_content" class="box"></div>');
-                    $("#panel_content").html(responseTxt);
-                }
-            }
+                                                var options = document.getElementsByName("option");
+                                                for (var i = 0; i < options.length; ++i) {
+                                                    options[i].className = "";
+                                                }
+                                                document.getElementById(optionId).className = "active";
+                                            }
 
-            function getAdminProfile() {
-                $.get("admin", ajaxCallBack);
-                setOptionActive('profile_option');
-            }
+                                            $.ajaxSetup({
+                                                type: 'POST',
+                                                headers: {"cache-control": "no-cache"}
+                                            });
 
-            function getAllProducts() {
-                $.get("administration/products", ajaxCallBack);
-                setOptionActive('products_option');
-            }
+                                            function ajaxCallBack(responseTxt, statusTxt, xhr) {
+                                                if (statusTxt == "success") {
+                                                    $("#panel_content_container").html('<div id="panel_content" class="box"></div>');
+                                                    $("#panel_content").html(responseTxt);
+                                                }
+                                            }
 
-            function getAllCustomers() {
-                $.get("administration/customers", function(responseTxt, statusTxt, xhr){
-                    if (statusTxt == "success") {
-                        $("#panel_content").html('');
-                        $("#panel_content_container").html(responseTxt);
-                    }
-                });
-                setOptionActive('customers_option');
-            }
-            
-            function removeProduct(productId) {
-                $.ajax({
-                    url: 'administration/products',
-                    type: 'POST', 
-                    cache: false, 
-                    data: {oper: "delete", pId: productId}, 
-                    success: function (result) {
-                        alert(result);
-                    }
-                });
-                getAllProducts();
-            }
+                                            function getAdminProfile() {
+                                                $.get("admin", ajaxCallBack);
+                                                setOptionActive('profile_option');
+                                            }
+
+                                            function getAllProducts() {
+                                                $.get("administration/products", ajaxCallBack);
+                                                setOptionActive('products_option');
+                                            }
+
+                                            function getAllCustomers() {
+                                                $.get("administration/customers", function (responseTxt, statusTxt, xhr) {
+                                                    if (statusTxt == "success") {
+                                                        $("#panel_content").html('');
+                                                        $("#panel_content_container").html(responseTxt);
+                                                    }
+                                                });
+                                                setOptionActive('customers_option');
+                                            }
+
+                                            function removeProduct(productId) {
+                                                $.ajax({
+                                                    url: 'administration/products',
+                                                    type: 'POST',
+                                                    cache: false,
+                                                    data: {oper: "delete", pId: productId},
+                                                    success: function (result) {
+                                                        alert(result);
+                                                    }
+                                                });
+                                                getAllProducts();
+                                            }
         </script>
 
     </body>
