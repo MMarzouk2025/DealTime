@@ -9,6 +9,10 @@
         <servlet-name>UpdateCart</servlet-name>
         <servlet-class>com.deal.servlet.UpdateCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeControl</servlet-name>
+        <servlet-class>com.deal.servlet.HomeControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserCartControl</servlet-name>
         <url-pattern>/userCartControl</url-pattern>
@@ -17,6 +21,15 @@
         <servlet-name>UpdateCart</servlet-name>
         <url-pattern>/UpdateCart</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeControl</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>
+            home
+        </welcome-file>
+    </welcome-file-list>
     <!---->
     <!--Marzouk-->
     <servlet>
@@ -78,7 +91,7 @@
     </servlet-mapping>
     <!---->
     <!--Yomna-->
-  <servlet>
+    <servlet>
         <servlet-name>UserOrdersControl</servlet-name>
         <servlet-class>com.deal.servlet.UserOrdersControl</servlet-class>
     </servlet>
@@ -118,8 +131,7 @@
         <servlet-name>LogOutControl</servlet-name>
         <url-pattern>/logOut</url-pattern>
     </servlet-mapping>
-    
-       <!---->
+    <!---->
     <!--Sobky-->
     <servlet>
         <servlet-name>ProductControl</servlet-name>
