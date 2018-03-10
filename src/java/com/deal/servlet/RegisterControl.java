@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -64,6 +65,8 @@ public class RegisterControl extends HttpServlet {
         }
         else if(result.equals(CustomerDAO.SUCCESSFUL_INSERT)){
             System.out.println(result);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("loggedInCustomer", customer);
              request.getRequestDispatcher("WEB-INF/view/userOrdersControlPanel.jsp").forward(request, response);
     
     }
