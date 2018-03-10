@@ -33,7 +33,24 @@ public class HomeControl extends HttpServlet {
         session = request.getSession(true);
         ProductDAO productDAoObject = DbHandler.getProductDAO();
         ArrayList<Product> products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
-        List<Product> subProductsList=products.subList(0, 5);
+        List<Product> subProductsList = null;
+        String pageNamber = request.getParameter("page");
+        if (pageNamber != null) {
+             int pageNamberIntger=0;
+            try {
+                 pageNamberIntger = Integer.parseInt(pageNamber);
+                if (pageNamberIntger == (products.size() / 5) + 1) {
+                    subProductsList = products.subList((pageNamberIntger - 1) * 5, products.size());
+                } else {
+                    subProductsList = products.subList((pageNamberIntger - 1) * 5, (pageNamberIntger - 1) * 5 + 5);
+                }
+            } catch (Exception e) {
+                subProductsList = products.subList(0, 5);
+            }
+
+        } else {
+            subProductsList = products.subList(0, 5);
+        }
         session.setAttribute("productsList", subProductsList);
         session.setAttribute("AllproductsNumber", products.size());
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");

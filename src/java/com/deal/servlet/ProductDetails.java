@@ -35,13 +35,25 @@ public class ProductDetails extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //  response.setContentType("text/html;charset=UTF-8");
-        Product product = DbHandler.getProductDAO().retrieveProduct(1);
-        request.setAttribute("product", product);
-        Customer cutomer=DbHandler.getCustomerDAO().retrieveCustomer(1);
-        List<Order> orders=DbHandler.getOrderDAO().retrieveCustomerOrders(cutomer);
-        request.setAttribute("orders", orders);
-        
-        request.getRequestDispatcher("WEB-INF/view/productDetailsPanel.jsp").forward(request, response);
+
+        Product product = null;
+        if (request.getParameter("productId") != null) {
+            try {
+                product = DbHandler.getProductDAO().retrieveProduct(Long.parseLong(request.getParameter("productId")));
+                if (product != null) {
+                    request.setAttribute("product", product);
+                    request.getRequestDispatcher("WEB-INF/view/productDetailsPanel.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("dealTime").forward(request, response);
+                }
+
+            } catch (Exception e) {
+                request.getRequestDispatcher("dealTime").forward(request, response);
+            }
+
+        } else {
+            request.getRequestDispatcher("dealTime").forward(request, response);
+        }
 
     }
 
