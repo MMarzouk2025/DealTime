@@ -51,7 +51,8 @@ public class ProductDAO {
             ResultSet results = mConn.createStatement().executeQuery("SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION,\n"
                     + "PRICE, AVAILABLE_QUANTITY, CATEGORY_ID\n"
                     + "FROM DEALTIME.PRODUCTS\n"
-                    + "WHERE PRODUCT_ID = " + productId);
+                    + "WHERE PRODUCT_ID = " + productId + "\n"
+                    + "AND AVAILABLE_QUANTITY != 0");
             if (results.next()) {
                 product = new Product();
                 product.setProductId(productId);
@@ -74,12 +75,13 @@ public class ProductDAO {
         return product;
     }
 
-    public List<Product> retrieveAllProduct() {
+    public List<Product> retrieveAllProducts() {
         ArrayList<Product> products = new ArrayList<>();
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION,\n"
                     + "PRICE, AVAILABLE_QUANTITY, CATEGORY_ID\n"
-                    + "FROM DEALTIME.PRODUCTS");
+                    + "FROM DEALTIME.PRODUCTS\n"
+                    + "WHERE AVAILABLE_QUANTITY != 0");
             while (results.next()) {
                 Product product = new Product();
                 product.setProductId(results.getLong("PRODUCT_ID"));
@@ -88,6 +90,37 @@ public class ProductDAO {
                 product.setProductPrice(results.getDouble("PRICE"));
                 product.setAvailableQuantity(results.getInt("AVAILABLE_QUANTITY"));
                 Category category = DbHandler.getCategoryDAO().retrieveCategory(results.getLong("CATEGORY_ID"));
+                product.setProductCategory(category);
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return products;
+    }
+
+    public List<Product> retrieveCategoryProducts(long categoryId) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            ResultSet results = mConn.createStatement().executeQuery("SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION,\n"
+                    + "PRICE, AVAILABLE_QUANTITY, CATEGORY_ID\n"
+                    + "FROM DEALTIME.PRODUCTS\n"
+                    + "WHERE CATEGORY_ID = " + categoryId
+                    + "AND AVAILABLE_QUANTITY != 0");
+            Category category = DbHandler.getCategoryDAO().retrieveCategory(results.getLong("CATEGORY_ID"));
+            while (results.next()) {
+                Product product = new Product();
+                product.setProductId(results.getLong("PRODUCT_ID"));
+                product.setProductName(results.getString("PRODUCT_NAME"));
+                product.setProductDesc(results.getString("PRODUCT_DESCRIPTION"));
+                product.setProductPrice(results.getDouble("PRICE"));
+                product.setAvailableQuantity(results.getInt("AVAILABLE_QUANTITY"));
                 product.setProductCategory(category);
                 products.add(product);
             }
@@ -165,6 +198,46 @@ public class ProductDAO {
     }
 
     // find solution for deleting products have orders before deleting them //
+    public String deleteProduct(long productId) {
+        /*
+        DbHandler.getOrderDAO().invalidateProductOrders(productId);
+        String result;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.PRODUCTS WHERE PRODUCT_ID = " + productId);
+            stmt.execute();
+            result = SUCCESSFUL_DELETE;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+        */
+        String result;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.PRODUCTS\n"
+                    + "SET AVAILABLE_QUANTITY = 0\n"
+                    + "WHERE PRODUCT_ID = " + productId);
+            stmt.execute();
+            result = SUCCESSFUL_DELETE;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
     /**
      * ********
      */

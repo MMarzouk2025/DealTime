@@ -21,6 +21,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+#project properties
+/nbproject
+/nbproject/
+/nbproject/*
+
+#excluded
+!/web/WEB-INF/lib/
 
 target/
 pom.xml.tag
@@ -59,3 +66,13 @@ dist/
 nbdist/
 .nb-gradle/
 nbactions.xml
+
+#others
+/dist/
+/dist/
+*.war
+/build/web/
+/build/web/WEB-INF/classes/
+/build/web/WEB-INF/lib/
+/nbproject/private/
+nbproject/private/private.properties
