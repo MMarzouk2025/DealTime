@@ -495,7 +495,7 @@
 
                         <div class="row products">
 
-                            <div class="col-md-4 col-sm-6">
+<!--                            <div class="col-md-4 col-sm-6">
                                 <div class="product">
                                     <div class="flip-container">
                                         <div class="flipper">
@@ -522,10 +522,10 @@
                                             <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </p>
                                     </div>
-                                    <!-- /.text -->
+                                     /.text 
                                 </div>
-                                <!-- /.product -->
-                            </div>
+                                 /.product 
+                            </div>-->
                             <c:forEach items="${sessionScope.productsList}" var="product">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="product">
@@ -563,232 +563,7 @@
 
                             </c:forEach>
 
-                            <!--                            <div class="col-md-4 col-sm-6">
-                                                            <div class="product">
-                                                                <div class="flip-container">
-                                                                    <div class="flipper">
-                                                                        <div class="front">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product1.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="back">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product1_2.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="detail.html" class="invisible">
-                                                                    <img src="res/img/product1.jpg" alt="" class="img-responsive">
-                                                                </a>
-                                                                <div class="text">
-                                                                    <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
-                                                                    <p class="price">$143.00</p>
-                                                                    <p class="buttons">
-                                                                        <a href="detail.html" class="btn btn-default">View detail</a>
-                                                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                                    </p>
-                                                                </div>
-                                                                 /.text 
-                                                            </div>
-                                                             /.product 
-                                                        </div>
-                            
-                                                        <div class="col-md-4 col-sm-6">
-                                                            <div class="product">
-                                                                <div class="flip-container">
-                                                                    <div class="flipper">
-                                                                        <div class="front">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product2.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="back">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product2_2.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="detail.html" class="invisible">
-                                                                    <img src="res/img/product2.jpg" alt="" class="img-responsive">
-                                                                </a>
-                                                                <div class="text">
-                                                                    <h3><a href="detail.html">White Blouse Armani</a></h3>
-                                                                    <p class="price"><del>$280</del> $143.00</p>
-                                                                    <p class="buttons">
-                                                                        <a href="detail.html" class="btn btn-default">View detail</a>
-                                                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                                    </p>
-                                                                </div>
-                                                                 /.text 
-                            
-                                                                <div class="ribbon sale">
-                                                                    <div class="theribbon">SALE</div>
-                                                                    <div class="ribbon-background"></div>
-                                                                </div>
-                                                                 /.ribbon 
-                            
-                                                                <div class="ribbon new">
-                                                                    <div class="theribbon">NEW</div>
-                                                                    <div class="ribbon-background"></div>
-                                                                </div>
-                                                                 /.ribbon 
-                            
-                                                                <div class="ribbon gift">
-                                                                    <div class="theribbon">GIFT</div>
-                                                                    <div class="ribbon-background"></div>
-                                                                </div>
-                                                                 /.ribbon 
-                                                            </div>
-                                                             /.product 
-                                                        </div>
-                            
-                                                        <div class="col-md-4 col-sm-6">
-                                                            <div class="product">
-                                                                <div class="flip-container">
-                                                                    <div class="flipper">
-                                                                        <div class="front">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product3.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="back">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product3_2.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="detail.html" class="invisible">
-                                                                    <img src="res/img/product3.jpg" alt="" class="img-responsive">
-                                                                </a>
-                                                                <div class="text">
-                                                                    <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                                                    <p class="price">$143.00</p>
-                                                                    <p class="buttons">
-                                                                        <a href="detail.html" class="btn btn-default">View detail</a>
-                                                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                                    </p>
-                            
-                                                                </div>
-                                                                 /.text 
-                                                            </div>
-                                                             /.product 
-                                                        </div>
-                            
-                                                        <div class="col-md-4 col-sm-6">
-                                                            <div class="product">
-                                                                <div class="flip-container">
-                                                                    <div class="flipper">
-                                                                        <div class="front">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product3.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="back">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product3_2.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="detail.html" class="invisible">
-                                                                    <img src="res/img/product3.jpg" alt="" class="img-responsive">
-                                                                </a>
-                                                                <div class="text">
-                                                                    <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                                                    <p class="price">$143.00</p>
-                                                                    <p class="buttons">
-                                                                        <a href="detail.html" class="btn btn-default">View detail</a>
-                                                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                                    </p>
-                            
-                                                                </div>
-                                                                 /.text 
-                                                            </div>
-                                                             /.product 
-                                                        </div>
-                            
-                                                        <div class="col-md-4 col-sm-6">
-                                                            <div class="product">
-                                                                <div class="flip-container">
-                                                                    <div class="flipper">
-                                                                        <div class="front">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product2.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="back">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product2_2.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="detail.html" class="invisible">
-                                                                    <img src="res/img/product2.jpg" alt="" class="img-responsive">
-                                                                </a>
-                                                                <div class="text">
-                                                                    <h3><a href="detail.html">White Blouse Versace</a></h3>
-                                                                    <p class="price">$143.00</p>
-                                                                    <p class="buttons">
-                                                                        <a href="detail.html" class="btn btn-default">View detail</a>
-                                                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                                    </p>
-                            
-                                                                </div>
-                                                                 /.text 
-                            
-                                                                <div class="ribbon new">
-                                                                    <div class="theribbon">NEW</div>
-                                                                    <div class="ribbon-background"></div>
-                                                                </div>
-                                                                 /.ribbon 
-                                                            </div>
-                                                             /.product 
-                                                        </div>
-                            
-                                                        <div class="col-md-4 col-sm-6">
-                                                            <div class="product">
-                                                                <div class="flip-container">
-                                                                    <div class="flipper">
-                                                                        <div class="front">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product1.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="back">
-                                                                          <a href="productDetails?productId=${product.productId}">
-                                                                                <img src="res/img/product1_2.jpg" alt="" class="img-responsive">
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="detail.html" class="invisible">
-                                                                    <img src="res/img/product1.jpg" alt="" class="img-responsive">
-                                                                </a>
-                                                                <div class="text">
-                                                                    <h3><a href="detail.html">Fur coat</a></h3>
-                                                                    <p class="price">$143.00</p>
-                                                                    <p class="buttons">
-                                                                        <a href="detail.html" class="btn btn-default">View detail</a>
-                                                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                                                    </p>
-                            
-                                                                </div>
-                                                                 /.text 
-                            
-                                                                <div class="ribbon gift">
-                                                                    <div class="theribbon">GIFT</div>
-                                                                    <div class="ribbon-background"></div>
-                                                                </div>
-                                                                 /.ribbon 
-                            
-                                                            </div>
-                                                             /.product 
-                                                        </div>-->
+                           
                             <!-- /.col-md-4 -->
                         </div>
                         <!-- /.products -->
@@ -801,20 +576,9 @@
                                 <c:forEach begin="1" end="${sessionScope.AllproductsNumber}" step="5" varStatus="loop">
                                     <%--<c:out value="${loop.count}"/>--%>
                                     <li class="active">
-                                        <a onclick="alert('hi 1');">${loop.count}</a>
+                                        <a href="dealTime?page=${loop.count}">${loop.count}</a>
                                     </li>
                                 </c:forEach>
-                                <!--                                <li class="active">
-                                                                    <a onclick="alert('hi 1');">1</a>
-                                                                </li>
-                                                                <li><a onclick="alert('hi 2');">2</a>
-                                                                </li>
-                                                                <li><a onclick="alert('hi 3');">3</a>
-                                                                </li>
-                                                                <li><a onclick="alert('hi 4');">4</a>
-                                                                </li>
-                                                                <li><a onclick="alert('hi 5');">5</a>
-                                                                </li>-->
                                 <li><a >&raquo;</a>
                                 </li>
                             </ul>

@@ -23,11 +23,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/dealTime</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>
-            home
+            dealTime    
         </welcome-file>
     </welcome-file-list>
     <!---->
