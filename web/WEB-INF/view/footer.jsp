@@ -208,8 +208,6 @@
         <script src="res/js/owl.carousel.min.js"></script>
         <script src="res/js/front.js"></script>
 
-        <!-- project script -->
-        <script src="res/js/customer.profile.js"></script>
 
     </body>
 
