@@ -46,6 +46,7 @@
 
     </head>
 
+<<<<<<< HEAD
 
 
     <body>
@@ -408,12 +409,16 @@
         <!-- /#navbar -->
 
         <!-- *** NAVBAR END *** -->
+=======
+    <body>
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
 
         <div id="all">
 
             <div id="content">
                 <div class="container">
 
+<<<<<<< HEAD
                     <div class="col-md-12">
                         <ul class="breadcrumb">
                             <li><a href="#">Home</a>
@@ -427,6 +432,8 @@
 
                     </div>
 
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                     <div class="col-md-3">
                         <!-- *** MENUS AND FILTERS ***
      _________________________________________________________ -->
@@ -443,12 +450,15 @@
                                         <ul>
                                             <li><a href="category.html">T-shirts</a>
                                             </li>
+<<<<<<< HEAD
                                             <li><a href="category.html">Shirts</a>
                                             </li>
                                             <li><a href="category.html">Pants</a>
                                             </li>
                                             <li><a href="category.html">Accessories</a>
                                             </li>
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                                         </ul>
                                     </li>
                                     <li class="active">
@@ -456,12 +466,15 @@
                                         <ul>
                                             <li><a href="category.html">T-shirts</a>
                                             </li>
+<<<<<<< HEAD
                                             <li><a href="category.html">Skirts</a>
                                             </li>
                                             <li><a href="category.html">Pants</a>
                                             </li>
                                             <li><a href="category.html">Accessories</a>
                                             </li>
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                                         </ul>
                                     </li>
                                     <li>
@@ -469,18 +482,22 @@
                                         <ul>
                                             <li><a href="category.html">T-shirts</a>
                                             </li>
+<<<<<<< HEAD
                                             <li><a href="category.html">Skirts</a>
                                             </li>
                                             <li><a href="category.html">Pants</a>
                                             </li>
                                             <li><a href="category.html">Accessories</a>
                                             </li>
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                                         </ul>
                                     </li>
 
                                 </ul>
 
                             </div>
+<<<<<<< HEAD
                         </div>
 
                         <div class="panel panel-default sidebar-menu">
@@ -564,15 +581,21 @@
                                 </form>
 
                             </div>
+=======
+
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                         </div>
 
                         <!-- *** MENUS AND FILTERS END *** -->
 
+<<<<<<< HEAD
                         <div class="banner">
                             <a href="#">
                                 <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
                             </a>
                         </div>
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                     </div>
 
                     <div class="col-md-9">
@@ -583,6 +606,7 @@
                                     <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="ribbon sale">
                                     <div class="theribbon">SALE</div>
                                     <div class="ribbon-background"></div>
@@ -595,12 +619,18 @@
                                 </div>
                                 <!-- /.ribbon -->
 
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                             </div>
                             <div class="col-sm-6">
                                 <div class="box">
                                     <h1 class="text-center">${requestScope.product.productName}</h1>
+<<<<<<< HEAD
                                     <p class="goToDescription"><a href="#details" class="scroll-to"><b>Scroll to product details</b></a>
                                     </p>
+=======
+
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                                     <p class="price">$ ${requestScope.product.productPrice}</p>
 
                                     <p class="text-center buttons">
@@ -611,6 +641,7 @@
 
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="row" id="thumbs">
                                     <div class="col-xs-4">
                                         <a href="res/products_images/${requestScope.product.productId}.jpg"class="thumb">
@@ -628,6 +659,8 @@
                                         </a>
                                     </div>
                                 </div>
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                             </div>
 
                         </div>
@@ -637,6 +670,7 @@
                             <p>
                             <h4>Product details</h4>
                             <p>${requestScope.product.productDesc}</p>
+<<<<<<< HEAD
                             <h4>Material & care</h4>
                             <ul>
                                 <li>Polyester</li>
@@ -847,6 +881,8 @@
                                 </div>
                                 <!-- /.product -->
                             </div>
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
 
                         </div>
 
@@ -857,6 +893,7 @@
             </div>
             <!-- /#content -->
 
+<<<<<<< HEAD
 
             <!-- *** FOOTER ***
      _________________________________________________________ -->
@@ -1016,6 +1053,8 @@
 
 
 
+=======
+>>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
         </div>
         <!-- /#all -->
 
