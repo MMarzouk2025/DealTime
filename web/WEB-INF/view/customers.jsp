@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
@@ -99,18 +98,3 @@
     </body>
 </html>
 
-=======
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>
-            DealTime admin
-        </title>
-    </head>
-
-    <body>
-        <span>All Customers here</span>
-    </body>
-</html>
->>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34

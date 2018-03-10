@@ -14,15 +14,10 @@
         <meta name="description" content="Obaju e-commerce template">
         <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
         <meta name="keywords" content="">
-<<<<<<< HEAD
-        
-        <title>DealTime Admin</title>
-=======
 
         <title>
             DealTime Admin
         </title>
->>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
 
         <meta name="keywords" content="">
 
@@ -438,11 +433,7 @@ _________________________________________________________ -->
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li name="option" id="profile_option" class="active">
-<<<<<<< HEAD
                                         <a href="#" onclick="getAdminProfile()"><i class="fa fa-user"></i> My profile</a>
-=======
-                                        <a href="customer-orders.html"><i class="fa fa-user"></i> My profile</a>
->>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                                     </li>
                                     <li name="option" id="products_option">
                                         <a href="#" onclick="getAllProducts()"><i class="fa fa-list"></i> Products</a>
@@ -462,86 +453,9 @@ _________________________________________________________ -->
                         <!-- *** CUSTOMER MENU END *** -->
                     </div>
 
-<<<<<<< HEAD
                     <div id="panel_content_container" class="col-md-9">
                         <div id="panel_content" class="box">
 
-=======
-                    <div class="col-md-9">
-                        <div id="panel_content" class="box">
-                            <h1>My account</h1>
-                            <p class="lead">Change your personal details here.</p>
-
-                            <hr>
-
-                            <h3>Personal details</h3>
-
-                            <form method="POST" action="userProfileControl">
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="firstname">First name</label>
-                                            <input type="text" class="form-control" name="firstname" value="${requestScope.currentCustomer.custFirstName}" required="true"  pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="lastname">Last name</label>
-                                            <input type="text" class="form-control" name="lastname" value="${requestScope.currentCustomer.custLastName}" required="true"  pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="company">Job</label>
-                                            <input type="text" class="form-control" name="job" value="${requestScope.currentCustomer.custJob}" required="true" pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="street">Address</label>
-                                            <input type="text" class="form-control" name="address" value="${requestScope.currentCustomer.custAddress}" required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="zip">Credit</label>
-                                            <input type="text" class="form-control" name="credit" value="${requestScope.currentCustomer.custCreditLimit}" required="true" pattern="" oninvalid="setCustomValidity('numbers only!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="phone">Mobile number</label>
-                                            <input type="text" class="form-control" name="mobileNumber" value="${requestScope.currentCustomer.custMobileNumber}" required="true" pattern="" oninvalid="setCustomValidity('please match 01xx-xxxx-xxx')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="text" class="form-control" name="email" value="${requestScope.currentCustomer.custEmail}" required="true" pattern="" oninvalid="setCustomValidity('Enter a valid email!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Interests</label>
-                                            <input type="text" class="form-control" name="interests" value="${requestScope.currentCustomer.custInterests}" required="true" pattern="^[a-zA-Z]+$" oninvalid="setCustomValidity('Characters only!')">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-center">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button>
-
-                                    </div>
-                                </div>
-                            </form>
->>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                         </div>
                     </div>
 
@@ -686,14 +600,7 @@ _________________________________________________________ -->
             <!-- /#footer -->
 
             <!-- *** FOOTER END *** -->
-<<<<<<< HEAD
             
-=======
-
-
-
-
->>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
             <div id="copyright">
@@ -713,19 +620,13 @@ _________________________________________________________ -->
 
         </div>
         <!-- /#all -->
-<<<<<<< HEAD
 
         <script src="res/script/jquery-3.3.1.min.js"></script>
         <script type="text/javascript">
             getAdminProfile();
             
             function setOptionActive(optionId) {
-=======
-        
-        <script src="res/script/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript">
-            function setOptionActive(optionId){
->>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
+
                 var options = document.getElementsByName("option");
                 for (var i = 0; i < options.length; ++i) {
                     options[i].className = "";
@@ -733,7 +634,6 @@ _________________________________________________________ -->
                 document.getElementById(optionId).className = "active";
             }
             
-<<<<<<< HEAD
             $.ajaxSetup({
                 type: 'POST',
                 headers: {"cache-control": "no-cache"}
@@ -742,15 +642,10 @@ _________________________________________________________ -->
             function ajaxCallBack(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "success") {
                     $("#panel_content_container").html('<div id="panel_content" class="box"></div>');
-=======
-            function ajaxCustomersCallBack(responseTxt, statusTxt, xhr) {
-                if (statusTxt == "success") {
->>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
                     $("#panel_content").html(responseTxt);
                 }
             }
 
-<<<<<<< HEAD
             function getAdminProfile() {
                 $.get("admin", ajaxCallBack);
                 setOptionActive('profile_option');
@@ -786,20 +681,5 @@ _________________________________________________________ -->
         </script>
 
     </body>
-=======
-            function getAllProducts() {
-                $.get("administration/products", ajaxCustomersCallBack);
-                setOptionActive('products_option');
-            }
-            
-            function getAllCustomers() {
-                $.get("administration/customers", ajaxCustomersCallBack);
-                setOptionActive('customers_option');
-            }
-        </script>
-        
-    </body>
-    
->>>>>>> e1d8a98900612c2d1c5a389cc67ac50b9403dd34
 </html>
 
