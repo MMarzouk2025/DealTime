@@ -627,61 +627,77 @@ _________________________________________________________ -->
 
         <script src="res/script/jquery-3.3.1.min.js"></script>
         <script type="text/javascript">
-                                            getAdminProfile();
+            getAdminProfile();
 
-                                            function setOptionActive(optionId) {
+            function setOptionActive(optionId) {
+                var options = document.getElementsByName("option");
+                for (var i = 0; i < options.length; ++i) {
+                    options[i].className = "";
+                }
+                document.getElementById(optionId).className = "active";
+            }
 
-                                                var options = document.getElementsByName("option");
-                                                for (var i = 0; i < options.length; ++i) {
-                                                    options[i].className = "";
-                                                }
-                                                document.getElementById(optionId).className = "active";
-                                            }
+            $.ajaxSetup({
+                type: 'POST',
+                headers: {"cache-control": "no-cache"}
+            });
 
-                                            $.ajaxSetup({
-                                                type: 'POST',
-                                                headers: {"cache-control": "no-cache"}
-                                            });
+            function ajaxCallBack(responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success") {
+                    $("#panel_content_container").html('<div id="panel_content" class="box"></div>');
+                    $("#panel_content").html(responseTxt);
+                }
+            }
 
-                                            function ajaxCallBack(responseTxt, statusTxt, xhr) {
-                                                if (statusTxt == "success") {
-                                                    $("#panel_content_container").html('<div id="panel_content" class="box"></div>');
-                                                    $("#panel_content").html(responseTxt);
-                                                }
-                                            }
+            function getAdminProfile() {
+                $.get("admin", ajaxCallBack);
+                setOptionActive('profile_option');
+            }
 
-                                            function getAdminProfile() {
-                                                $.get("admin", ajaxCallBack);
-                                                setOptionActive('profile_option');
-                                            }
+            function getAllProducts() {
+                $.get("administration/products", ajaxCallBack);
+                setOptionActive('products_option');
+            }
+            
+            function getCategoryProducts(catgId) {
+                $.ajax({
+                    url: 'administration/products',
+                    type: 'POST',
+                    cache: false,
+                    data: {oper: "categories", catId: catgId}, 
+                    success: function (result) {
+                        // alert(result);
+                        $("#panel_content_container").html('<div id="panel_content" class="box"></div>');
+                        $("#panel_content").html(result);
+                        setTimeout(function(){
+                            $("#categoriesList").val('catgId');
+                        }, 1000);
+                    }
+                });
+            }
 
-                                            function getAllProducts() {
-                                                $.get("administration/products", ajaxCallBack);
-                                                setOptionActive('products_option');
-                                            }
+            function getAllCustomers() {
+                $.get("administration/customers", function (responseTxt, statusTxt, xhr) {
+                    if (statusTxt == "success") {
+                        $("#panel_content").html('');
+                        $("#panel_content_container").html(responseTxt);
+                    }
+                });
+                setOptionActive('customers_option');
+            }
 
-                                            function getAllCustomers() {
-                                                $.get("administration/customers", function (responseTxt, statusTxt, xhr) {
-                                                    if (statusTxt == "success") {
-                                                        $("#panel_content").html('');
-                                                        $("#panel_content_container").html(responseTxt);
-                                                    }
-                                                });
-                                                setOptionActive('customers_option');
-                                            }
-
-                                            function removeProduct(productId) {
-                                                $.ajax({
-                                                    url: 'administration/products',
-                                                    type: 'POST',
-                                                    cache: false,
-                                                    data: {oper: "delete", pId: productId},
-                                                    success: function (result) {
-                                                        alert(result);
-                                                    }
-                                                });
-                                                getAllProducts();
-                                            }
+            function removeProduct(productId) {
+                $.ajax({
+                    url: 'administration/products',
+                    type: 'POST',
+                    cache: false,
+                    data: {oper: "delete", pId: productId},
+                    success: function (result) {
+                        alert(result);
+                    }
+                });
+                getAllProducts();
+            }
         </script>
 
     </body>

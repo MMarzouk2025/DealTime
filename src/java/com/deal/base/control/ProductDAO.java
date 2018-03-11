@@ -113,7 +113,7 @@ public class ProductDAO {
                     + "FROM DEALTIME.PRODUCTS\n"
                     + "WHERE CATEGORY_ID = " + categoryId
                     + "AND AVAILABLE_QUANTITY != 0");
-            Category category = DbHandler.getCategoryDAO().retrieveCategory(results.getLong("CATEGORY_ID"));
+            
             while (results.next()) {
                 Product product = new Product();
                 product.setProductId(results.getLong("PRODUCT_ID"));
@@ -121,6 +121,7 @@ public class ProductDAO {
                 product.setProductDesc(results.getString("PRODUCT_DESCRIPTION"));
                 product.setProductPrice(results.getDouble("PRICE"));
                 product.setAvailableQuantity(results.getInt("AVAILABLE_QUANTITY"));
+                Category category = DbHandler.getCategoryDAO().retrieveCategory(results.getLong("CATEGORY_ID"));
                 product.setProductCategory(category);
                 products.add(product);
             }

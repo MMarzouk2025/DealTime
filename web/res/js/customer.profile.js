@@ -18,7 +18,7 @@ $(document).ready(function () {
 });
 
 $(window).load(function () {
-    $(':input[type="text"]').prop('disabled', true);
+    $(':input[type="text"]').not('#search_text_field').prop('disabled', true);
     $(':input[type="password"]').prop('disabled', true);
     $(':input[type="date"]').prop('disabled', true);
 
