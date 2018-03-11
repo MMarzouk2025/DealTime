@@ -9,7 +9,6 @@ import com.deal.base.control.ProductDAO;
 import com.deal.base.model.Product;
 import com.deal.control.DbHandler;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,24 +29,25 @@ public class ProductByCategory extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         session = request.getSession(true);
-        String searchInput = request.getParameter("searchInput");
+        String searchInput = request.getParameter("cat");
+        System.out.println("searchInput is : "+searchInput);
         ProductDAO productDAoObject = DbHandler.getProductDAO();
         if (productsList == null) {
 
             productsList = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
         }
         ArrayList<Product> subProductsList = new ArrayList<>();
-        productsList.stream().filter(p -> p.getProductCategory()==null)
+        productsList.stream().filter(p -> p.getProductCategory().getCategoryName().equalsIgnoreCase(searchInput))
                 .forEach((t) -> {
                     subProductsList.add(t);
                 });// filtering by name  
 
-        session.setAttribute("productsList", subProductsList);
-        session.setAttribute("AllproductsNumber", productsList.size());
+        request.setAttribute("ResultproductsList", subProductsList);
+        request.setAttribute("ResultAllproductsNumber", subProductsList.size());
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/view/result.jsp").forward(request, response);
 
     }
 
