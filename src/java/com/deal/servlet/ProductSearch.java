@@ -43,8 +43,8 @@ public class ProductSearch extends HttpServlet {
                     subProductsList.add(t);
                 });// filtering by name  
 
-        session.setAttribute("productsFoundList", subProductsList);
-        session.setAttribute("AllproductsNumber", subProductsList.size());
+        request.setAttribute("ResultproductsList", subProductsList);
+        request.setAttribute("ResultAllproductsNumber", subProductsList.size());
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0);
