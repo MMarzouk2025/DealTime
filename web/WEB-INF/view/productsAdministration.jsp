@@ -52,8 +52,10 @@
                     <div class="form-group" style="display: inline-block; width: 70%;">
                         <label for="category" style="font-weight: bold;">Category </label>
                         <select id="categoriesList" class="form-control" style="font-size: medium; 
-                                margin-bottom: 1.5em; margin-top: 0.25em; float: top; text-align: center;">
-                            <option selected="selected" disabled>Select Category ...</option>
+                                margin-bottom: 1.5em; margin-top: 0.25em; float: top; text-align: center;"
+                                onchange="getCategoryProducts(this.value)">
+                            <option selected="default" disabled>Select Category ...</option>
+                            
                             <c:forEach items="${requestScope.categories}" var="category">
                                 <option value="${category.getCategoryId()}">${category.getCategoryName()}</option>
                             </c:forEach>
@@ -129,7 +131,6 @@
         <script src="../res/js/bootstrap-hover-dropdown.js"></script>
         <script src="../res/js/owl.carousel.min.js"></script>
         <script src="../res/js/front.js"></script>
-
     </body>
 
 </html>
