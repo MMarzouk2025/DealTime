@@ -1,7 +1,5 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,13 +38,10 @@
     </head>
 
     <body>
-        <style type="text/css">
-            
-        </style>
-
-        <!-- *** SCRIPTS TO INCLUDE ***
+        
+                        <!-- *** SCRIPTS TO INCLUDE ***
 _________________________________________________________ -->
-        <script src="res/js/jquery-1.11.0.min.js"></script>
+        <script src="res/script/jquery-3.3.1.min.js"></script>
         <script src="res/js/bootstrap.min.js"></script>
         <script src="res/js/jquery.cookie.js"></script>
         <script src="res/js/waypoints.min.js"></script>
@@ -624,8 +619,7 @@ _________________________________________________________ -->
 
         </div>
         <!-- /#all -->
-
-        <script src="res/script/jquery-3.3.1.min.js"></script>
+        
         <script type="text/javascript">
             getAdminProfile();
 
@@ -669,9 +663,7 @@ _________________________________________________________ -->
                         // alert(result);
                         $("#panel_content_container").html('<div id="panel_content" class="box"></div>');
                         $("#panel_content").html(result);
-                        setTimeout(function(){
-                            $("#categoriesList").val('catgId');
-                        }, 1000);
+                        $("#categoriesList").val(catgId);
                     }
                 });
             }
@@ -685,7 +677,7 @@ _________________________________________________________ -->
                 });
                 setOptionActive('customers_option');
             }
-
+            
             function removeProduct(productId) {
                 $.ajax({
                     url: 'administration/products',
@@ -698,6 +690,12 @@ _________________________________________________________ -->
                 });
                 getAllProducts();
             }
+            
+            function openAddProductWindow() {
+                $('#categoryToAddProductIn').val($('#categoriesList').val());
+                $('#categoryToAddProductIn').prop('disabled', true);
+            }
+            
         </script>
 
     </body>

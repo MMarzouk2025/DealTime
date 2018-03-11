@@ -51,7 +51,7 @@ public class HomeControl extends HttpServlet {
             } catch (Exception e) {
                 subProductsList = products.subList(0, 5);
             }
-
+            
         } else {
             subProductsList = products.subList(0, 5);
         }
@@ -61,7 +61,7 @@ public class HomeControl extends HttpServlet {
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0);
         request.getRequestDispatcher("index.jsp").forward(request, response);
-
+        
     }
 
     @Override

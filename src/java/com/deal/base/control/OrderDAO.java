@@ -107,20 +107,19 @@ public class OrderDAO {
             PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.ORDERS (\n"
                     + "ORDER_ID, CUSTOMER_ID, PRODUCT_ID, \n"
                     + "QUANTITY, STATUS) \n"
-                    + "VALUES (?, ?, ?, ?, ?);");
-            stmt.setLong(1, order.getOrderId());
+                    + "VALUES (ORDERS_SEQ.NEXTVAL, ?, ?, ?, ?);");
             if (order.getCustomer() == null) {
-                stmt.setNull(2, Types.BIGINT);
+                stmt.setNull(1, Types.BIGINT);
             } else {
-                stmt.setLong(2, order.getCustomer().getCustId());
+                stmt.setLong(1, order.getCustomer().getCustId());
             }
             if (order.getOrderProduct() == null) {
-                stmt.setNull(3, Types.BIGINT);
+                stmt.setNull(2, Types.BIGINT);
             } else {
                 stmt.setLong(3, order.getOrderProduct().getProductId());
             }
-            stmt.setInt(4, order.getQuantity());
-            stmt.setString(5, String.valueOf(order.getStatus()));
+            stmt.setInt(3, order.getQuantity());
+            stmt.setString(4, String.valueOf(order.getStatus()));
             stmt.execute();
             result = SUCCESSFUL_INSERT;
         } catch (SQLException ex) {

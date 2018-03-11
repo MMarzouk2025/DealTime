@@ -81,6 +81,14 @@
         <servlet-name>CustomersPanelControl</servlet-name>
         <url-pattern>/administration/customers</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ProductManage</servlet-name>
+        <servlet-class>com.deal.servlet.ProductManage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductManage</servlet-name>
+        <url-pattern>/manageProduct</url-pattern>
+    </servlet-mapping>
     <!--********************************************************************-->
     <session-config>
         <session-timeout>
