@@ -33,10 +33,8 @@ public class HomeControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         session = request.getSession(true);
         ProductDAO productDAoObject = DbHandler.getProductDAO();
-        if (products == null) {
-
             products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
-        }
+      
         List<Product> subProductsList = null;
         String pageNamber = request.getParameter("page");
         if (pageNamber != null) {
@@ -80,5 +78,5 @@ public class HomeControl extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
 }

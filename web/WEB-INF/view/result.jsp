@@ -18,7 +18,7 @@
     <input type="submit" value="Go to product details"/>
 </form>
 
-<jsp:include page="WEB-INF/view/header.jsp"/>
+<jsp:include page="header.jsp"/>
 <%--<%@ include file="/WEB-INF/view/header.jsp" %   >--%>
 
 
@@ -120,9 +120,8 @@
                         <div class="box info-bar">
                             <div class="row">
                                 <div class="col-sm-12 col-md-4 products-showing">
-                                    Showing <strong>5</strong> of <strong>${sessionScope.AllproductsNumber}</strong> products
+                                    Showing <strong>${sessionScope.AllproductsNumber}</strong> of <strong>${sessionScope.AllproductsNumber}</strong> products
                                 </div>
-
                                 <div class="col-sm-12 col-md-8  products-number-sort">
                                     <div class="row">
                                         <form class="form-inline">
@@ -170,7 +169,7 @@
                                                             </div>
                                                              /.product 
                                                         </div>-->
-                            <c:forEach items="${sessionScope.productsList}" var="product">
+                            <c:forEach items="${sessionScope.productsFoundList}" var="product">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="product">
                                         <div class="flip-container">
@@ -212,21 +211,7 @@
                         </div>
                         <!-- /.products -->
 
-                        <div class="pages">
-
-                            <ul class="pagination">
-                                <li><a >&laquo;</a>
-                                </li>
-                                <c:forEach begin="1" end="${sessionScope.AllproductsNumber}" step="5" varStatus="loop">
-                                    <%--<c:out value="${loop.count}"/>--%>
-                                    <li class="active">
-                                        <a href="dealTime?page=${loop.count}">${loop.count}</a>
-                                    </li>
-                                </c:forEach>
-                                <li><a >&raquo;</a>
-                                </li>
-                            </ul>
-                        </div>
+  
 
 
                     </div>
@@ -263,4 +248,4 @@
 
 </html>
 
-<jsp:include page="WEB-INF/view/footer.jsp"/>
+<jsp:include page="footer.jsp"/>

@@ -52,8 +52,8 @@ public class CustomerDAO {
             ResultSet results = mConn.createStatement().executeQuery("SELECT EMAIL, PASSWORD, FIRST_NAME, LAST_NAME,\n"
                     + "ADDRESS, JOB, PHONE_NUMBER, DATE_OF_BIRTH, CREDIT_LIMIT, WISHLIST\n"
                     + "FROM DEALTIME.CUSTOMERS\n"
-                    + "WHERE CUSTOMER_ID = " + custId );
-            if (results.next()) {
+                    + "WHERE CUSTOMER_ID = " + custId);
+            while (results.next()) {
                 customer = new Customer();
                 customer.setCustId(custId);
                 customer.setCustEmail(results.getString("EMAIL"));
