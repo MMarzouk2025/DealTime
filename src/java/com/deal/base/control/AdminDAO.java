@@ -50,7 +50,7 @@ public class AdminDAO {
                     + "FROM DEALTIME.ADMINS\n"
                     + "WHERE UPPER(EMAIL) = UPPER('" + email + "')\n"
                     + "AND PASSWORD = '" + password + "'");
-            if (results.next()) {
+            while (results.next()) {
                 admin = new Admin();
                 admin.setAdminEmail(email);
                 admin.setAdminPassword(password);
