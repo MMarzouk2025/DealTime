@@ -58,12 +58,9 @@
                     <ul class="menu">
                         <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                         </li>
-                        <li><a href="register.html">Register</a>
+                        <li><a href="register">Register</a>
                         </li>
-                        <li><a href="contact.html">Contact</a>
-                        </li>
-                        <li><a href="#">Recently viewed</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -76,12 +73,15 @@
                             <h4 class="modal-title" id="Login">Customer login</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="customer-orders.html" method="post">
+                            <form action="login" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="email-modal" placeholder="email">
+                                    <input name="email" type="text" class="form-control" id="email-modal" placeholder="email">
+                                    <p id="invalidmail">Invalid mail</p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="password-modal" placeholder="password">
+                                    <input name="password" type="password" class="form-control" id="password-modal" placeholder="password">
+                                    <p id="invalidpassword">Invalid password</p>
+
                                 </div>
 
                                 <p class="text-center">
@@ -97,7 +97,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- *** TOP BAR END *** -->
@@ -386,9 +385,9 @@
 
                 <div class="collapse clearfix" id="search">
 
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" role="search" action="productSearch" method="get">
                         <div class="input-group">
-                            <input type="text" id="search_text_field" class="form-control" placeholder="Search">
+                            <input type="text" id="searchInput" name="searchInput" class="form-control" placeholder="Search">
                             <span class="input-group-btn">
 
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
