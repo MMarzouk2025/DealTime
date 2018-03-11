@@ -132,7 +132,7 @@
                 <div class="navbar-collapse collapse" id="navigation">
 
                     <ul class="nav navbar-nav navbar-left">
-                        <li class="active"><a href="index.html">Home</a>
+                        <li class="active"><a href="dealTime?page=1">Home</a>
                         </li>
                         <li class="dropdown yamm-fw">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Men <b class="caret"></b></a>
@@ -388,7 +388,7 @@
 
                     <form class="navbar-form" role="search">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" id="search_text_field" class="form-control" placeholder="Search">
                             <span class="input-group-btn">
 
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
@@ -419,7 +419,6 @@
         <script src="res/js/front.js"></script>
 
         <!-- project script -->
-        <script src="res/js/customer.profile.js"></script>
 
     </body>
 

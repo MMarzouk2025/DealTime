@@ -9,6 +9,7 @@ public class Product implements Serializable {
     private String productDesc;
     private double productPrice;
     private int availableQuantity;
+    private String productImageFileName;
     private Category productCategory;
      
     public Product() {
@@ -18,12 +19,12 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-    public Product(String productName, double productPrice, int availableQuantity) {
+    public Product(String productName, double productPrice, int availableQuantity, String productImageFileName) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.availableQuantity = availableQuantity;
+        this.productImageFileName = productImageFileName;
     }
-    
 
     public long getProductId() {
         return productId;
@@ -73,9 +74,17 @@ public class Product implements Serializable {
         this.productCategory = productCategory;
     }
 
+    public String getProductImageFileName() {
+        return productImageFileName;
+    }
+
+    public void setProductImageFileName(String productImageFileName) {
+        this.productImageFileName = productImageFileName;
+    }
+
     @Override
     public String toString() {
-        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productDesc=" + productDesc + ", productPrice=" + productPrice + ", availableQuantity=" + availableQuantity + ", productCategory=" + productCategory + '}';
+        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productDesc=" + productDesc + ", productPrice=" + productPrice + ", availableQuantity=" + availableQuantity + ", productImageFileName=" + productImageFileName + ", productCategory=" + productCategory + '}';
     }
 
 }

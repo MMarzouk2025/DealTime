@@ -6,6 +6,7 @@ import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,14 @@ public class ProductsPanelControl extends HttpServlet {
                 long productId = Long.parseLong(request.getParameter("pId"));
                 String result = DbHandler.getProductDAO().deleteProduct(productId);
                 response.getWriter().write(result);
+                break;
+            case "categories" :
+                long categoryId = Long.parseLong(request.getParameter("catId"));
+                List<Product> categoryProducts = DbHandler.getProductDAO().retrieveCategoryProducts(categoryId);
+                request.setAttribute("products", categoryProducts);
+                ArrayList<Category> allCategories = (ArrayList<Category>) DbHandler.getCategoryDAO().retrieveAllCategories();
+                request.setAttribute("categories", allCategories);
+                request.getRequestDispatcher("/WEB-INF/view/productsAdministration.jsp").forward(request, response);
                 break;
         }
     }

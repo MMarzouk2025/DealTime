@@ -35,7 +35,7 @@ public class ProductDAO {
 
     /* Marzouk */
     private Connection mConn;
-    public static final String SUCCESSFUL_INSERT = "product has been added successfully";
+//    public static final String SUCCESSFUL_INSERT = "product has been added successfully";
     public static final String SUCCESSFUL_UPDATE = "product info has been updated successfully";
     public static final String SUCCESSFUL_DELETE = "product has been deleted successfully";
     public static final String DELETING_PRODUCT_ERROR = "error while deleting product";
@@ -49,7 +49,7 @@ public class ProductDAO {
         Product product = null;
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION,\n"
-                    + "PRICE, AVAILABLE_QUANTITY, CATEGORY_ID\n"
+                    + "PRICE, AVAILABLE_QUANTITY, IMAGE_FILENAME, CATEGORY_ID\n"
                     + "FROM DEALTIME.PRODUCTS\n"
                     + "WHERE PRODUCT_ID = " + productId + "\n"
                     + "AND AVAILABLE_QUANTITY != 0");
@@ -60,6 +60,7 @@ public class ProductDAO {
                 product.setProductDesc(results.getString("PRODUCT_DESCRIPTION"));
                 product.setProductPrice(results.getDouble("PRICE"));
                 product.setAvailableQuantity(results.getInt("AVAILABLE_QUANTITY"));
+                product.setProductImageFileName(results.getString("IMAGE_FILENAME"));
                 Category category = DbHandler.getCategoryDAO().retrieveCategory(results.getLong("CATEGORY_ID"));
                 product.setProductCategory(category);
             }
@@ -79,7 +80,7 @@ public class ProductDAO {
         ArrayList<Product> products = new ArrayList<>();
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION,\n"
-                    + "PRICE, AVAILABLE_QUANTITY, CATEGORY_ID\n"
+                    + "PRICE, AVAILABLE_QUANTITY, IMAGE_FILENAME, CATEGORY_ID\n"
                     + "FROM DEALTIME.PRODUCTS\n"
                     + "WHERE AVAILABLE_QUANTITY != 0");
             while (results.next()) {
@@ -89,6 +90,7 @@ public class ProductDAO {
                 product.setProductDesc(results.getString("PRODUCT_DESCRIPTION"));
                 product.setProductPrice(results.getDouble("PRICE"));
                 product.setAvailableQuantity(results.getInt("AVAILABLE_QUANTITY"));
+                product.setProductImageFileName(results.getString("IMAGE_FILENAME"));
                 Category category = DbHandler.getCategoryDAO().retrieveCategory(results.getLong("CATEGORY_ID"));
                 product.setProductCategory(category);
                 products.add(product);
@@ -109,11 +111,11 @@ public class ProductDAO {
         ArrayList<Product> products = new ArrayList<>();
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION,\n"
-                    + "PRICE, AVAILABLE_QUANTITY, CATEGORY_ID\n"
+                    + "PRICE, AVAILABLE_QUANTITY, IMAGE_FILENAME, CATEGORY_ID\n"
                     + "FROM DEALTIME.PRODUCTS\n"
                     + "WHERE CATEGORY_ID = " + categoryId
                     + "AND AVAILABLE_QUANTITY != 0");
-            Category category = DbHandler.getCategoryDAO().retrieveCategory(results.getLong("CATEGORY_ID"));
+            
             while (results.next()) {
                 Product product = new Product();
                 product.setProductId(results.getLong("PRODUCT_ID"));
@@ -121,6 +123,8 @@ public class ProductDAO {
                 product.setProductDesc(results.getString("PRODUCT_DESCRIPTION"));
                 product.setProductPrice(results.getDouble("PRICE"));
                 product.setAvailableQuantity(results.getInt("AVAILABLE_QUANTITY"));
+                product.setProductImageFileName(results.getString("IMAGE_FILENAME"));
+                Category category = DbHandler.getCategoryDAO().retrieveCategory(results.getLong("CATEGORY_ID"));
                 product.setProductCategory(category);
                 products.add(product);
             }
@@ -137,22 +141,32 @@ public class ProductDAO {
     }
 
     public String insertProduct(Product product) {
-        String result;
+        String result = "";
         try {
-            PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.PRODUCTS (PRODUCT_ID, PRODUCT_NAME,\n"
-                    + "PRODUCT_DESCRIPTION, PRICE, AVAILABLE_QUANTITY, CATEGORY_ID)\n"
-                    + "VALUES (PRODUCTS_SEQ.NEXTVAL, ?, ?, ?, ?, ?)");
-            stmt.setString(1, product.getProductName());
-            stmt.setString(2, product.getProductDesc());
-            stmt.setDouble(3, product.getProductPrice());
-            stmt.setInt(4, product.getAvailableQuantity());
-            if (product.getProductCategory() == null) {
-                stmt.setNull(5, Types.BIGINT);
-            } else {
-                stmt.setLong(5, product.getProductCategory().getCategoryId());
+            long productId = 0;
+            ResultSet results = mConn.createStatement().executeQuery("SELECT PRODUCTS_SEQ.NEXTVAL FROM DUAL");
+            if (results.next()) {
+                productId = results.getLong(1);
             }
-            stmt.execute();
-            result = SUCCESSFUL_INSERT;
+            
+            if (productId != 0) {
+                PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.PRODUCTS (PRODUCT_ID, PRODUCT_NAME,\n"
+                        + "PRODUCT_DESCRIPTION, PRICE, AVAILABLE_QUANTITY, IMAGE_FILENAME, CATEGORY_ID)\n"
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+                stmt.setLong(1, productId);
+                stmt.setString(2, product.getProductName());
+                stmt.setString(3, product.getProductDesc());
+                stmt.setDouble(4, product.getProductPrice());
+                stmt.setInt(5, product.getAvailableQuantity());
+                stmt.setString(6, product.getProductImageFileName());
+                if (product.getProductCategory() == null) {
+                    stmt.setNull(7, Types.BIGINT);
+                } else {
+                    stmt.setLong(7, product.getProductCategory().getCategoryId());
+                }
+                stmt.execute();
+                result = String.valueOf(productId);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
             result = EXCEPTION;
@@ -171,16 +185,17 @@ public class ProductDAO {
         try {
             PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.PRODUCTS\n"
                     + "SET PRODUCT_NAME = ?, PRODUCT_DESCRIPTION = ?, PRICE = ?,\n"
-                    + "AVAILABLE_QUANTITY = ?, CATEGORY_ID = ?\n"
+                    + "AVAILABLE_QUANTITY = ?, IMAGE_FILENAME = ?, CATEGORY_ID = ?\n"
                     + "WHERE PRODUCT_ID = " + product.getProductId());
             stmt.setString(1, product.getProductName());
             stmt.setString(2, product.getProductDesc());
             stmt.setDouble(3, product.getProductPrice());
             stmt.setInt(4, product.getAvailableQuantity());
+            stmt.setString(5, product.getProductImageFileName());
             if (product.getProductCategory() == null) {
-                stmt.setNull(5, Types.BIGINT);
+                stmt.setNull(6, Types.BIGINT);
             } else {
-                stmt.setLong(5, product.getProductCategory().getCategoryId());
+                stmt.setLong(6, product.getProductCategory().getCategoryId());
             }
             stmt.execute();
             result = SUCCESSFUL_UPDATE;

@@ -26,19 +26,23 @@ import javax.servlet.http.HttpSession;
 public class HomeControl extends HttpServlet {
 
     HttpSession session;
+    ArrayList<Product> products = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         session = request.getSession(true);
         ProductDAO productDAoObject = DbHandler.getProductDAO();
-        ArrayList<Product> products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
+        if (products == null) {
+
+            products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
+        }
         List<Product> subProductsList = null;
         String pageNamber = request.getParameter("page");
         if (pageNamber != null) {
-             int pageNamberIntger=0;
+            int pageNamberIntger = 0;
             try {
-                 pageNamberIntger = Integer.parseInt(pageNamber);
+                pageNamberIntger = Integer.parseInt(pageNamber);
                 if (pageNamberIntger == (products.size() / 5) + 1) {
                     subProductsList = products.subList((pageNamberIntger - 1) * 5, products.size());
                 } else {
@@ -47,7 +51,7 @@ public class HomeControl extends HttpServlet {
             } catch (Exception e) {
                 subProductsList = products.subList(0, 5);
             }
-
+            
         } else {
             subProductsList = products.subList(0, 5);
         }
@@ -57,7 +61,7 @@ public class HomeControl extends HttpServlet {
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0);
         request.getRequestDispatcher("index.jsp").forward(request, response);
-
+        
     }
 
     @Override
