@@ -49,7 +49,7 @@ public class AdminDAO {
                     + "ADDRESS, JOB, PHONE_NUMBER, DATE_OF_BIRTH\n"
                     + "FROM DEALTIME.ADMINS\n"
                     + "WHERE UPPER(EMAIL) = UPPER('" + email + "')\n"
-                    + "AND UPPER(PASSWORD) = UPPER('" + password + "')");
+                    + "AND PASSWORD = '" + password + "'");
             if (results.next()) {
                 admin = new Admin();
                 admin.setAdminEmail(email);

@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-6" data-animate="fadeInDown">
                 <ul class="menu">
-                    <li><a href="userProfile" ><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><c:out value="${sessionScope.loggedInCustomer.custFirstName}"/></a>
+                    <li><a href="userProfile" ><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><c:out value="${sessionScope.loggedInUser.custFirstName}"/></a>
                     </li>
                     <li><a href="contact.html">Contact</a>
                     </li>

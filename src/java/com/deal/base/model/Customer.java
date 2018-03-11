@@ -47,8 +47,6 @@ public class Customer implements Serializable {
     public Customer(long custId) {
         this.custId = custId;
     }
-    
-    
 
     public long getCustId() {
         return custId;

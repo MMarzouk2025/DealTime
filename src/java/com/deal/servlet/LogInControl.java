@@ -6,8 +6,10 @@
 package com.deal.servlet;
 
 import com.deal.base.control.CustomerDAO;
+import com.deal.base.model.Admin;
 import com.deal.base.model.Customer;
 import com.deal.control.DbHandler;
+import com.deal.utility.Validations;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,28 +29,42 @@ public class LogInControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           // get input from user
-           String email = request.getParameter("email");
-           String password = request.getParameter("password");
-           // insert in database
-           Customer customer = new Customer();
-           CustomerDAO customerDao = DbHandler.getCustomerDAO();
-           customer = customerDao.retrieveCustomer(email, password);
-           //check if customer exist
-           
-           if(customer != null){
-                HttpSession session = request.getSession(true);
-                session.setAttribute("loggedInCustomer", customer);
-                //redirect to users page
-                request.getRequestDispatcher("WEB-INF/view/userOrdersControlPanel.jsp").forward(request, response);
-    
-           }
-           else{
-                System.out.println("user doesn't exist");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-    
-           }
-           
+            // get input from user
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            // insert in database
+//            if (Validations.emailIsValid(email) && Validations.passIsValid(password)) {
+                Customer customer;
+                CustomerDAO customerDao = DbHandler.getCustomerDAO();
+                customer = customerDao.retrieveCustomer(email, password);
+                //check if customer exist
+
+                Admin admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
+
+                System.out.println(customer);
+                System.out.println(admin);
+                
+                if (customer != null) {
+                    
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("loggedInUser", customer);
+                    session.setAttribute("userType", "c");
+                    //redirect to customers page
+                    request.getRequestDispatcher("WEB-INF/view/userOrdersControlPanel.jsp").forward(request, response);
+                } else if (admin != null) {
+                    System.out.println(admin);
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("loggedInUser", admin);
+                    session.setAttribute("userType", "a");
+                    //redirect to admin page
+                    request.getRequestDispatcher("administration").forward(request, response);
+                } else {
+                    System.out.println("user doesn't exist");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
+//            } else {
+//                System.out.println("hello");
+//            }
         }
     }
 
