@@ -60,7 +60,7 @@
                     <div class="col-md-12">
 
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a>
+                            <li><a href="dealTime">Home</a>
                             </li>
                             <li>My account</li>
                         </ul>
@@ -79,18 +79,16 @@
                             <div class="panel-body">
 
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li class="active">
-                                        <a href="userCartControl"><i class="fa fa-list"></i> My orders</a>
-                                    </li>
-                                    <li>
-                                        <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
-                                    </li>
                                     <li>
                                         <a href="userProfile"><i class="fa fa-user"></i> My account</a>
                                     </li>
                                     <li>
-                                        <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                        <a href="history"><i class="fa fa-list"></i> My orders</a>
                                     </li>
+                                    <li>
+                                        <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
+                                    </li>
+                                   
                                 </ul>
                             </div>
 

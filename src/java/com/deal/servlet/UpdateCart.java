@@ -6,6 +6,7 @@
 package com.deal.servlet;
 
 import com.deal.base.control.OrderDAO;
+import com.deal.base.model.Customer;
 import com.deal.control.DbHandler;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -26,16 +27,15 @@ public class UpdateCart extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String json = request.getParameter("updateCartReq");
-        System.out.println(json);
-
+        session = request.getSession(false);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
         for (int i = 0; i < Integer.MAX_VALUE; i++) {
             String productId = request.getParameter("changedOrders[" + i + "][orderId]");
             String quantity = request.getParameter("changedOrders[" + i + "][quantity]");
             System.out.println("productId : " + productId + "quantity : " + quantity);
             if (productId == null) {
                 break;
-            }else{
+            } else {
                 OrderDAO OrderDAOObject = DbHandler.getOrderDAO();
                 String res = OrderDAOObject.updateOrder(Integer.parseInt(productId), Integer.parseInt(quantity));
                 System.out.println(res);
