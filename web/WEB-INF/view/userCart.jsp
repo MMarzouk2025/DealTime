@@ -126,6 +126,7 @@
             function checkOutCart(btn) {
                 var table = document.getElementById("cartItemTable");
                 var flag = true;
+                var flag2 = true;
                 for (var i = 1, row; row = table.rows[i]; i++) {
                     //iterate through rows
                     //rows would be accessed using the "row" variable assigned in the for loop
@@ -139,10 +140,17 @@
                         }
                     }
                 }
-                if (flag) {
+                if (parseInt($("#custCreditLimitSpan").html()) < parseInt($("#cartTotalPrice2").html())) {
+                    flag2 = false;
+                    alert("Sorry you Do Not have Enough Credit !!");
+                }
+
+                if (flag && flag2) {
+                    newCridet = parseInt($("#custCreditLimitSpan").html()) - parseInt($("#cartTotalPrice2").html());
                     $.ajax({
                         type: 'POST',
-                        url: 'CheckOutCart', //calling servlet      
+                        url: 'CheckOutCart', //calling servlet  
+                        data: {newCridet},
                         cache: false,
                         success: function () {
                             console.log("success:")
@@ -150,10 +158,12 @@
                             while (table.firstChild) {
                                 table.removeChild(table.firstChild);
                             }
+                            $("#custCreditLimitSpan").html(newCridet);
                             $("#cartItemsSpan").html(0);
                             $("#cartTotalPrice2").html("$0.00");
                             $("#cartTotalPrice3").html("$0.00");
                             $("#noOfOrders").html("You currently have 0 item(s) in your cart .");
+
                             document.getElementById("checkoutBtn").disabled = true;
 
 

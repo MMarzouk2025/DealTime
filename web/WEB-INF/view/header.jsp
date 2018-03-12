@@ -59,6 +59,8 @@
                         <ul class="menu">
                             <li><a href="userProfile" ><c:out value="${sessionScope.loggedInUser.custFirstName}"/></a>
                             </li>
+                            <li> Your Credit : <a id="custCreditLimitSpan" ><c:out value="${sessionScope.loggedInUser.custCreditLimit}"/></a>
+                            </li>
                         </ul>                    </c:if>
                     <c:if test="${empty sessionScope.loggedInUser}">
                         <ul class="menu">

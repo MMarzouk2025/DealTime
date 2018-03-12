@@ -1,12 +1,3 @@
-<!-- just for testing -->
-<form method="GET" action="userProfile">
-    <input type="submit" value="Go to user profile"/>
-</form>
-
-<form method="GET" action="userCartControl">
-    <input type="submit" value="Go to user Cart"/>
-</form>
-
 <jsp:include page="WEB-INF/view/header.jsp"/>
 <%--<%@ include file="/WEB-INF/view/header.jsp" %   >--%>
 
@@ -184,16 +175,14 @@
                         <div class="pages">
 
                             <ul class="pagination">
-                                <li><a >&laquo;</a>
-                                </li>
+                                
                                 <c:forEach begin="1" end="${AllproductsNumber}" step="5" varStatus="loop">
                                     <%--<c:out value="${loop.count}"/>--%>
                                     <li class="active">
                                         <a href="dealTime?page=${loop.count}">${loop.count}</a>
                                     </li>
                                 </c:forEach>
-                                <li><a >&raquo;</a>
-                                </li>
+                               
                             </ul>
                         </div>
 

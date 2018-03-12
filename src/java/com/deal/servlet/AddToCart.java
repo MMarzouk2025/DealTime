@@ -29,11 +29,7 @@ public class AddToCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Enumeration parameterNames = request.getParameterNames();
-        while (parameterNames.hasMoreElements()) {
-            String param = (String) parameterNames.nextElement();
-            System.out.println(param);
-        }
+       
         HttpSession session = request.getSession(false);
         if (session == null) {
             response.sendRedirect("dealTime");
