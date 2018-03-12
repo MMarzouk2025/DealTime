@@ -26,7 +26,6 @@ public class UpdateCart extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("the post has been called");
         String json = request.getParameter("updateCartReq");
         System.out.println(json);
 

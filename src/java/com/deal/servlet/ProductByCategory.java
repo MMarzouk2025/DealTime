@@ -5,7 +5,9 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.control.OrderDAO;
 import com.deal.base.control.ProductDAO;
+import com.deal.base.model.Customer;
 import com.deal.base.model.Product;
 import com.deal.control.DbHandler;
 import java.io.IOException;
@@ -29,8 +31,13 @@ public class ProductByCategory extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         session = request.getSession(true);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
+        if (customer != null) {
+            OrderDAO orderDAO = DbHandler.getOrderDAO();
+            session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
+        }
         String searchInput = request.getParameter("cat");
-        System.out.println("searchInput is : "+searchInput);
+        System.out.println("searchInput is : " + searchInput);
         ProductDAO productDAoObject = DbHandler.getProductDAO();
         if (productsList == null) {
 

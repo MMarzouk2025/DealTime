@@ -5,6 +5,7 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.control.OrderDAO;
 import com.deal.base.model.Customer;
 import com.deal.base.model.Order;
 import com.deal.base.model.Product;
@@ -16,12 +17,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ElsOoObkey
  */
 public class ProductDetails extends HttpServlet {
+
+    HttpSession session;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,6 +41,12 @@ public class ProductDetails extends HttpServlet {
         //  response.setContentType("text/html;charset=UTF-8");
 
         Product product = null;
+        session = request.getSession(true);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
+        if (customer != null) {
+            OrderDAO orderDAO = DbHandler.getOrderDAO();
+            session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
+        }
         if (request.getParameter("productId") != null) {
             try {
                 product = DbHandler.getProductDAO().retrieveProduct(Long.parseLong(request.getParameter("productId")));

@@ -125,13 +125,47 @@
             }
             function checkOutCart(btn) {
                 var table = document.getElementById("cartItemTable");
+                var flag = true;
                 for (var i = 1, row; row = table.rows[i]; i++) {
                     //iterate through rows
                     //rows would be accessed using the "row" variable assigned in the for loop
-                    if (row.cells[2]){
+                    if (row.cells[2]) {
                         console.log(row.cells[2]);
                         console.log(row.cells[3]);
+                        if (parseInt(row.cells[2].innerHTML) < parseInt(row.cells[3].childNodes[1].value)) {
+                            flag = false;
+                            alert("Row Number : " + i + " Has No Enough Available Quantity !!");
+                            break;
+                        }
                     }
+                }
+                if (flag) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'CheckOutCart', //calling servlet      
+                        cache: false,
+                        success: function () {
+                            console.log("success:")
+                            var table = document.getElementById("cartItemTable");
+                            while (table.firstChild) {
+                                table.removeChild(table.firstChild);
+                            }
+                            $("#cartItemsSpan").html(0);
+                            $("#cartTotalPrice2").html("$0.00");
+                            $("#cartTotalPrice3").html("$0.00");
+                            $("#noOfOrders").html("You currently have 0 item(s) in your cart .");
+                            document.getElementById("checkoutBtn").disabled = true;
+
+
+
+
+                        },
+                        error: function (xhr, ajaxOptions) {
+                            console.log("error:")
+                            alert("Sorry There Is Product That Does Not Has Enough Available Quantity !!");
+                        },
+
+                    });
                 }
 
             }
@@ -152,7 +186,7 @@
 
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li><a href="index.html">Home</a>
+                            <li><a href="dealTime">Home</a>
                             </li>
                             <li>Shopping cart</li>
                         </ul>
@@ -227,7 +261,7 @@
 
                             <div class="box-footer row">
                                 <div class="pull-left">
-                                    <a href="index.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                                    <a href="dealTime" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                                 </div>
                                 <div class="pull-right">
 

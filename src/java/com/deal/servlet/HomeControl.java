@@ -6,8 +6,10 @@
 package com.deal.servlet;
 
 import com.deal.base.control.CategoryDAO;
+import com.deal.base.control.OrderDAO;
 import com.deal.base.control.ProductDAO;
 import com.deal.base.model.Category;
+import com.deal.base.model.Customer;
 import com.deal.base.model.Product;
 import com.deal.control.DbHandler;
 import java.io.IOException;
@@ -33,10 +35,15 @@ public class HomeControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         session = request.getSession(true);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
+        if (customer != null) {
+            OrderDAO orderDAO = DbHandler.getOrderDAO();
+            session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
+        }
         ProductDAO productDAoObject = DbHandler.getProductDAO();
         CategoryDAO categoryDAOObject = DbHandler.getCategoryDAO();
         products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
-        categoryList= categoryDAOObject.retrieveAllCategories();
+        categoryList = categoryDAOObject.retrieveAllCategories();
 
         List<Product> subProductsList = null;
         String pageNamber = request.getParameter("page");

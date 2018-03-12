@@ -45,7 +45,7 @@
         <script>
             function addToCart(productDetailsId) {
                 console.log(productDetailsId);
-              
+
                 $.ajax({
                     type: 'POST',
                     url: 'AddToCart', //calling servlet      
@@ -53,9 +53,14 @@
                     data: {productDetailsId},
                     success: function () {
                         console.log("success:");
-                        
+
+                        $("#cartItemsSpan").html(parseInt($("#cartItemsSpan").html()) + 1)
+
+
                     },
                     error: function (xhr, ajaxOptions) {
+                        console.log($("#cartItemsSpan").html())
+
                         console.log("error:")
                     },
 

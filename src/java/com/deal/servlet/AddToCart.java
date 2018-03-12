@@ -48,9 +48,15 @@ public class AddToCart extends HttpServlet {
                 ArrayList<Order> existOrders = orderDAO.getOrderByProduct(customer, Integer.parseInt(productId));
                 System.out.println("the list size is " + existOrders.size());
                 if (existOrders.size() == 0) {
-                orderDAO2.insertOrder(new Order(customer, new Product(Long.parseLong(productId)), 1, 'c'));
-                
+                    orderDAO2.insertOrder(new Order(customer, new Product(Long.parseLong(productId)), 1, 'c'));
+
+                } else {
+                    response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
+
                 }
+
+            } else {
+                response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
 
             }
 

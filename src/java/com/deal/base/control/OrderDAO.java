@@ -78,7 +78,7 @@ public class OrderDAO {
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT ORDER_ID, PRODUCT_ID, QUANTITY, STATUS\n"
                     + "FROM DEALTIME.ORDERS\n"
-                    + "WHERE CUSTOMER_ID = " + customer.getCustId() + "and QUANTITY > 0");
+                    + "WHERE CUSTOMER_ID = " + customer.getCustId() + "and QUANTITY > 0 and STATUS ='c'");
             while (results.next()) {
                 Order order = new Order();
                 order.setOrderId(results.getLong("ORDER_ID"));
@@ -277,6 +277,30 @@ public class OrderDAO {
         }
         return customerOrders;
     }
+    
+     public String updateCustomerOrders(int id) {
+        String result;
+        try {
+            PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.ORDERS\n"
+                    + " set STATUS = 'd' \n"
+                    + " WHERE  CUSTOMER_ID = " + id);
+            
+            System.out.println("the id is "+id);
+            stmt.execute();
+            result = SUCCESSFUL_UPDATE;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            result = EXCEPTION;
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
 
 //     
     /* Mokhtar */

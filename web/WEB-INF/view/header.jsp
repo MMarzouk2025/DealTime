@@ -130,7 +130,7 @@
                         </button>
                         <c:if test="${not empty sessionScope.loggedInUser}">
                             <a class="btn btn-default navbar-toggle" href="basket.html">
-                                <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">6 items in cart</span>
+                                <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"> items in cart</span>
                             </a>
 
                         </c:if>
@@ -176,7 +176,7 @@
 
 
                         <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="userCartControl" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span id="cartItemsSpan" class="hidden-sm">5 items in cart</span></a>
+                            <a href="userCartControl" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span id="cartItemsSpan" class="hidden-sm">${sessionScope.CustomerOrderNo}</span><span class="hidden-sm"> items in cart</span></a>
                         </div>
                     </c:if>
                     <!--/.nav-collapse -->
