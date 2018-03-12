@@ -99,10 +99,9 @@
                         <h4 class="modal-title" id="Login">Add Category</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="categoryAdditionForm">
-                           
+                        <form id="categoryAdditionForm" method="GET" action="categoryControl">
                             <div class="form-group">
-                                <input name="categoryName" type="text" class="form-control" id="name-modal" placeholder="Name" maxlength="40" required="true" >
+                                <input name="categoryName" type="text" class="form-control" id="category_name_modal" placeholder="Name" maxlength="80" required="true" >
                             </div>
                             <button type="submit" class="btn btn-primary" style="width: 100%">
                                     <i class="fa fa-save"></i>Add</button>

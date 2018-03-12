@@ -116,9 +116,8 @@ public class CategoryDAO {
                 result = EXISTING_CATEGORY;
             } else {
                 PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.CATEGORIES (CATEGORY_ID, CATEGORY_NAME)\n"
-                        + "VALUES (?, ?)");
-                stmt.setLong(1, category.getCategoryId());
-                stmt.setString(2, category.getCategoryName());
+                        + "VALUES (CATEGORIES_SEQ.NEXTVAL, ?)");
+                stmt.setString(1, category.getCategoryName());
                 stmt.execute();
                 result = SUCCESSFUL_INSERT;
             }
