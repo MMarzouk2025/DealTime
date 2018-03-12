@@ -33,33 +33,32 @@ public class LogInControl extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             // insert in database
-            //if (Validations.emailIsValid(email) && Validations.passIsValid(password)) {
-            Customer customer;
-            CustomerDAO customerDao = DbHandler.getCustomerDAO();
-            customer = customerDao.retrieveCustomer(email, password);
-            Admin admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
-            
-            if (customer != null) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("loggedInUser", customer);
-                session.setAttribute("userType", "c");
-                //redirect to customers page
-                request.getRequestDispatcher("WEB-INF/view/userOrdersControlPanel.jsp").forward(request, response);
-            } else if (admin != null) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("loggedInUser", admin);
-                session.setAttribute("userType", "a");
-                //redirect to admin page
-                System.out.println("" + admin);
-                // request.getRequestDispatcher("administration").forward(request, response);
-                response.sendRedirect("/DealTime/administration");
+            if (Validations.emailIsValid(email) && Validations.passIsValid(password)) {
+                Customer customer;
+                CustomerDAO customerDao = DbHandler.getCustomerDAO();
+                customer = customerDao.retrieveCustomer(email, password);
+                Admin admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
+
+                if (customer != null) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("loggedInUser", customer);
+                    session.setAttribute("userType", "c");
+                    //redirect to customers page
+                    request.getRequestDispatcher("WEB-INF/view/userOrdersControlPanel.jsp").forward(request, response);
+                } else if (admin != null) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("loggedInUser", admin);
+                    session.setAttribute("userType", "a");
+                    //redirect to admin page
+                    // request.getRequestDispatcher("administration").forward(request, response);
+                    response.sendRedirect("/DealTime/administration");
+                } else {
+                    System.out.println("user doesn't exist");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
             } else {
-                System.out.println("user doesn't exist");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                System.out.println("hello");
             }
-//            } else {
-//                System.out.println("hello");
-//            }
         }
     }
 

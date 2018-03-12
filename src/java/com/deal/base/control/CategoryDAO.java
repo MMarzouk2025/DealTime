@@ -51,7 +51,7 @@ public class CategoryDAO {
             ResultSet results = mConn.createStatement().executeQuery("SELECT CATEGORY_ID, CATEGORY_NAME\n"
                     + "FROM DEALTIME.CATEGORIES\n"
                     + "WHERE CATEGORY_ID = " + categoryId);
-            if (results.next()) {
+            while (results.next()) {
                 category = new Category();
                 category.setCategoryId(results.getLong("CATEGORY_ID"));
                 category.setCategoryName(results.getString("CATEGORY_NAME"));

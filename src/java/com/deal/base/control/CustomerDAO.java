@@ -91,7 +91,7 @@ public class CustomerDAO {
                     + "FROM DEALTIME.CUSTOMERS\n"
                     + "WHERE UPPER(EMAIL) = UPPER('" + email + "')\n"
                     + "AND UPPER(PASSWORD) = UPPER('" + password + "')");
-            if (results.next()) {
+            while (results.next()) {
                 customer = new Customer();
                 customer.setCustEmail(email);
                 customer.setCustPassword(password);

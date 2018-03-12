@@ -1,5 +1,6 @@
 package com.deal.servlet;
 
+import com.deal.base.model.Admin;
 import com.deal.base.model.Customer;
 import com.deal.control.DbHandler;
 import java.io.IOException;
@@ -17,15 +18,15 @@ public class AdminControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         
-        /*
-        List<Customer> customers = DbHandler.getCustomerDAO().retrieveAllCustomers();
-        System.out.println(customers.get(0));
-        DbHandler.getCustomerDAO().insertCustomer(new Customer("zooka", "asdas", "asdasdfd", "asdfsdfsd", "sgsdf gdgdf", "ai 7aga", 
-            "011162521478", LocalDate.of(1992, 1, 6), 320.50, "asdfasd fasdfs"));
+        Admin mAdmin = null;
+        if (request.getSession(false) != null) {
+            mAdmin = (Admin) request.getSession(false).getAttribute("loggedInUser");
+        }
+        request.setAttribute("admin", mAdmin);
+        
         request.getRequestDispatcher("WEB-INF/view/adminControlPanel.jsp").forward(request, response);
-        */
     }
 
     @Override

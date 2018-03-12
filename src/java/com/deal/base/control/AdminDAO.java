@@ -83,7 +83,7 @@ public class AdminDAO {
         try {
             ResultSet rSet = mConn.createStatement().executeQuery("SELECT COUNT(*) FROM DEALTIME.ADMINS\n"
                     + "WHERE UPPER(EMAIL) = UPPER('" + email + "')");
-            if (rSet.next()) {
+            while (rSet.next()) {
                 if (rSet.getInt(1) > 0) {
                     result = true;
                 }
