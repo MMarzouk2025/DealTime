@@ -14,6 +14,10 @@ public class Product implements Serializable {
      
     public Product() {
     }
+    
+    public Product(long productId) {
+        this.productId=productId;
+    }
 
     public Product(String productName) {
         this.productName = productName;

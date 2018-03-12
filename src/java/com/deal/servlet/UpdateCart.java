@@ -6,13 +6,8 @@
 package com.deal.servlet;
 
 import com.deal.base.control.OrderDAO;
-import com.deal.base.model.Customer;
-import com.deal.base.model.Order;
 import com.deal.control.DbHandler;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

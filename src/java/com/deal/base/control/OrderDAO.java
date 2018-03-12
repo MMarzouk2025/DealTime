@@ -78,7 +78,7 @@ public class OrderDAO {
         try {
             ResultSet results = mConn.createStatement().executeQuery("SELECT ORDER_ID, PRODUCT_ID, QUANTITY, STATUS\n"
                     + "FROM DEALTIME.ORDERS\n"
-                    + "WHERE CUSTOMER_ID = " + customer.getCustId()+"and QUANTITY > 0");
+                    + "WHERE CUSTOMER_ID = " + customer.getCustId() + "and QUANTITY > 0");
             while (results.next()) {
                 Order order = new Order();
                 order.setOrderId(results.getLong("ORDER_ID"));
@@ -107,7 +107,7 @@ public class OrderDAO {
             PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.ORDERS (\n"
                     + "ORDER_ID, CUSTOMER_ID, PRODUCT_ID, \n"
                     + "QUANTITY, STATUS) \n"
-                    + "VALUES (ORDERS_SEQ.NEXTVAL, ?, ?, ?, ?);");
+                    + "VALUES (ORDERS_SEQ.NEXTVAL, ?, ?, ?, 'c')");
             if (order.getCustomer() == null) {
                 stmt.setNull(1, Types.BIGINT);
             } else {
@@ -116,10 +116,10 @@ public class OrderDAO {
             if (order.getOrderProduct() == null) {
                 stmt.setNull(2, Types.BIGINT);
             } else {
-                stmt.setLong(3, order.getOrderProduct().getProductId());
+                stmt.setLong(2, order.getOrderProduct().getProductId());
             }
             stmt.setInt(3, order.getQuantity());
-            stmt.setString(4, String.valueOf(order.getStatus()));
+//            stmt.setc(4, order.getStatus());
             stmt.execute();
             result = SUCCESSFUL_INSERT;
         } catch (SQLException ex) {
@@ -167,7 +167,7 @@ public class OrderDAO {
         }
         return result;
     }
-    
+
     /*
     public void invalidateProductOrders(long productId) {
         try {
@@ -185,8 +185,7 @@ public class OrderDAO {
             }
         }
     }
-    */
-    
+     */
     public String deleteOrder(Order order) {
         String result;
         try {
@@ -230,12 +229,12 @@ public class OrderDAO {
      */
     /* Nagib */
 //    
-     public String updateOrder(int orderID ,int qnt) {
+    public String updateOrder(int orderID, int qnt) {
         String result;
         try {
             PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.ORDERS\n"
-                    + "SET  QUANTITY = "+qnt+" WHERE  ORDER_ID = "+orderID);
-         
+                    + "SET  QUANTITY = " + qnt + " WHERE  ORDER_ID = " + orderID);
+
             stmt.execute();
             result = SUCCESSFUL_UPDATE;
         } catch (SQLException ex) {
@@ -251,6 +250,33 @@ public class OrderDAO {
         return result;
     }
 
+    public ArrayList<Order> getOrderByProduct(Customer customer, int productId) {
+        ArrayList<Order> customerOrders = new ArrayList();
+        try {
+            ResultSet results = mConn.createStatement().executeQuery("SELECT ORDER_ID, PRODUCT_ID, QUANTITY, STATUS\n"
+                    + "FROM DEALTIME.ORDERS\n"
+                    + "WHERE CUSTOMER_ID = " + customer.getCustId() + "and  QUANTITY > 0 and PRODUCT_ID=" + productId + " and STATUS = 'c' ");
+            while (results.next()) {
+                Order order = new Order();
+                order.setOrderId(results.getLong("ORDER_ID"));
+                order.setCustomer(customer);
+                Product orderProduct = DbHandler.getProductDAO().retrieveProduct(results.getLong("PRODUCT_ID"));
+                order.setOrderProduct(orderProduct);
+                order.setQuantity(results.getInt("QUANTITY"));
+                order.setStatus(results.getString("STATUS").charAt(0));
+                customerOrders.add(order);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return customerOrders;
+    }
 
 //     
     /* Mokhtar */

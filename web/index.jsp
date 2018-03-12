@@ -71,27 +71,19 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Categories</h3>
                             </div>
-
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked category-menu">
                                     <c:forEach items="${Allcategories}" var="categories">
                                         <li>
-                                        <a href="category?cat=${categories.categoryName}">${categories.categoryName}</a>     
+                                            <a href="category?cat=${categories.categoryName}">${categories.categoryName}</a>     
                                             <!--<a href="#">Men</a>-->
 
                                         </li>
                                     </c:forEach>
-
-
-
                                 </ul>
-
                             </div>
-
                         </div>
-
                     </div>
-
                     <div class="col-md-9">
 
                         <div class="box info-bar">

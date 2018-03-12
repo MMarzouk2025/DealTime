@@ -7,6 +7,8 @@ import com.deal.base.model.Product;
 import com.deal.control.DbHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,29 +24,34 @@ public class AddToCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/view/products.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        Enumeration parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String param = (String) parameterNames.nextElement();
+            System.out.println(param);
+        }
         HttpSession session = request.getSession(false);
         if (session == null) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("dealTime");
 
         } else {
-            String loggedIn = (String) session.getAttribute("loggedIn");
-            if (!loggedIn.equals("true")) {
-                response.sendRedirect("index.jsp");
-            }
-            Customer customer = (Customer) session.getAttribute("currentCustomer");
-            Product product = (Product) session.getAttribute("");
 
-            if (customer != null && product != null) {
-                Order order = new Order(customer, product, 1, 'c');
+            Customer customer = (Customer) session.getAttribute("loggedInUser");
+            String productId = request.getParameter("productDetailsId");
+            if (customer != null && productId != null) {
                 OrderDAO orderDAO = DbHandler.getOrderDAO();
-                orderDAO.insertOrder(order);
+                OrderDAO orderDAO2 = DbHandler.getOrderDAO();
+                ArrayList<Order> existOrders = orderDAO.getOrderByProduct(customer, Integer.parseInt(productId));
+                System.out.println("the list size is " + existOrders.size());
+                if (existOrders.size() == 0) {
+                orderDAO2.insertOrder(new Order(customer, new Product(Long.parseLong(productId)), 1, 'c'));
+                
+                }
+
             }
 
         }
