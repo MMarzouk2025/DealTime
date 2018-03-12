@@ -5,12 +5,14 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.control.CategoryDAO;
+import com.deal.base.control.OrderDAO;
 import com.deal.base.control.ProductDAO;
+import com.deal.base.model.Category;
+import com.deal.base.model.Customer;
 import com.deal.base.model.Product;
-import com.deal.base.model.Order;
 import com.deal.control.DbHandler;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -27,14 +29,22 @@ public class HomeControl extends HttpServlet {
 
     HttpSession session;
     ArrayList<Product> products = null;
+    List<Category> categoryList;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         session = request.getSession(true);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
+        if (customer != null) {
+            OrderDAO orderDAO = DbHandler.getOrderDAO();
+            session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
+        }
         ProductDAO productDAoObject = DbHandler.getProductDAO();
-            products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
-      
+        CategoryDAO categoryDAOObject = DbHandler.getCategoryDAO();
+        products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
+        categoryList = categoryDAOObject.retrieveAllCategories();
+
         List<Product> subProductsList = null;
         String pageNamber = request.getParameter("page");
         if (pageNamber != null) {
@@ -49,17 +59,18 @@ public class HomeControl extends HttpServlet {
             } catch (Exception e) {
                 subProductsList = products.subList(0, 5);
             }
-            
+
         } else {
             subProductsList = products.subList(0, 5);
         }
-        session.setAttribute("productsList", subProductsList);
-        session.setAttribute("AllproductsNumber", products.size());
+        request.setAttribute("productsList", subProductsList);
+        request.setAttribute("AllproductsNumber", products.size());
+        session.setAttribute("Allcategories", categoryList);
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0);
         request.getRequestDispatcher("index.jsp").forward(request, response);
-        
+
     }
 
     @Override
@@ -78,5 +89,5 @@ public class HomeControl extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
 }

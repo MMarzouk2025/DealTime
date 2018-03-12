@@ -5,7 +5,9 @@
  */
 package com.deal.servlet;
 
+import com.deal.base.control.OrderDAO;
 import com.deal.base.control.ProductDAO;
+import com.deal.base.model.Customer;
 import com.deal.base.model.Product;
 import com.deal.control.DbHandler;
 import java.io.IOException;
@@ -31,6 +33,11 @@ public class ProductSearch extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         session = request.getSession(true);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
+        if (customer != null) {
+            OrderDAO orderDAO = DbHandler.getOrderDAO();
+            session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
+        }
         String searchInput = request.getParameter("searchInput");
         ProductDAO productDAoObject = DbHandler.getProductDAO();
         if (productsList == null) {
@@ -43,8 +50,8 @@ public class ProductSearch extends HttpServlet {
                     subProductsList.add(t);
                 });// filtering by name  
 
-        session.setAttribute("productsFoundList", subProductsList);
-        session.setAttribute("AllproductsNumber", subProductsList.size());
+        request.setAttribute("ResultproductsList", subProductsList);
+        request.setAttribute("ResultAllproductsNumber", subProductsList.size());
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0);

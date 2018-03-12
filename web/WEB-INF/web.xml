@@ -17,6 +17,14 @@
         <servlet-name>ProductSearch</servlet-name>
         <servlet-class>com.deal.servlet.ProductSearch</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckOutCart</servlet-name>
+        <servlet-class>com.deal.servlet.CheckOutCart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckOutCart</servlet-name>
+        <url-pattern>/CheckOutCart</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductSearch</servlet-name>
         <url-pattern>/productSearch</url-pattern>

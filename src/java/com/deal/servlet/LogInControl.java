@@ -6,6 +6,7 @@
 package com.deal.servlet;
 
 import com.deal.base.control.CustomerDAO;
+import com.deal.base.control.OrderDAO;
 import com.deal.base.model.Admin;
 import com.deal.base.model.Customer;
 import com.deal.control.DbHandler;
@@ -43,21 +44,35 @@ public class LogInControl extends HttpServlet {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("loggedInUser", customer);
                     session.setAttribute("userType", "c");
+                    OrderDAO orderDAO = DbHandler.getOrderDAO();
+                    session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
                     //redirect to customers page
-                    request.getRequestDispatcher("WEB-INF/view/userOrdersControlPanel.jsp").forward(request, response);
+                    System.out.println(request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1]);
+                    if (request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1].equalsIgnoreCase("DealTime")) {
+                        request.getRequestDispatcher("dealTime").forward(request, response);
+
+                    } else {
+                        try {
+                            request.getRequestDispatcher(request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1]).forward(request, response);
+                        } catch (Exception e) {
+
+                            request.getRequestDispatcher("dealTime").forward(request, response);
+                        }
+
+                    }
+
                 } else if (admin != null) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("loggedInUser", admin);
                     session.setAttribute("userType", "a");
                     //redirect to admin page
+                    System.out.println("" + admin);
                     // request.getRequestDispatcher("administration").forward(request, response);
                     response.sendRedirect("/DealTime/administration");
                 } else {
                     System.out.println("user doesn't exist");
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    request.getRequestDispatcher("dealTime").forward(request, response);
                 }
-            } else {
-                System.out.println("hello");
             }
         }
     }

@@ -64,7 +64,7 @@
                 margin: auto;
                 right:  60%;
             }
-           
+            
         </style>
 
         <div class="container">
@@ -84,12 +84,34 @@
                     </div>
                     <div style="display: inline-block;">
                         <button class="btn btn-success" style="margin-bottom: 0.45em; margin-left: 2.9em;">
-                            <i class="fa fa-plus-square-o"></i>
+                            <i class="fa fa-plus-square-o" data-toggle="modal" data-target="#category-modal"></i>
                         </button>
                         <button class="btn btn-danger" style="margin-bottom: 0.45em; margin-left: 0.7em;">
                             <i class="fa fa-trash-o"></i>
                         </button>
                     </div>
+                    <div class="modal fade" id="category-modal" tabindex="-1" role="dialog" aria-labelledby="AddCategory" aria-hidden="true">
+                <div id="categoryManageModal" class="modal-dialog modal-sm">
+
+                <div id="categoryManageModalContent" class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="Login">Add Category</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="productAdditionForm">
+                           
+                            <div class="form-group">
+                                <input name="categoryName" type="text" class="form-control" id="name-modal" placeholder="Name" maxlength="40" required="true" >
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%">
+                                    <i class="fa fa-save"></i>Add</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
                 </div>
                 <div class="table-responsive" style="width: 88%; text-align: center;">
                     <table class="table">
@@ -139,7 +161,7 @@
                     </button>
                 </div>
                 <!-- /.table-responsive -->
-
+                
             </div>
             <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
                 <div id="productEditModal" class="modal-dialog modal-sm">

@@ -3,14 +3,13 @@
     Created on : Mar 3, 2018, 9:35:14 AM
     Author     : ElsOoObkey
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="header.jsp" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta charset="utf-8">
         <meta name="robots" content="all,follow">
         <meta name="googlebot" content="index,follow,snippet,archive">
@@ -20,7 +19,7 @@
         <meta name="keywords" content="">
 
         <title>
-            Obaju : Product details
+            Deal Time
         </title>
 
         <meta name="keywords" content="">
@@ -43,12 +42,33 @@
         <script src="res/js/respond.min.js"></script>
 
         <link rel="shortcut icon" href="favicon.png">
+        <script>
+            function addToCart(productDetailsId) {
+                console.log(productDetailsId);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'AddToCart', //calling servlet      
+                    cache: false,
+                    data: {productDetailsId},
+                    success: function () {
+                        console.log("success:");
+
+                        $("#cartItemsSpan").html(parseInt($("#cartItemsSpan").html()) + 1)
 
 
+                    },
+                    error: function (xhr, ajaxOptions) {
+                        console.log($("#cartItemsSpan").html())
+
+                        console.log("error:")
+                    },
+
+                });
+            };
+        </script>
 
     </head>
-
-
     <body>
 
         <div id="all">
@@ -58,11 +78,7 @@
 
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a>
-                            </li>
-                            <li><a href="#">Ladies</a>
-                            </li>
-                            <li><a href="#">Tops</a>
+                            <li><a  href="dealTime?page=1">Home</a>
                             </li>
                             <li>${requestScope.product.productName}</li>
                         </ul>
@@ -80,30 +96,14 @@
 
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked category-menu">
-                                    <li>
-                                        <a href="category.html">Men <span class="badge pull-right">42</span></a>
-                                        <ul>
-                                            <li><a href="category.html">T-shirts</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="active">
-                                        <a href="category.html">Ladies  <span class="badge pull-right">123</span></a>
-                                        <ul>
-                                            <li><a href="category.html">T-shirts</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="category.html">Kids  <span class="badge pull-right">11</span></a>
-                                        <ul>
-                                            <li><a href="category.html">T-shirts</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    <c:forEach items="${Allcategories}" var="categories">
+                                        <li>
+                                            <a href="category?cat=${categories.categoryName}">${categories.categoryName}</a>     
+                                            <!--<a href="#">Men</a>-->
 
+                                        </li>
+                                    </c:forEach>
                                 </ul>
-
                             </div>
                         </div>
 
@@ -116,38 +116,23 @@
                                 <div id="mainImage">
                                     <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                 </div>
-
-                                <div class="ribbon sale">
-                                    <div class="theribbon">SALE</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon -->
-
-                                <div class="ribbon new">
-                                    <div class="theribbon">NEW</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon -->
-
                             </div>
                             <div class="col-sm-6">
                                 <div class="box">
                                     <h1 class="text-center">${requestScope.product.productName}</h1>
-                                    <p class="goToDescription"><a href="#details" class="scroll-to"><b>Scroll to product details</b></a>
-                                    </p>
+
                                     <p class="price">$ ${requestScope.product.productPrice}</p>
-
-                                    <p class="text-center buttons">
-                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a> 
-                                        <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
-                                    </p>
-
-
+                                    <c:if test="${not empty sessionScope.loggedInUser}">
+                                        <p class="text-center buttons">
+                                            <a onclick="addToCart(${requestScope.product.productId})" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a> 
+                                            <a class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                        </p>
+                                    </c:if>
                                 </div>
 
                                 <div class="row" id="thumbs">
                                     <div class="col-xs-4">
-                                        <a href="res/products_images/${requestScope.product.productId}.jpg"class="thumb">
+                                        <a href="res/products_images/${requestScope.product.productId}.jpg" class="thumb">
                                             <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
                                         </a>
                                     </div>
@@ -165,6 +150,37 @@
                             </div>
 
                         </div>
+                        <div class="box" id="details">
+                            <p>
+                            <h4>Product details</h4>
+                            <p>${requestScope.product.productDesc}</p>
+                            <h4>Material & care</h4>
+                            <ul>
+                                <li>ultricies</li>
+                                <li>Machine wash</li>
+                            </ul>
+                            <h4>Size & Fit</h4>
+                            <ul>
+                                <li>Regular fit</li>
+                                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo </li>
+                            </ul>
+
+                            <blockquote>
+                                <p><em> Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi .</em>
+                                </p>
+                            </blockquote>
+
+                            <hr>
+                            <div class="social">
+                                <h4>Show it to your friends</h4>
+                                <p>
+                                    <a href="https://www.facebook.com" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                                    <a href="https://www.google.com" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                                    <a href="https://www.twitter.com" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                                </p>
+                            </div>
+                        </div>
+
 
                         <div class="row same-height-row">
                             <div class="col-md-3 col-sm-6">
@@ -173,88 +189,33 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3 col-sm-6">
-                                <div class="product same-height">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="res/img/product2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="res/img/product2_2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="detail.html" class="invisible">
-                                        <img src="res/img/product2.jpg" alt="" class="img-responsive">
-                                    </a>
-                                    <div class="text">
-                                        <h3>Fur coat</h3>
-                                        <p class="price">$143</p>
-                                    </div>
-                                </div>
-                                <!-- /.product -->
-                            </div>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="product same-height">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="res/img/product1.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="res/img/product1_2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="detail.html" class="invisible">
-                                        <img src="res/img/product1.jpg" alt="" class="img-responsive">
-                                    </a>
-                                    <div class="text">
-                                        <h3>Fur coat</h3>
-                                        <p class="price">$143</p>
-                                    </div>
-                                </div>
-                                <!-- /.product -->
-                            </div>
-
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="product same-height">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="res/img/product3.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="res/img/product3_2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="detail.html" class="invisible">
-                                        <img src="res/img/product3.jpg" alt="" class="img-responsive">
-                                    </a>
-                                    <div class="text">
-                                        <h3>Fur coat</h3>
-                                        <p class="price">$143</p>
-
-                                    </div>
-                                </div>
-                                <!-- /.product -->
-                            </div>
+                            <!--                            <div class="col-md-3 col-sm-6">
+                                                            <div class="product same-height">
+                                                                <div class="flip-container">
+                                                                    <div class="flipper">
+                                                                        <div class="front">
+                                                                            <a href="detail.html">
+                                                                                <img src="res/img/product2.jpg" alt="" class="img-responsive">
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="back">
+                                                                            <a href="detail.html">
+                                                                                <img src="res/img/product2_2.jpg" alt="" class="img-responsive">
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="detail.html" class="invisible">
+                                                                    <img src="res/img/product2.jpg" alt="" class="img-responsive">
+                                                                </a>
+                                                                <div class="text">
+                                                                    <h3>Fur coat</h3>
+                                                                    <p class="price">$143</p>
+                                                                </div>
+                                                            </div>
+                                                             /.product 
+                                                        </div>
+                            -->
 
                         </div>
 

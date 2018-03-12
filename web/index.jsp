@@ -1,23 +1,3 @@
-<!-- just for testing -->
-<form method="GET" action="userProfile">
-    <input type="submit" value="Go to user profile"/>
-</form>
-<form method="GET" action="headerFooterServlet">
-    <input type="submit" value="Go to header"/>
-</form>
-<form method="POST" action="headerFooterServlet">
-    <input type="submit" value="Go to footer"/>
-</form>
-<form method="GET" action="userCartControl">
-    <input type="submit" value="Go to user Cart"/>
-</form>
-<form method="GET" action="paginationServlet">
-    <input type="submit" value="Go to pagination"/>
-</form>
-<form method="GET" action="productDetails">
-    <input type="submit" value="Go to product details"/>
-</form>
-
 <jsp:include page="WEB-INF/view/header.jsp"/>
 <%--<%@ include file="/WEB-INF/view/header.jsp" %   >--%>
 
@@ -69,7 +49,7 @@
 
     <body>
 
-        <div id="all">
+        --<div id="all">
 
             <div id="content">
                 <div class="container">
@@ -82,45 +62,25 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Categories</h3>
                             </div>
-
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked category-menu">
-                                    <li>
-                                        <a href="#">Men</a>
-                                        <ul>
-                                            <li><a href="category?cat=category1">Category 1</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Ladies</a>
-                                        <ul>
-                                            <li><a href="category?cat=category2">Category 2</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Kids</a>
-                                        <ul>
-                                            <li><a href="category?cat=category3">Category 3</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    <c:forEach items="${Allcategories}" var="categories">
+                                        <li>
+                                            <a href="category?cat=${categories.categoryName}">${categories.categoryName}</a>     
+                                            <!--<a href="#">Men</a>-->
 
+                                        </li>
+                                    </c:forEach>
                                 </ul>
-
                             </div>
-
                         </div>
-
                     </div>
-
                     <div class="col-md-9">
 
                         <div class="box info-bar">
                             <div class="row">
                                 <div class="col-sm-12 col-md-4 products-showing">
-                                    Showing <strong>5</strong> of <strong>${sessionScope.AllproductsNumber}</strong> products
+                                    Showing <strong>5</strong> of <strong>${AllproductsNumber}</strong> products
                                 </div>
 
                                 <div class="col-sm-12 col-md-8  products-number-sort">
@@ -170,7 +130,7 @@
                                                             </div>
                                                              /.product 
                                                         </div>-->
-                            <c:forEach items="${sessionScope.productsList}" var="product">
+                            <c:forEach items="${productsList}" var="product">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="product">
                                         <div class="flip-container">
@@ -215,16 +175,14 @@
                         <div class="pages">
 
                             <ul class="pagination">
-                                <li><a >&laquo;</a>
-                                </li>
-                                <c:forEach begin="1" end="${sessionScope.AllproductsNumber}" step="5" varStatus="loop">
+                                
+                                <c:forEach begin="1" end="${AllproductsNumber}" step="5" varStatus="loop">
                                     <%--<c:out value="${loop.count}"/>--%>
                                     <li class="active">
                                         <a href="dealTime?page=${loop.count}">${loop.count}</a>
                                     </li>
                                 </c:forEach>
-                                <li><a >&raquo;</a>
-                                </li>
+                               
                             </ul>
                         </div>
 
