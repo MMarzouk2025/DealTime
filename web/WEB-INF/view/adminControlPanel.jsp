@@ -690,11 +690,6 @@ _________________________________________________________ -->
                     getAllProducts();
                 }, 250);
             }
-
-            function openAddProductWindow() {
-                $('#categoryToAddProductIn').val($('#categoriesList').val());
-                $('#categoryToAddProductIn').prop('disabled', true);
-            }
             
         </script>
 

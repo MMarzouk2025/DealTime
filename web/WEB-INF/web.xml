@@ -105,6 +105,14 @@
         <servlet-name>CategoryControl</servlet-name>
         <url-pattern>/categoryControl</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ProductEdit</servlet-name>
+        <servlet-class>com.deal.servlet.ProductEdit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductEdit</servlet-name>
+        <url-pattern>/productEdit</url-pattern>
+    </servlet-mapping>
     <!--********************************************************************-->
     <!--***************************** Filters ******************************-->
     <filter>
@@ -170,6 +178,10 @@
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <servlet-name>CategoryControl</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>ProductEdit</servlet-name>
     </filter-mapping>
     <filter-mapping>
         <filter-name>UserFilter</filter-name>
