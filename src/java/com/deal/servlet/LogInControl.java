@@ -73,6 +73,8 @@ public class LogInControl extends HttpServlet {
                     System.out.println("user doesn't exist");
                     request.getRequestDispatcher("dealTime").forward(request, response);
                 }
+            } else {
+                request.getRequestDispatcher("dealTime").forward(request, response);
             }
         }
     }

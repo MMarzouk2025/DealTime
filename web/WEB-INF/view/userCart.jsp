@@ -237,7 +237,7 @@
 
                                                 <td>
                                                     <a href="#">
-                                                        <img src="res/img/basketsquare.jpg" alt="Black Blouse Armani">
+                                                        <img src="res/products_images/${order.orderProduct.getProductImageFileName()}" alt="Black Blouse Armani">
                                                     </a>
                                                 </td>
                                                 <td><a href="#">${order.orderProduct.productName}</a>
