@@ -101,6 +101,34 @@ public class OrderDAO {
         return customerOrders;
     }
 
+    public ArrayList<Order> retrieveCustomerHistory(Customer customer) {
+        ArrayList<Order> customerOrders = new ArrayList();
+        try {
+            ResultSet results = mConn.createStatement().executeQuery("SELECT ORDER_ID, PRODUCT_ID, QUANTITY, STATUS\n"
+                    + "FROM DEALTIME.ORDERS\n"
+                    + "WHERE CUSTOMER_ID = " + customer.getCustId() + "and QUANTITY > 0 and STATUS ='d'");
+            while (results.next()) {
+                Order order = new Order();
+                order.setOrderId(results.getLong("ORDER_ID"));
+                order.setCustomer(customer);
+                Product orderProduct = DbHandler.getProductDAO().retrieveProduct(results.getLong("PRODUCT_ID"));
+                order.setOrderProduct(orderProduct);
+                order.setQuantity(results.getInt("QUANTITY"));
+                order.setStatus(results.getString("STATUS").charAt(0));
+                customerOrders.add(order);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                mConn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return customerOrders;
+    }
+
     public String insertOrder(Order order) {
         String result;
         try {

@@ -88,7 +88,7 @@
                                     <li>
                                         <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
                                     </li>
-                                   
+
                                 </ul>
                             </div>
 
@@ -104,8 +104,54 @@
 
                             <hr>
 
-                           
-                           
+                            <div class="table-responsive">
+                                <table  id="cartItemTable" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Product</th>
+                                            <th>Available Quantity</th>
+                                            <th>Quantity</th>
+                                            <th>Unit price</th>
+                                            <th>Discount</th>
+                                            <th colspan="2">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${sessionScope.HistoryLines}" var="order">
+                                            <!--<tr class="{(${order.orderProduct.availableQuantity}  ${order.quantity}) ? danger  :active}">-->
+
+                                            <tr>
+
+                                                <td>
+                                                    <a href="#">
+                                                        <img src="res/img/basketsquare.jpg" alt="Black Blouse Armani">
+                                                    </a>
+                                                </td>
+                                                <td><a href="#">${order.orderProduct.productName}</a>
+                                                </td>
+                                                <td>
+                                                    ${order.orderProduct.availableQuantity}
+                                                </td>
+                                                <td>
+                                                    value=${order.quantity} 
+                                                    <!--<input type="number"  value="5" min="1" max="10" class="form-control mynumber">-->
+                                                </td>
+                                                <td>${order.orderProduct.productPrice}</td>
+                                                <td>$0.00</td>
+                                                <td id="orderPrice${order.orderId}">${order.orderProduct.productPrice*order.quantity}</td>
+                                                <c:set var="totalprice" value="${totalprice+(order.orderProduct.productPrice*order.quantity)}"/>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+
+
                         </div>
                     </div>
                 </div>
