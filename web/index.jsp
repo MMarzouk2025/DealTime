@@ -137,18 +137,18 @@
                                             <div class="flipper">
                                                 <div class="front">
                                                     <a href="productDetails?productId=${product.productId}">  
-                                                        <img src="res/products_images/${product.productId}.jpg"  class="img-responsive" alt="">
+                                                        <img src="res/products_images/${product.getProductImageFileName()}"  class="img-responsive" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="back">
                                                     <a href="productDetails?productId=${product.productId}">
-                                                        <img src="res/products_images/${product.productId}.jpg"  class="img-responsive">
+                                                        <img src="res/products_images/${product.getProductImageFileName()}"  class="img-responsive">
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <a href="detail.html" class="invisible">
-                                            <img src="res/products_images/${product.productId}.jpg" alt="" class="img-responsive">
+                                            <img src="res/products_images/${product.getProductImageFileName()}" alt="" class="img-responsive">
                                         </a>
                                         <div class="text">
                                             <h3> <a href="productDetails?productId=${product.productId}"> ${product.productName}</a></h3>

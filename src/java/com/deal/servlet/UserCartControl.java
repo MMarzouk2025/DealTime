@@ -38,13 +38,16 @@ public class UserCartControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        session = request.getSession(true);
+        session = request.getSession(false);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
         OrderDAO OrderDAOObject = DbHandler.getOrderDAO();
-        ArrayList<Order> chartLines = OrderDAOObject.retrieveCustomerOrders(new Customer(1));
-        for (Order chartLine : chartLines) {
-            System.out.println(chartLine.getOrderProduct().getProductName() + "  :  " + chartLine.getQuantity());
-
-        }
+        ArrayList<Order> chartLines = OrderDAOObject.retrieveCustomerOrders(customer);
+//        for (Order chartLine : chartLines) {
+//            System.out.println(chartLine.getOrderProduct().getProductName() + "  :  " + chartLine.getQuantity());
+//
+//        }
+        OrderDAO orderDAO = DbHandler.getOrderDAO();
+        session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
         session.setAttribute("Items", chartLines);
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0

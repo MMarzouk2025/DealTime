@@ -69,7 +69,7 @@ public class RegisterControl extends HttpServlet {
                 System.out.println(result);
                 HttpSession session = request.getSession(true);
                 session.setAttribute("loggedInUser", customer);
-                 request.getRequestDispatcher("WEB-INF/view/userOrdersControlPanel.jsp").forward(request, response);
+                 request.getRequestDispatcher("dealTime").forward(request, response);
 
             }
         }

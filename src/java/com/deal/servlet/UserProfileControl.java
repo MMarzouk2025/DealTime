@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,15 +25,19 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserProfileControl extends HttpServlet {
 
-    private String customerID = "3";
+    HttpSession session;
+    Customer customer;
+    Customer newCustomer = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-//        customerID = (String) request.getSession().getAttribute("");
-        Customer customer = DbHandler.getCustomerDAO().retrieveCustomer(Integer.parseInt(customerID));
-        
-        request.setAttribute("currentCustomer", customer);
+        session = request.getSession(false);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
+        if (newCustomer != null) {
+            request.setAttribute("currentCustomer", newCustomer);
+        } else {
+            request.setAttribute("currentCustomer", customer);
+        }
         request.getRequestDispatcher("WEB-INF/view/userProfileControlPanel.jsp").forward(request, response);
     }
 
@@ -45,10 +50,11 @@ public class UserProfileControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        session = request.getSession(false);
+        Customer customer = (Customer) session.getAttribute("loggedInUser");
         String firstNmae = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
-        String email = request.getParameter("email");
+//        String email = request.getParameter("email");
         LocalDate dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"));
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
@@ -57,11 +63,12 @@ public class UserProfileControl extends HttpServlet {
         double credit = Double.parseDouble(request.getParameter("credit"));
         String mobileNumber = request.getParameter("mobileNumber");
 
-        boolean isValid = isAllDataValid(email, password, confirmPassword, firstNmae, lastName, job, mobileNumber, credit);
+        boolean isValid = isAllDataValid(password, confirmPassword, firstNmae, lastName, job, mobileNumber, credit);
 
         if (isValid) {
-            Customer newCustomer = new Customer(email, password, firstNmae, lastName, address, job, mobileNumber, dateOfBirth, credit, "");
             CustomerDAO updatedCustomer = DbHandler.getCustomerDAO();
+            newCustomer = new Customer(customer.getCustEmail(), password, firstNmae, lastName, address, job, mobileNumber, dateOfBirth, credit, "");
+            newCustomer.setCustId(customer.getCustId());
             updatedCustomer.updateCustomer(newCustomer);
         }
 
@@ -73,31 +80,28 @@ public class UserProfileControl extends HttpServlet {
         return "User Profile";
     }
 
-    private boolean isAllDataValid(String email, String password, String confirmPassword, String firstName, String lastName,
+    private boolean isAllDataValid(String password, String confirmPassword, String firstName, String lastName,
             String job, String mobileNumber, double creditLimit) {
 
         boolean isValid = true;
         //testing
-        boolean a1 = Validations.emailIsValid(email);
-        
+
         boolean a2 = password.matches(confirmPassword);
-        
+
         boolean a3 = Validations.passIsValid(password);
-        
+
         boolean a4 = Validations.nameIsValid(firstName);
-        
+
         boolean a5 = Validations.nameIsValid(lastName);
-        
+
         boolean a6 = Validations.nameIsValid(job);
-        
+
         boolean a7 = Validations.phoneIsValid(mobileNumber);
-        
+
         boolean a8 = !(String.valueOf(creditLimit)).matches("[+]?([0-9]*\\.[0-9]+|[0-9]+)");
+        a8 = true;
 
-        if ((Validations.emailIsValid(email)) != true) {
-            isValid = false;
-
-        } else if ((password.matches(confirmPassword)) != true || (Validations.passIsValid(password)) != true) {
+        if ((password.matches(confirmPassword)) != true || (Validations.passIsValid(password)) != true) {
             isValid = false;
 
         } else if ((Validations.nameIsValid(firstName)) != true) {
@@ -113,7 +117,7 @@ public class UserProfileControl extends HttpServlet {
             isValid = false;
 
         } else if (((String.valueOf(creditLimit)).matches("[+]?([0-9]*\\.[0-9]+|[0-9]+)")) != true) {
-            isValid = false;
+            isValid = true;
         }
 
         return isValid;

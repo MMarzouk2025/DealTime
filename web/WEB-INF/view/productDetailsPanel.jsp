@@ -114,7 +114,7 @@
                         <div class="row" id="productMain">
                             <div class="col-sm-6">
                                 <div id="mainImage">
-                                    <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
+                                    <img src="res/products_images/${requestScope.product.getProductImageFileName()}" alt="" class="img-responsive">
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -132,18 +132,18 @@
 
                                 <div class="row" id="thumbs">
                                     <div class="col-xs-4">
-                                        <a href="res/products_images/${requestScope.product.productId}.jpg" class="thumb">
-                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.getProductImageFileName()}" class="thumb">
+                                            <img src="res/products_images/${requestScope.product.getProductImageFileName()}" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="res/products_images/${requestScope.product.productId}.jpg" class="thumb">
-                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.getProductImageFileName()}" class="thumb">
+                                            <img src="res/products_images/${requestScope.product.getProductImageFileName()}" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="res/products_images/${requestScope.product.productId}.jpg" class="thumb">
-                                            <img src="res/products_images/${requestScope.product.productId}.jpg" alt="" class="img-responsive">
+                                        <a href="res/products_images/${requestScope.product.getProductImageFileName()}" class="thumb">
+                                            <img src="res/products_images/${requestScope.product.getProductImageFileName()}" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                 </div>

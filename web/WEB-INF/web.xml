@@ -37,6 +37,14 @@
         <servlet-name>ProductByCategory</servlet-name>
         <servlet-class>com.deal.servlet.ProductByCategory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerHistory</servlet-name>
+        <servlet-class>com.deal.servlet.CustomerHistory</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerHistory</servlet-name>
+        <url-pattern>/history</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductByCategory</servlet-name>
         <url-pattern>/category</url-pattern>
