@@ -25,7 +25,11 @@ public class CategoryControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        System.out.println(request.getParameter("categoryId"));
+        Category category = new Category();
+        category.setCategoryId(Long.parseLong(request.getParameter("categoryId")));
+        String result = DbHandler.getCategoryDAO().deleteCategory(category);
+        response.getWriter().write(result);
     }
     
 }

@@ -85,11 +85,11 @@
                             <form action="login" method="post">
                                 <div class="form-group">
                                     <input name="email" type="text" class="form-control" id="email-modal" placeholder="email">
-                                    <p id="invalidmail">Invalid mail</p>
+                                    <!-- <p id="invalidmail">Invalid mail</p> -->
                                 </div>
                                 <div class="form-group">
                                     <input name="password" type="password" class="form-control" id="password-modal" placeholder="password">
-                                    <p id="invalidpassword">Invalid password</p>
+                                    <!-- <p id="invalidpassword">Invalid password</p> -->
 
                                 </div>
 

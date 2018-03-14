@@ -86,7 +86,7 @@
                         <button class="btn btn-success" style="margin-bottom: 0.45em; margin-left: 2.9em;">
                             <i class="fa fa-plus-square-o" data-toggle="modal" data-target="#category-modal"></i>
                         </button>
-                        <button class="btn btn-danger" style="margin-bottom: 0.45em; margin-left: 0.7em;">
+                        <button class="btn btn-danger" style="margin-bottom: 0.45em; margin-left: 0.7em;" onclick="deleteCategory()">
                             <i class="fa fa-trash-o"></i>
                         </button>
                     </div>
@@ -148,8 +148,7 @@
                                                             $(this).parent().parent().children().eq(2).attr('id'), 
                                                             $(this).parent().parent().children().eq(4).attr('id'), 
                                                             $(this).parent().parent().children().eq(3).attr('id'), 
-                                                            $(this).parent().parent().children().eq(5).attr('id'), 
-                                                            $(this).parent().parent().children().eq(0).attr('id'))">
+                                                            $(this).parent().parent().children().eq(5).attr('id'))">
                                             <i class="fa fa-edit"></i>
                                         </button>
                                     </td>
@@ -181,11 +180,14 @@
                             <h4 class="modal-title" id="Login">Edit Product</h4>
                         </div>
                         <div class="modal-body">
+                            <form id="productEditForm" method="POST" action="productEdit">
+                            <!--
                             <form id="productEditForm" ENCTYPE="MULTIPART/FORM-DATA" method="POST" action="productEdit">
                                 <div class="form-group">
                                    <img src="res/img/default.jpg" alt="No image" id="productEditImage">
                                    <input id="productEditFile" type="file" name="pic" accept="image/*">
                                 </div>
+                                -->
                                 <div class="form-group">
                                     <input id="prodNameField" name="productNameForEdit" type="text" class="form-control" placeholder="Name" maxlength="60" required="true" >
                                 </div>
@@ -384,17 +386,18 @@
                readURL_ForEdit(this);
             });
             
-            function editProduct(prodId, prodName, prodDesc, prodPrice, prodQuantity, prodCatId, prodImageFileName) {
-                alert(prodImageFileName);
+            function editProduct(prodId, prodName, prodDesc, prodPrice, prodQuantity, prodCatId) {
                 $("#productIdHiddenField").val(prodId);
                 $("#prodNameField").val(prodName);
                 $("#prodDescField").val(prodDesc);
                 $("#prodPriceField").val(prodPrice);
                 $("#prodQuantityField").val(prodQuantity);
                 $("#categoryToEditProductIn").val(prodCatId);
-                
+                $("#categoryToEditProductInField").val(prodCatId);
+                /*
                 $("#productEditFile").val(prodImageFileName);
                 $("#productEditImage").attr('src', "res/products_images/" + prodImageFileName);
+                */
             }
         </script>
     </body>

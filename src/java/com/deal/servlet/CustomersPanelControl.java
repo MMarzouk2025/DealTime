@@ -23,12 +23,14 @@ public class CustomersPanelControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ArrayList<Customer> customers = (ArrayList<Customer>) DbHandler.getCustomerDAO().retrieveAllCustomers();
+        /*
         session = request.getSession(true);
         Customer customer = (Customer) session.getAttribute("loggedInUser");
         if (customer != null) {
             OrderDAO orderDAO = DbHandler.getOrderDAO();
             session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
         }
+        */
         request.setAttribute("allCustomers", customers);
         request.getRequestDispatcher("/WEB-INF/view/customers.jsp").forward(request, response);
     }

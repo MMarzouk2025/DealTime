@@ -44,7 +44,7 @@ public class HomeControl extends HttpServlet {
         CategoryDAO categoryDAOObject = DbHandler.getCategoryDAO();
         products = (ArrayList<Product>) productDAoObject.retrieveAllProducts();
         categoryList = categoryDAOObject.retrieveAllCategories();
-
+        
         List<Product> subProductsList = null;
         String pageNamber = request.getParameter("page");
         if (pageNamber != null) {

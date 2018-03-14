@@ -32,58 +32,16 @@ public class ProductEdit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Product product = new Product();
+        Product product = DbHandler.getProductDAO().retrieveProduct(Long.parseLong(request.getParameter("productIdField")));
+        product.setProductName(request.getParameter("productNameForEdit"));
+        product.setProductDesc(request.getParameter("productDescriptionForEdit"));
+        product.setProductPrice(Double.parseDouble(request.getParameter("productPriceForEdit")));
+        product.setAvailableQuantity(Integer.parseInt(request.getParameter("productQuantityForEdit")));
+        product.setProductCategory(DbHandler.getCategoryDAO()
+                                .retrieveCategory(Long.parseLong(request.getParameter("productCategoryFieldForEdit"))));
         
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        ServletFileUpload upload = new ServletFileUpload(factory);
-
-        List<FileItem> items = null;
-        try {
-            items = upload.parseRequest(request);
-        } catch (FileUploadException ex) {
-            ex.printStackTrace();
-        }
-        if (items != null) {
-            Iterator<FileItem> itr = items.iterator();
-            while (itr.hasNext()) {
-                FileItem item = itr.next();
-                if (item.isFormField()) {
-                    switch (item.getFieldName()) {
-                        case"productIdField":
-                            product.setProductId(Long.parseLong(item.getString()));
-                            break;
-                        case "productNameForEdit":
-                            product.setProductName(item.getString());
-                            break;
-                        case "productDescriptionForEdit":
-                            product.setProductDesc(item.getString());
-                            break;
-                        case "productPriceForEdit":
-                            product.setProductPrice(Double.parseDouble(item.getString()));
-                            break;
-                        case "productQuantityForEdit":
-                            product.setAvailableQuantity(Integer.parseInt(item.getString()));
-                            break;
-                        case "productCategoryFieldForEdit":
-                            System.out.println(item.getString());
-                            Category category = DbHandler.getCategoryDAO()
-                                .retrieveCategory(Long.parseLong(item.getString()));
-                            product.setProductCategory(category);
-                    }
-                } else {
-                    System.out.println("file founded in request");
-                    try {
-                        product.setProductImageFileName(item.getName());
-                        String filesStorageUrl = getServletContext().getRealPath("/res/products_images") + "/" + item.getName();
-                        File file = new File(filesStorageUrl);
-                        item.write(file);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        }
         DbHandler.getProductDAO().updateProduct(product);
+        
         response.sendRedirect("/DealTime/administration");
     }
     

@@ -12,7 +12,7 @@
         <meta name="description" content="Obaju e-commerce template">
         <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
         <meta name="keywords" content="">
-
+        
         <title>DealTime Admin</title>
 
         <meta name="keywords" content="">
@@ -439,7 +439,7 @@ _________________________________________________________ -->
                                         <a href="#" onclick="getAllCustomers()"><i class="fa fa-list"></i> Customers</a>
                                     </li>
                                     <li name="option" id="logout_option">
-                                        <a href="logOut"><i class="fa fa-sign-out"></i> Logout</a>
+                                        <a href="adminLogout"><i class="fa fa-sign-out"></i> Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -652,6 +652,7 @@ _________________________________________________________ -->
             }
 
             function getCategoryProducts(catgId) {
+                
                 $.ajax({
                     url: 'administration/products',
                     type: 'POST',
@@ -689,6 +690,20 @@ _________________________________________________________ -->
                 setTimeout(function(){
                     getAllProducts();
                 }, 250);
+            }
+            
+            function deleteCategory() {
+                var catId = $("#categoriesList").val();
+                $.ajax({
+                    url: 'categoryControl',
+                    type: 'POST',
+                    cache: false,
+                    data: {categoryId: catId},
+                    success: function (result) {
+                        alert(result);
+                        getAllProducts();
+                    }
+                });
             }
             
         </script>

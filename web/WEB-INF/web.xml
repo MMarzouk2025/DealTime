@@ -21,6 +21,10 @@
         <servlet-name>CheckOutCart</servlet-name>
         <servlet-class>com.deal.servlet.CheckOutCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminLogout</servlet-name>
+        <servlet-class>com.deal.servlet.AdminLogout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CheckOutCart</servlet-name>
         <url-pattern>/CheckOutCart</url-pattern>
@@ -192,6 +196,10 @@
         <servlet-name>RegisterControl</servlet-name>
     </filter-mapping>
     <!--********************************************************************-->
+    <servlet-mapping>
+        <servlet-name>AdminLogout</servlet-name>
+        <url-pattern>/adminLogout</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

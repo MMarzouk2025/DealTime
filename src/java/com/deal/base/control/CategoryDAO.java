@@ -164,7 +164,8 @@ public class CategoryDAO {
     private boolean deleteCategoryProducts(Category category) {
         boolean result = false;
         try {
-            PreparedStatement stmt = mConn.prepareStatement("DELETE DEALTIME.PRODUCTS WHERE CATEGORY_ID = "
+            PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.PRODUCTS "
+                    + "SET AVAILABLE_QUANTITY = 0 WHERE CATEGORY_ID = "
                     + category.getCategoryId());
             stmt.execute();
             result = true;
