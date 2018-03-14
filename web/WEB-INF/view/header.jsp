@@ -89,8 +89,12 @@
                                 </div>
                                 <div class="form-group">
                                     <input name="password" type="password" class="form-control" id="password-modal" placeholder="password">
+<<<<<<< HEAD
                                     <!-- <p id="invalidpassword">Invalid password</p> -->
 
+=======
+
+>>>>>>> origin/master
                                 </div>
 
                                 <p class="text-center">
