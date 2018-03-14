@@ -35,10 +35,12 @@ public class LogOutControl extends HttpServlet {
             
             HttpSession session = request.getSession(false); 
             if(session!=null) {	
-                session.invalidate();	
+                // session.invalidate(); // we need only to remove the attributes
+                session.removeAttribute("loggedInUser");
+                session.removeAttribute("userType");
             }	
-            request.getRequestDispatcher("index.html").forward(request, response);
-
+            //request.getRequestDispatcher("index.html").forward(request, response);
+            response.sendRedirect("/DealTime");
         }
     }
 
@@ -73,7 +75,7 @@ public class LogOutControl extends HttpServlet {
 
     /**
      * Returns a short description of the servlet.
-     *
+     * 
      * @return a String containing servlet description
      */
     @Override

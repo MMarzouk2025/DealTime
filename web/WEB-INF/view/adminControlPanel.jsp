@@ -13,9 +13,7 @@
         <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
         <meta name="keywords" content="">
 
-        <title>
-            DealTime Admin
-        </title>
+        <title>DealTime Admin</title>
 
         <meta name="keywords" content="">
 
@@ -38,8 +36,8 @@
     </head>
 
     <body>
-        
-                        <!-- *** SCRIPTS TO INCLUDE ***
+
+        <!-- *** SCRIPTS TO INCLUDE ***
 _________________________________________________________ -->
         <script src="res/script/jquery-3.3.1.min.js"></script>
         <script src="res/js/bootstrap.min.js"></script>
@@ -441,7 +439,7 @@ _________________________________________________________ -->
                                         <a href="#" onclick="getAllCustomers()"><i class="fa fa-list"></i> Customers</a>
                                     </li>
                                     <li name="option" id="logout_option">
-                                        <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                        <a href="logOut"><i class="fa fa-sign-out"></i> Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -619,7 +617,7 @@ _________________________________________________________ -->
 
         </div>
         <!-- /#all -->
-        
+
         <script type="text/javascript">
             getAdminProfile();
 
@@ -652,22 +650,22 @@ _________________________________________________________ -->
                 $.get("administration/products", ajaxCallBack);
                 setOptionActive('products_option');
             }
-            
+
             function getCategoryProducts(catgId) {
                 $.ajax({
                     url: 'administration/products',
                     type: 'POST',
                     cache: false,
-                    data: {oper: "categories", catId: catgId}, 
+                    data: {oper: "categories", catId: catgId},
                     success: function (result) {
-                        // alert(result);
                         $("#panel_content_container").html('<div id="panel_content" class="box"></div>');
                         $("#panel_content").html(result);
+                        // alert(result);
                         $("#categoriesList").val(catgId);
                     }
                 });
             }
-
+            
             function getAllCustomers() {
                 $.get("administration/customers", function (responseTxt, statusTxt, xhr) {
                     if (statusTxt == "success") {
@@ -677,7 +675,7 @@ _________________________________________________________ -->
                 });
                 setOptionActive('customers_option');
             }
-            
+
             function removeProduct(productId) {
                 $.ajax({
                     url: 'administration/products',
@@ -688,12 +686,9 @@ _________________________________________________________ -->
                         alert(result);
                     }
                 });
-                getAllProducts();
-            }
-            
-            function openAddProductWindow() {
-                $('#categoryToAddProductIn').val($('#categoriesList').val());
-                $('#categoryToAddProductIn').prop('disabled', true);
+                setTimeout(function(){
+                    getAllProducts();
+                }, 250);
             }
             
         </script>

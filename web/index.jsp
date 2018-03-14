@@ -1,6 +1,6 @@
 <jsp:include page="WEB-INF/view/header.jsp"/>
 <%--<%@ include file="/WEB-INF/view/header.jsp" %   >--%>
-
+    
 
 <%@page contentType="text/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -154,7 +154,7 @@
                                             <h3> <a href="productDetails?productId=${product.productId}"> ${product.productName}</a></h3>
                                             <p class="price">$ ${product.productPrice} </p>
                                             <p class="buttons">
-                                                <a href="detail.html" class="btn btn-default">View detail</a>
+                                                <a href="productDetails?productId=${product.productId}" class="btn btn-default">View detail</a>
                                                 <!--<a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
                                             </p>
 

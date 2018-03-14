@@ -15,9 +15,11 @@ public class AdminProfile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Admin a = DbHandler.getAdminDAO().retrieveAdmin("MahmoudMarzouk2020@gmail.com", "123456");
-        System.out.println(a);
-        request.setAttribute("admin", a);
+        Admin mAdmin = null;
+        if (request.getSession(false) != null) {
+            mAdmin = (Admin) request.getSession(false).getAttribute("loggedInUser");
+        }
+        request.setAttribute("admin", mAdmin);
         request.getRequestDispatcher("WEB-INF/view/adminProfile.jsp").forward(request, response);
     }
     

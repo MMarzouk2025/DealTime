@@ -99,10 +99,9 @@
                         <h4 class="modal-title" id="Login">Add Category</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="productAdditionForm">
-                           
+                        <form id="categoryAdditionForm" method="GET" action="categoryControl">
                             <div class="form-group">
-                                <input name="categoryName" type="text" class="form-control" id="name-modal" placeholder="Name" maxlength="40" required="true" >
+                                <input name="categoryName" type="text" class="form-control" id="category_name_modal" placeholder="Name" maxlength="80" required="true" >
                             </div>
                             <button type="submit" class="btn btn-primary" style="width: 100%">
                                     <i class="fa fa-save"></i>Add</button>
@@ -127,19 +126,30 @@
                         </thead>
                         <tbody id="products_table_body" style="display: block; overflow-y:scroll; max-height:45em; overflow: auto;">
                             <c:forEach items="${requestScope.products}" var="product">
-                                <tr style="display:table; width:100%; table-layout:fixed;" id="${product.getProductId()}">
-                                    <td style="text-align: left; width: 14%;">
-                                        <img src="res/products_images/${product.getProductId()}.jpg" alt="No Image">
+                                <tr style="display:table; width:100%; table-layout:fixed;" id="${product.getProductId()}" >
+                                    <td id="${product.getProductImageFileName()}" style="text-align: left; width: 14%;">
+                                        <img src="res/products_images/${product.getProductImageFileName()}" alt="No Image">
                                     </td>
                                     <td style="text-align: left; text-overflow: ellipsis; overflow: hidden; 
-                                        white-space: nowrap; padding-left: 0;  width: 21%;">
+                                        white-space: nowrap; padding-left: 0;  width: 21%;" id="${product.getProductName()}">
                                         <a title="${product.getProductName()}">${product.getProductName()}</a>
                                     </td>
-                                    <td style="width: 10%">${product.getAvailableQuantity()}</td>
-                                    <td style="width: 15%">$${product.getProductPrice()}</td>
-                                    <td style="width: 18%">${product.getProductCategory().getCategoryName()}</td>
+                                    <td id="${product.getProductDesc()}" hidden/>
+                                    <td id="${product.getAvailableQuantity()}" 
+                                        style="width: 10%">${product.getAvailableQuantity()}</td>
+                                    <td id="${product.getProductPrice()}" 
+                                        style="width: 15%">$${product.getProductPrice()}</td>
+                                    <td id="${product.getProductCategory().getCategoryId()}" 
+                                        style="width: 18%">${product.getProductCategory().getCategoryName()}</td>
                                     <td style="text-align: right; padding-right: 0; width: 11%;">
-                                        <button class="btn btn-primary">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#edit-modal"
+                                                onclick="editProduct($(this).parent().parent().attr('id'), 
+                                                            $(this).parent().parent().children().eq(1).attr('id'), 
+                                                            $(this).parent().parent().children().eq(2).attr('id'), 
+                                                            $(this).parent().parent().children().eq(4).attr('id'), 
+                                                            $(this).parent().parent().children().eq(3).attr('id'), 
+                                                            $(this).parent().parent().children().eq(5).attr('id'), 
+                                                            $(this).parent().parent().children().eq(0).attr('id'))">
                                             <i class="fa fa-edit"></i>
                                         </button>
                                     </td>
@@ -162,6 +172,54 @@
                 <!-- /.table-responsive -->
                 
             </div>
+            
+            <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+                <div id="productEditModal" class="modal-dialog modal-sm">
+                    <div id="productEditModalContent" class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="Login">Edit Product</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="productEditForm" ENCTYPE="MULTIPART/FORM-DATA" method="POST" action="productEdit">
+                                <div class="form-group">
+                                   <img src="res/img/default.jpg" alt="No image" id="productEditImage">
+                                   <input id="productEditFile" type="file" name="pic" accept="image/*">
+                                </div>
+                                <div class="form-group">
+                                    <input id="prodNameField" name="productNameForEdit" type="text" class="form-control" placeholder="Name" maxlength="60" required="true" >
+                                </div>
+                                <div class="form-group">
+                                    <input id="prodDescField" name="productDescriptionForEdit" type="text" class="form-control" placeholder="Description" maxlength="320" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <input id="prodPriceField" name="productPriceForEdit" type="text" class="form-control" placeholder="Price" maxlength="30" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <input id="prodQuantityField"  name="productQuantityForEdit" type="text" class="form-control" placeholder="Quantity" maxlength="30" required="true">
+                                </div>
+                                <div class="form-group" style="display: inline-block; width: 100%">
+                                    <select id="categoryToEditProductIn" name="productCategory" 
+                                            class="form-control" style="margin-bottom: 1.5em; margin-top: 0.25em; float: top; 
+                                            text-align: center;">
+                                        <option selected="selected" disabled>Select Category ...</option>
+                                        <c:forEach items="${requestScope.categories}" var="category">
+                                            <option value="${category.getCategoryId()}">${category.getCategoryName()}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <input id="categoryToEditProductInField" name="productCategoryFieldForEdit" type="hidden"/>
+                                <input id="productIdHiddenField" name="productIdField" type="hidden"/>
+                                <p class="text-center">
+                                    <button type="submit" class="btn btn-primary" style="width: 50%">
+                                        <i class="fa fa-save"></i> Done</button>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
                 <div id="productManageModal" class="modal-dialog modal-sm">
 
@@ -171,16 +229,16 @@
                         <h4 class="modal-title" id="Login">Add new Product</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="productAdditionForm">
+                        <form id="productAdditionForm" ENCTYPE="MULTIPART/FORM-DATA" method="POST" action="manageProduct">
                             <div class="form-group">
-                              <img src="res/img/default.jpg" alt="Smiley face" id="productimage">
-                               <input type="file" name="pic" accept="image/*" onchange="readURL(this);">
+                               <img src="res/img/default.jpg" alt="Smiley face" id="productAdditionImage">
+                               <input id="productAdditionFile" type="file" name="pic" accept="image/*">
                             </div>
                             <div class="form-group">
-                                <input name="productName" type="text" class="form-control" id="naame-modal" placeholder="Name" maxlength="40" required="true" >
+                                <input name="productName" type="text" class="form-control" id="naame-modal" placeholder="Name" maxlength="60" required="true" >
                             </div>
                             <div class="form-group">
-                                <input name="productDescription" type="text" class="form-control" id="desc-modal" placeholder="Description" maxlength="30" required="true">
+                                <input name="productDescription" type="text" class="form-control" id="desc-modal" placeholder="Description" maxlength="320" required="true">
                             </div>
                             <div class="form-group">
                                 <input name="productPrice" type="text" class="form-control" id="price-modal" placeholder="Price" maxlength="30" required="true">
@@ -253,6 +311,7 @@
         <script src="res/js/front.js"></script>
         
         <script type="text/javascript">
+            /*
             $("#productAdditionForm").submit(function(e) {
                 var category = $('#categoryToAddProductIn').val();
                 if (category !== null) {
@@ -266,35 +325,12 @@
                     data: $("#productAdditionForm").serialize(), // serializes the form's elements.
                     success: function(data)
                     {   
-                        $('#products_table_body tr:last').after("<tr style='display:table; width:100%; table-layout:fixed;' \n\
-                                        id="${product.getProductId()}">
-                                    <td style="text-align: left; width: 14%;">
-                                        <img src="res/products_images/${product.getProductId()}.jpg" alt="No Image">
-                                    </td>
-                                    <td style="text-align: left; text-overflow: ellipsis; overflow: hidden; 
-                                        white-space: nowrap; padding-left: 0;  width: 21%;">
-                                        <a title="${product.getProductName()}">${product.getProductName()}</a>
-                                    </td>
-                                    <td style="width: 10%">${product.getAvailableQuantity()}</td>
-                                    <td style="width: 15%">$${product.getProductPrice()}</td>
-                                    <td style="width: 18%">${product.getProductCategory().getCategoryName()}</td>
-                                    <td style="text-align: right; padding-right: 0; width: 11%;">
-                                        <button class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
-                                    <td style="padding-left: 0; width: 11%;">
-                                        <button class="btn btn-danger" 
-                                                onclick="removeProduct($(this).parent().parent().attr('id'))">
-                                            <i class="fa fa-trash-o"></i>
-                                        </button>
-                                    </td>
-                                </tr>");
                         closeProductManageWindow();
                         setTimeout(function (){
-                            if (data)
+                            location.reload();
+                            //window.location = window.location.hash+"/DealTime/administration/products";
                             alert("product has been added successfully");
-                        }, 350);
+                        }, 250);
                     }
                 });
                 e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -305,6 +341,60 @@
                 $("#productManageModalContent .close").click();
                 $("#productManageModal .close").click();
                 $("#add-modal .close").click();
+            }
+            */
+           
+            function openAddProductWindow() {
+                var category = $('#categoriesList').val();
+                if (category !== null) {
+                    $('#categoryToAddProductIn').val(category);
+                    $('#categoryToAddProductInField').val(category);
+                } else {
+                    $('#categoryToAddProductIn').val(0);
+                    $('#categoryToAddProductInField').val(0);
+                }
+                $('#categoryToAddProductIn').prop('disabled', true);
+            }
+    
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#productAdditionImage').attr('src', e.target.result);
+                    };
+                   reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#productAdditionFile").change(function() {
+               readURL(this);
+            });
+            
+            function readURL_ForEdit(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#productEditImage').attr('src', e.target.result);
+                    };
+                   reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#productEditFile").change(function() {
+               readURL_ForEdit(this);
+            });
+            
+            function editProduct(prodId, prodName, prodDesc, prodPrice, prodQuantity, prodCatId, prodImageFileName) {
+                alert(prodImageFileName);
+                $("#productIdHiddenField").val(prodId);
+                $("#prodNameField").val(prodName);
+                $("#prodDescField").val(prodDesc);
+                $("#prodPriceField").val(prodPrice);
+                $("#prodQuantityField").val(prodQuantity);
+                $("#categoryToEditProductIn").val(prodCatId);
+                
+                $("#productEditFile").val(prodImageFileName);
+                $("#productEditImage").attr('src', "res/products_images/" + prodImageFileName);
             }
         </script>
     </body>

@@ -34,48 +34,46 @@ public class LogInControl extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             // insert in database
-            //if (Validations.emailIsValid(email) && Validations.passIsValid(password)) {
-            Customer customer;
-            CustomerDAO customerDao = DbHandler.getCustomerDAO();
-            customer = customerDao.retrieveCustomer(email, password);
-            Admin admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
+            if (Validations.emailIsValid(email) && Validations.passIsValid(password)) {
+                Customer customer;
+                CustomerDAO customerDao = DbHandler.getCustomerDAO();
+                customer = customerDao.retrieveCustomer(email, password);
+                Admin admin = DbHandler.getAdminDAO().retrieveAdmin(email, password);
 
-            if (customer != null) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("loggedInUser", customer);
-                session.setAttribute("userType", "c");
-                OrderDAO orderDAO = DbHandler.getOrderDAO();
-                session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
-                //redirect to customers page
-                System.out.println(request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1]);
-                if (request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1].equalsIgnoreCase("DealTime")) {
-                    request.getRequestDispatcher("dealTime").forward(request, response);
-
-                } else {
-                    try {
-                        request.getRequestDispatcher(request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1]).forward(request, response);
-                    } catch (Exception e) {
-
+                if (customer != null) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("loggedInUser", customer);
+                    session.setAttribute("userType", "c");
+                    OrderDAO orderDAO = DbHandler.getOrderDAO();
+                    session.setAttribute("CustomerOrderNo", orderDAO.retrieveCustomerOrders(customer).size());
+                    //redirect to customers page
+                    System.out.println(request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1]);
+                    if (request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1].equalsIgnoreCase("DealTime")) {
                         request.getRequestDispatcher("dealTime").forward(request, response);
+
+                    } else {
+                        try {
+                            request.getRequestDispatcher(request.getHeader("referer").split("/")[request.getHeader("referer").split("/").length - 1]).forward(request, response);
+                        } catch (Exception e) {
+
+                            request.getRequestDispatcher("dealTime").forward(request, response);
+                        }
+
                     }
 
+                } else if (admin != null) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("loggedInUser", admin);
+                    session.setAttribute("userType", "a");
+                    //redirect to admin page
+                    System.out.println("" + admin);
+                    // request.getRequestDispatcher("administration").forward(request, response);
+                    response.sendRedirect("/DealTime/administration");
+                } else {
+                    System.out.println("user doesn't exist");
+                    request.getRequestDispatcher("dealTime").forward(request, response);
                 }
-
-            } else if (admin != null) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("loggedInUser", admin);
-                session.setAttribute("userType", "a");
-                //redirect to admin page
-                System.out.println("" + admin);
-                // request.getRequestDispatcher("administration").forward(request, response);
-                response.sendRedirect("/DealTime/administration");
-            } else {
-                System.out.println("user doesn't exist");
-                request.getRequestDispatcher("dealTime").forward(request, response);
             }
-//            } else {
-//                System.out.println("hello");
-//            }
         }
     }
 

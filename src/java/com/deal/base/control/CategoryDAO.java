@@ -51,7 +51,7 @@ public class CategoryDAO {
             ResultSet results = mConn.createStatement().executeQuery("SELECT CATEGORY_ID, CATEGORY_NAME\n"
                     + "FROM DEALTIME.CATEGORIES\n"
                     + "WHERE CATEGORY_ID = " + categoryId);
-            if (results.next()) {
+            while (results.next()) {
                 category = new Category();
                 category.setCategoryId(results.getLong("CATEGORY_ID"));
                 category.setCategoryName(results.getString("CATEGORY_NAME"));
@@ -116,9 +116,8 @@ public class CategoryDAO {
                 result = EXISTING_CATEGORY;
             } else {
                 PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.CATEGORIES (CATEGORY_ID, CATEGORY_NAME)\n"
-                        + "VALUES (?, ?)");
-                stmt.setLong(1, category.getCategoryId());
-                stmt.setString(2, category.getCategoryName());
+                        + "VALUES (CATEGORIES_SEQ.NEXTVAL, ?)");
+                stmt.setString(1, category.getCategoryName());
                 stmt.execute();
                 result = SUCCESSFUL_INSERT;
             }

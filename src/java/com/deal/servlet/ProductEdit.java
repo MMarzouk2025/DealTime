@@ -17,32 +17,23 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class ProductManage extends HttpServlet {
-    
+/**
+ *
+ * @author Mahmoud.Marzouk
+ */
+public class ProductEdit extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
     }
 
-    // post for new product insertion
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*
-        String productName = request.getParameter("productName");
-        String productDesc = request.getParameter("productDescription");
-        System.out.println(request.getParameter("productName"));
-        int price = Integer.parseInt(request.getParameter("productPrice"));
-        int quantity = Integer.parseInt(request.getParameter("productQuantity"));
-        System.out.println(request.getParameter("productCategoryField"));
-        Category category = DbHandler.getCategoryDAO()
-                .retrieveCategory(Long.parseLong(request.getParameter("productCategoryField")));
-         */
-        //String productImgFileName = request.getParameter("pic");
-        
         Product product = new Product();
-
+        
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
 
@@ -58,19 +49,22 @@ public class ProductManage extends HttpServlet {
                 FileItem item = itr.next();
                 if (item.isFormField()) {
                     switch (item.getFieldName()) {
-                        case "productName":
+                        case"productIdField":
+                            product.setProductId(Long.parseLong(item.getString()));
+                            break;
+                        case "productNameForEdit":
                             product.setProductName(item.getString());
                             break;
-                        case "productDescription":
+                        case "productDescriptionForEdit":
                             product.setProductDesc(item.getString());
                             break;
-                        case "productPrice":
+                        case "productPriceForEdit":
                             product.setProductPrice(Double.parseDouble(item.getString()));
                             break;
-                        case "productQuantity":
+                        case "productQuantityForEdit":
                             product.setAvailableQuantity(Integer.parseInt(item.getString()));
                             break;
-                        case "productCategoryField":
+                        case "productCategoryFieldForEdit":
                             System.out.println(item.getString());
                             Category category = DbHandler.getCategoryDAO()
                                 .retrieveCategory(Long.parseLong(item.getString()));
@@ -89,11 +83,8 @@ public class ProductManage extends HttpServlet {
                 }
             }
         }
-        
-        String resultProductId = DbHandler.getProductDAO().insertProduct(product);
-        
-        //response.getWriter().write(resultProductId);
+        DbHandler.getProductDAO().updateProduct(product);
         response.sendRedirect("/DealTime/administration");
     }
-
+    
 }

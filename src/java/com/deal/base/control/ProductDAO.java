@@ -53,7 +53,7 @@ public class ProductDAO {
                     + "FROM DEALTIME.PRODUCTS\n"
                     + "WHERE PRODUCT_ID = " + productId + "\n"
                     + "AND AVAILABLE_QUANTITY != 0");
-            if (results.next()) {
+            while (results.next()) {
                 product = new Product();
                 product.setProductId(productId);
                 product.setProductName(results.getString("PRODUCT_NAME"));
@@ -115,7 +115,7 @@ public class ProductDAO {
                     + "FROM DEALTIME.PRODUCTS\n"
                     + "WHERE CATEGORY_ID = " + categoryId
                     + "AND AVAILABLE_QUANTITY != 0");
-            
+
             while (results.next()) {
                 Product product = new Product();
                 product.setProductId(results.getLong("PRODUCT_ID"));
@@ -148,7 +148,7 @@ public class ProductDAO {
             if (results.next()) {
                 productId = results.getLong(1);
             }
-            
+
             if (productId != 0) {
                 PreparedStatement stmt = mConn.prepareStatement("INSERT INTO DEALTIME.PRODUCTS (PRODUCT_ID, PRODUCT_NAME,\n"
                         + "PRODUCT_DESCRIPTION, PRICE, AVAILABLE_QUANTITY, IMAGE_FILENAME, CATEGORY_ID)\n"
@@ -232,7 +232,7 @@ public class ProductDAO {
             }
         }
         return result;
-        */
+         */
         String result;
         try {
             PreparedStatement stmt = mConn.prepareStatement("UPDATE DEALTIME.PRODUCTS\n"
