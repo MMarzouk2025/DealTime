@@ -68,7 +68,7 @@ public class RegisterControl extends HttpServlet {
             else if(result.equals(CustomerDAO.SUCCESSFUL_INSERT)){
                 System.out.println(result);
                 HttpSession session = request.getSession(true);
-                session.setAttribute("loggedInUser", customer);
+                //session.setAttribute("loggedInUser", customer);
                  request.getRequestDispatcher("dealTime").forward(request, response);
 
             }

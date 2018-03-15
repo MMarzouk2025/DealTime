@@ -40,7 +40,7 @@ public class LogOutControl extends HttpServlet {
                 session.removeAttribute("userType");
             }	
             //request.getRequestDispatcher("index.html").forward(request, response);
-            response.sendRedirect("/DealTime");
+            response.sendRedirect("/dealTime");
         }
     }
 

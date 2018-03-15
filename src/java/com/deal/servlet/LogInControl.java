@@ -68,7 +68,7 @@ public class LogInControl extends HttpServlet {
                     //redirect to admin page
                     System.out.println("" + admin);
                     // request.getRequestDispatcher("administration").forward(request, response);
-                    response.sendRedirect("/DealTime/administration");
+                    response.sendRedirect("/administration");
                 } else {
                     System.out.println("user doesn't exist");
                     request.getRequestDispatcher("dealTime").forward(request, response);

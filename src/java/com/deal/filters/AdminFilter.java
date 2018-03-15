@@ -33,7 +33,7 @@ public class AdminFilter implements Filter {
         if (userType != null && userType.equals("a")) {
             chain.doFilter(request, response);
         } else {
-            ((HttpServletResponse)response).sendRedirect("/DealTime");
+            ((HttpServletResponse)response).sendRedirect("/dealTime");
         }
     }
 

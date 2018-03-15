@@ -41,7 +41,7 @@ public class CustomerFilter implements Filter {
         if (userType != null && userType.equals("c")) {
             chain.doFilter(request, response);
         } else {
-            ((HttpServletResponse) response).sendRedirect("/DealTime");
+            ((HttpServletResponse) response).sendRedirect("/dealTime");
         }
     }
 

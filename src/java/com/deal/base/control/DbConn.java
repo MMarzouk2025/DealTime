@@ -12,7 +12,7 @@ import org.apache.commons.pool.impl.GenericObjectPool;
 public class DbConn {
     // JDBC Driver Name & Database URL
     private final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";  
-    private final String JDBC_DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private final String JDBC_DB_URL = "jdbc:oracle:thin:@deal.ccj2vba3rgd1.eu-central-1.rds.amazonaws.com:1521:dtdb";
     
     // JDBC Database Credentials
     private final String JDBC_USER = "dealtime";

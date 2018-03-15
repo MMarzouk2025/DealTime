@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * @author nagib
  */
 public class ProductByCategory extends HttpServlet {
-
+    
     HttpSession session;
     ArrayList<Product> productsList = null;
 
@@ -48,7 +48,7 @@ public class ProductByCategory extends HttpServlet {
                 .forEach((t) -> {
                     subProductsList.add(t);
                 });// filtering by name  
-
+        
         request.setAttribute("ResultproductsList", subProductsList);
         request.setAttribute("ResultAllproductsNumber", subProductsList.size());
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");

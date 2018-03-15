@@ -37,7 +37,7 @@ public class AdminLogout extends HttpServlet {
             session.invalidate();
         }
         //request.getRequestDispatcher("index.html").forward(request, response);
-        response.sendRedirect("/DealTime");
+        response.sendRedirect("/dealTime");
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

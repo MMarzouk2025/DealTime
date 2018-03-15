@@ -93,7 +93,7 @@ public class ProductManage extends HttpServlet {
         String resultProductId = DbHandler.getProductDAO().insertProduct(product);
         
         //response.getWriter().write(resultProductId);
-        response.sendRedirect("/DealTime/administration");
+        response.sendRedirect("/administration");
     }
 
 }

@@ -31,7 +31,7 @@ public class UserFilter implements Filter {
             userType = (String) ((HttpServletRequest)request).getSession(false).getAttribute("userType");
         }
         if (userType != null) {
-            ((HttpServletResponse) response).sendRedirect("/DealTime");
+            ((HttpServletResponse) response).sendRedirect("/dealTime");
         } else {
             chain.doFilter(request, response);
         }

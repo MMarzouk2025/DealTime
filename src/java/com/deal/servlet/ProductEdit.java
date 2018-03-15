@@ -42,7 +42,7 @@ public class ProductEdit extends HttpServlet {
         
         DbHandler.getProductDAO().updateProduct(product);
         
-        response.sendRedirect("/DealTime/administration");
+        response.sendRedirect("/administration");
     }
     
 }

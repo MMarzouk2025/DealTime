@@ -19,7 +19,7 @@ public class CategoryControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DbHandler.getCategoryDAO().insertCategory(new Category(request.getParameter("categoryName")));
-        response.sendRedirect("/DealTime/administration");
+        response.sendRedirect("/administration");
     }
     
     @Override
